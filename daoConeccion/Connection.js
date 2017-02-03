@@ -6,7 +6,7 @@ function conecction() {
         host: "localhost",
         user: "root",
         password: "",
-        database: "eventos",
+        database: "proyectoestadia",
         port: "3306"
     });
     connection.connect(function (err) {
