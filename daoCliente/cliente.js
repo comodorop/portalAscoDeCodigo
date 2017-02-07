@@ -42,24 +42,24 @@ function actualizarClientes(cliente, callback) {
     });
 }
 
-//function eliminarClientes(cliente, callback) {
-//    console.log("informacion para guardar");
-//    console.log(cliente);
-//    var connection = con.conecction();
-//    var sql = "DELETE FROM cliente WHERE idcliente='" + cliente.idCliente + "'";
-//
-//    connection.query(sql, function (err, result) {
-//        if (err) {
-//            throw  err;
-//        } else {
-//            callback(null, 1);
-//        }
-//    });
-//}
+function eliminarClientes(cliente, callback) {
+    console.log("informacion para guardar");
+    console.log(cliente);
+    var connection = con.conecction();
+    var sql = "DELETE FROM cliente WHERE idcliente='" + cliente.idCliente + "'";
+
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
 
 module.exports = {
     dameClientes,
     guardarClientes,
-    actualizarClientes
-//    eliminarClientes
+    actualizarClientes,
+    eliminarClientes
 };

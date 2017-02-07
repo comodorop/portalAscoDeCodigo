@@ -5,9 +5,7 @@ app.controller('ctrCliente', function ($scope, $http) {
     $scope.cliente.apellido = "";
     $scope.cliente.correo = "";
     $scope.cliente.telefono = "";
-    $http.get("http://localhost:3333/api/cliente").success(function (data) {
-        $scope.listaClientes = data;
-    });
+
 
     $scope.validar = function () {
         var ok = false;
@@ -20,14 +18,12 @@ app.controller('ctrCliente', function ($scope, $http) {
 
 
     $scope.guardarClientes = function () {
-        $http.post("http://localhost:3333/api/guardarClientes", $scope.cliente).success(function (respuesta) {
-            console.log(respuesta);
-            if (respuesta.idRespuesta == 1) {
-                alert("Nuevo Cliente");
 
-                $scope.listaClientes = respuesta;
-            }
-        });
+        var ok = $scope.validar();
+        if (ok == true) {
+
+            console.log($scope.cliente);
+        }
     };
 
 

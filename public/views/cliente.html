@@ -17,19 +17,19 @@
 
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <label class="control-label">Apellido </label>
-                            <input ng-model="cliente.apellido" type="text" placeholder="Apellido" class="form-control" name="title">
+                              <label class="control-label">Apellido </label>
+                              <input ng-click="cliente.apellido" type="text" placeholder="Apellido" class="form-control" name="title">
                         </div>
                     </div>
                 </div>
                 <div class="row gutter">
                     <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Correo</label>
-                        <input ng-model="cliente.correo" type="text" placeholder="@" class="form-control" name="title">
+                          <label class="control-label">Correo</label>
+                            <input type="text" placeholder="Correo" class="form-control" name="title">
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Telefono</label>
-                        <input ng-model="cliente.telefono" type="text" placeholder="Telefono" class="form-control" name="title">
+                          <label class="control-label">Telefono</label>
+                            <input type="text" placeholder="Telefono" class="form-control" name="title">
                     </div>
                 </div>
                 <br>
@@ -37,28 +37,12 @@
 
                     <button ng-click="guardarClientes();" type="submit" class="btn btn-info">Guardar</button>
                     <button ng-click="actualizarClientes();" type="submit" class="btn btn-success">Actualizar</button>
-
-
-                </div>
+                    
+            </form>
         </div>
     </div>
+</div>
 
-    <table ng-table="vm.tableParams" class="table" show-filter="true">
-        </thead>
-        <tr ng-repeat="cliente in listaClientes">
-            <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
-                {{cliente.nombre}}</td>
-            <td title="'Apellido'" filter="{ apellido: 'text'}" sortable="'apellido'">
-                {{cliente.apellido}}</td>
-            <td title="'Correo'" filter="{ correo: 'text'}" sortable="'correo'">
-                {{cliente.correo}}</td>
-            <td title="'Telefono'" filter="{ telefono: 'number'}" sortable="'telefono'">
-                {{cliente.telefono}}</td>
-        </tr>
-    </table>
-
-</div>  
-
-
+</div>
 
 
