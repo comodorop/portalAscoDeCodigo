@@ -3,27 +3,29 @@ var bodyParser = require('body-parser');
 var app = express();
 var server = require('http').Server(app);
 var socket = require('socket.io')(server);
-
-var alumnos = require('./daoClientes/cliente');
+var cl = require('./daoCliente/cliente');
+var curso = require('./daoCurso/curso');
 app.use(express.static('public'));
 var router = express.Router();
-
-
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-
-router.get('/Clientes', function (req, res) {
-    cliente.dameClientes(function (error, data) {
+/////*** CLIENTES***/////
+router.get('/clientes', function (req, res) {
+    cl.dameClientes(function (error, data) {
         res.status(200).send(data);
     });
 });
 
-router.post('/guardarClientes', function (req, res) {
+router.post('/guardarCliente', function (req, res) {
+    console.log("entrooooo al api");
     var params = req.body;
-    cliente.guardarClientes(params, function (error, data) {
-        cliente.dameClientes(function (error, data) {
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    cl.guardarClientes(params, function (error, data) {
+        cl.dameClientes(function (error, data) {
             res.status(200).send(data);
         });
     });
@@ -31,23 +33,46 @@ router.post('/guardarClientes', function (req, res) {
 
 router.put('/actualizarClientes', function (req, res) {
     var params = req.body;
-    cliente.guardarClientes(params, function (error, data) {
-        cliente.dameClientes(function (error, data) {
+    cl.guardarClientes(params, function (error, data) {
+        cl.dameClientes(function (error, data) {
             res.status(200).send(data);
         });
     });
 });
 
-router.delete('/deleteClientes', function (req, res) {
+/////*** CURSOS***/////
+
+router.get('/Cursos', function (req, res) {
+    cl.dameCursos(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+router.post('/guardarCursos', function (req, res) {
     var params = req.body;
-    cliente.guardarClientes(params, function (error, data) {
-        cliente.dameClientes(function (error, data) {
+    cl.guardarCursos(params, function (error, data) {
+        cl.dameCursos(function (error, data) {
             res.status(200).send(data);
         });
     });
 });
 
+router.put('/actualizarCursos', function (req, res) {
+    var params = req.body;
+    cl.guardarCursos(params, function (error, data) {
+        cl.dameCursos(function (error, data) {
+            res.status(200).send(data);
+        });
+    });
+});
 
+app.use((req, res, next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers','X-API-KEY, Origin, X-Requested-width, Content-Type, Accept, Access-Control-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
+    res.header('Allow', 'GET,Post,OPTIONS,PUT,DELETE');
+    next();
+});
 
 app.use('/api', router);
 server.listen('3333', function () {

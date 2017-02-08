@@ -1,9 +1,9 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameAlumnos(callback) {
+function dameCursos(callback) {
     var connection = con.conecction();
-    var sql = "SELECT * from alumnos";
+    var sql = "SELECT * from curso";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -13,12 +13,12 @@ function dameAlumnos(callback) {
     });
 }
 
-function guardarAlumnos(alumnos, callback) {
+function guardarCursos(curso, callback) {
     console.log("informacion para guardar");
-    console.log(alumnos);
+    console.log(curso);
     var connection = con.conecction();
-    var sql = "INSERT INTO alumnos (nombre, telefono, correo, idDia, idHorario) \n\
-               VALUES ('" + alumnos.nombre + "', '" + alumnos.telefono + "', '" + alumnos.correo + "', '1', '1')";
+    var sql = "INSERT INTO curso (nombre) \n\
+               VALUES ('" + curso.nombre + "')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -28,8 +28,38 @@ function guardarAlumnos(alumnos, callback) {
     });
 }
 
-module.exports = {
-    dameAlumnos,
-    guardarAlumnos
-};
+function actualizarCursos(curso, callback) {
+    console.log("informacion para guardar");
+    console.log(curso);
+    var connection = con.conecction();
+    var sql = "UPDATE curso SET  nombre='" + curso.nombre + "' WHERE idcurso='" + curso.idCurso + "'";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
 
+//function eliminarClientes(cliente, callback) {
+//    console.log("informacion para guardar");
+//    console.log(cliente);
+//    var connection = con.conecction();
+//    var sql = "DELETE FROM cliente WHERE idcliente='" + cliente.idCliente + "'";
+//
+//    connection.query(sql, function (err, result) {
+//        if (err) {
+//            throw  err;
+//        } else {
+//            callback(null, 1);
+//        }
+//    });
+//}
+
+module.exports = {
+    dameCursos,
+    guardarCursos,
+    actualizarCursos
+//    eliminarClientes
+};
