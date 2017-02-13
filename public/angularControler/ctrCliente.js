@@ -45,6 +45,25 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
             });
 //        }
     };
+    $scope.actualizarCliente = function () {
+//        var ok = $scope.validar();
+//        if (ok == true) {
+            alert("va a entrar a actualizar");
+            $http.put("http://localhost:3333/api/actualizarCliente", $scope.cliente).success(function (respuesta) {
+                console.log(respuesta);
+            });
+//        }
+    };
+    
+     $scope.eliminarCliente = function () {
+//        var ok = $scope.validar();
+//        if (ok == true) {
+            alert("va a entrar a actualizar");
+            $http.delete("http://localhost:3333/api/eliminarCliente", $scope.cliente).success(function (respuesta) {
+                console.log(respuesta);
+            });
+//        }
+    };
 
 
 

@@ -18,6 +18,7 @@ router.get('/clientes', function (req, res) {
     });
 });
 
+//////////////pruevas en postman
 router.post('/guardarCliente', function (req, res) {
     console.log("entrooooo al api");
     var params = req.body;
@@ -31,15 +32,20 @@ router.post('/guardarCliente', function (req, res) {
     });
 });
 
-router.put('/actualizarClientes', function (req, res) {
+router.put('/actualizarCliente', function (req, res) {
     var params = req.body;
-    cl.guardarClientes(params, function (error, data) {
-        cl.dameClientes(function (error, data) {
-            res.status(200).send(data);
-        });
+    cl.actualizarClientes(params, function (error, data) {
+            res.status(500).send(data);      
     });
 });
 
+
+router.put('/eliminarCliente', function (req, res) {
+    var params = req.body;
+    cl.eliminarClientes(params, function (error, data) {
+            res.status(404).send(data);      
+    });
+});
 /////*** CURSOS***/////
 
 router.get('/Cursos', function (req, res) {
@@ -48,8 +54,12 @@ router.get('/Cursos', function (req, res) {
     });
 });
 
-router.post('/guardarCursos', function (req, res) {
+router.post('/guardarCurso', function (req, res) {
+    console.log("entrooooo al api");
     var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
     cl.guardarCursos(params, function (error, data) {
         cl.dameCursos(function (error, data) {
             res.status(200).send(data);

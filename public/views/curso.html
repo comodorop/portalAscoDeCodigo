@@ -1,35 +1,58 @@
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="panel">
-        <div class="panel-heading">
-            <h4>Registro de Clientes</h4>
-        </div>
-        <div class="panel-body">
-            <form id="movieForm" method="post">
-                <div class="form-group">
-                    <div class="row gutter">
-                        <div class="col-md-6 col-sm-6">
-
-                            <label class="control-label">Nombre</label>
-                            <input ng-model="cliente.nombre" type="text" placeholder="Nombre" class="form-control" name="title">
-                        </div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4>Registro de Cursos</h4>
                     </div>
-                </div>
-                <br>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="panel-body">
+                        <form id="movieForm" method="post">
+                            <div class="form-group">
+                                <div class="row gutter">
+                                    <div class="col-md-9 col-sm-9">
 
-                    <button ng-click="guardarClientes();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarClientes();" type="submit" class="btn btn-success">Actualizar</button>
+                                        <label class="control-label">Nombre</label>
+                                        <input ng-model="curso.nombre" type="text" placeholder="Nombre" class="form-control" name="title">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                                <button ng-click="guardarCurso();" type="submit" class="btn btn-info">Guardar</button>
 
 
-                </div>
-            </form>
+
+                            </div>
+                        </form>
+                    </div>
+               </div>
         </div>
-    </div>
 
-    <table ng-table="vm.tableParams" class="table" show-filter="true">
-     <tr ng-repeat="curso in listaCursos">
-            <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
-                {{curso.nombre}}</td>
-        </tr>
-    </table>
-</div>  
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <table ng-table="cl.listaClientes" class="table" show-filter="true">
+
+                <tr ng-repeat="curso in $data" >
+                    <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
+                        {{curso.nombre}}</td>
+
+                    <td>
+                        <a ng-click="actualizarClientes();" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
+
+
+                        <a ng-click="actualizarClientes();" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
+
+                </tr>
+            </table>
+
+        </div>
+
+    </div> 
+</div> 
+
+
+

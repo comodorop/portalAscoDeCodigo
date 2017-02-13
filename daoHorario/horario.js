@@ -1,9 +1,9 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameClientes(callback) {
+function dameHorarios(callback) {
     var connection = con.conecction();
-    var sql = "SELECT * from cliente";
+    var sql = "SELECT * from horario";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -13,9 +13,9 @@ function dameClientes(callback) {
     });
 }
 
-function guardarClientes(cliente, callback) {
+function guardarHorarios(horario, callback) {
     console.log("informacion para guardar");
-    console.log(cliente);
+    console.log(horario);
     var connection = con.conecction();
     var sql = "INSERT INTO cliente (nombre, apellido, correo, telefono) \n\
                VALUES ('" + cliente.nombre + "', '" + cliente.apellido + "', '" + cliente.correo + "', '" + cliente.telefono + "' )";
@@ -63,3 +63,6 @@ module.exports = {
     actualizarClientes,
     eliminarClientes
 };
+
+
+
