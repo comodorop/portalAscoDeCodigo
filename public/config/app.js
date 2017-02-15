@@ -1,17 +1,20 @@
-var app = angular.module('app', ['ngRoute','ngTable']);
+var app = angular.module('app', ['ngRoute', 'ngTable']);
 app.config(function ($routeProvider) {
     $routeProvider.when('/cliente', {
         templateUrl: './views/cliente.html',
         controller: 'ctrCliente',
-        controllerAs:'cl'
+        controllerAs: 'cl'
     }).when('/curso', {
         templateUrl: './views/curso.html',
         controller: 'ctrCurso'
+    }).when('/horario', {
+        templateUrl: './views/horario.html',
+        controller: 'ctrHorario'
     });
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 });
