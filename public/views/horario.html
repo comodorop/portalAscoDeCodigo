@@ -10,7 +10,7 @@
                         <div class="col-md-6 col-sm-6">
 
                             <label class="control-label">Día</label>
-                            <input ng-model="horario.nombre" type="text" placeholder="Nombre" class="form-control" name="title">
+                            <input ng-model="horario.nombre" type="text" placeholder="Día" class="form-control" name="title">
 
                         </div>
                     </div>
@@ -18,11 +18,11 @@
                 <div class="row gutter">
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Hora de Inicio</label>
-                        <input ng-model="horario.horaInicio" type="text" placeholder="@" class="form-control" name="title">
+                        <input ng-model="horario.horaInicio" type="text" placeholder="Hora de Inicio" class="form-control" name="title">
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Telefono</label>
-                        <input ng-model="horario.horaFinal" type="text" placeholder="Telefono" class="form-control" name="title">
+                        <label class="control-label">Hora Final</label>
+                        <input ng-model="horario.horaFinal" type="text" placeholder="Hora Final" class="form-control" name="title">
                     </div>
                 </div>
                 <br>
@@ -37,14 +37,14 @@
         </div>
     </div>
 
-    <table ng-table="cl.listaClientes" class="table" show-filter="true">
+    <table ng-table="hr.listaHorarios" class="table" show-filter="true">
 
         <tr ng-repeat="horario in $data" >
-            <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
+            <td title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
                 {{horario.dia}}</td>
-            <td title="'Correo'" filter="{ correo: 'text'}" sortable="'correo'">
+            <td title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
                 {{horario.horaInicio}}</td>
-            <td title="'Telefono'" filter="{ telefono: 'number'}" sortable="'telefono'">
+            <td title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">
                 {{horario.horaFinal}}</td>
             <td>
                 <a ng-click="actualizarCliente();" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>

@@ -17,8 +17,8 @@ function guardarHorarios(horario, callback) {
     console.log("informacion para guardar");
     console.log(horario);
     var connection = con.conecction();
-    var sql = "INSERT INTO cliente (nombre, apellido, correo, telefono) \n\
-               VALUES ('" + cliente.nombre + "', '" + cliente.apellido + "', '" + cliente.correo + "', '" + cliente.telefono + "' )";
+    var sql = "INSERT INTO horario (dia, horaInicio, horaFinal) \n\
+               VALUES ('" + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -28,11 +28,11 @@ function guardarHorarios(horario, callback) {
     });
 }
 
-function actualizarClientes(cliente, callback) {
+function actualizarHorarios(horario, callback) {
     console.log("informacion para actualizar");
-    console.log(cliente);
+    console.log(horario);
     var connection = con.conecction();
-    var sql = "UPDATE cliente SET  nombre='" + cliente.nombre + "', apellido'" + cliente.apellido + "', correo '" + cliente.correo + "', telefono '" + cliente.telefono + "' WHERE idcliente='" + cliente.idCliente + "'";
+    var sql = "UPDATE horario SET  dia='" + horario.dia + "', horaInicio'" + horario.horaInicio + "', horaFinal '" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario + "'";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -42,11 +42,11 @@ function actualizarClientes(cliente, callback) {
     });
 }
 
-function eliminarClientes(cliente, callback) {
+function eliminarHorarios(horario, callback) {
     console.log("informacion para eliminar");
-    console.log(cliente);
+    console.log(horario);
     var connection = con.conecction();
-    var sql = "DELETE FROM cliente WHERE idcliente='" + cliente.idCliente + "'";
+    var sql = "DELETE FROM horario WHERE idhorario='" + horario.idhorario + "'";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -58,10 +58,10 @@ function eliminarClientes(cliente, callback) {
 }
 
 module.exports = {
-    dameClientes,
-    guardarClientes,
-    actualizarClientes,
-    eliminarClientes
+    dameHorarios,
+    guardarHorarios,
+    actualizarHorarios,
+    eliminarHorarios
 };
 
 

@@ -4,7 +4,8 @@ var app = express();
 var server = require('http').Server(app);
 var socket = require('socket.io')(server);
 var cl = require('./daoCliente/cliente');
-var curso = require('./daoCurso/curso');
+var cr = require('./daoCurso/curso');
+var hr = require('./daoHorario/horario');
 app.use(express.static('public'));
 var router = express.Router();
 
@@ -48,8 +49,8 @@ router.put('/eliminarCliente', function (req, res) {
 });
 /////*** CURSOS***/////
 
-router.get('/Cursos', function (req, res) {
-    cl.dameCursos(function (error, data) {
+router.get('/cursos', function (req, res) {
+    cr.dameCursos(function (error, data) {
         res.status(200).send(data);
     });
 });
@@ -60,8 +61,8 @@ router.post('/guardarCurso', function (req, res) {
     console.log("*********************");
     console.log(params);
     console.log("**********************");
-    cl.guardarCursos(params, function (error, data) {
-        cl.dameCursos(function (error, data) {
+    cr.guardarCursos(params, function (error, data) {
+        cr.dameCursos(function (error, data) {
             res.status(200).send(data);
         });
     });
@@ -69,12 +70,51 @@ router.post('/guardarCurso', function (req, res) {
 
 router.put('/actualizarCursos', function (req, res) {
     var params = req.body;
-    cl.guardarCursos(params, function (error, data) {
-        cl.dameCursos(function (error, data) {
+    cr.guardarCursos(params, function (error, data) {
+        cr.dameCursos(function (error, data) {
             res.status(200).send(data);
         });
     });
 });
+
+
+
+/////*** HORARIOS***/////
+router.get('/horarios', function (req, res) {
+    hr.guardarHorarios(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+//////////////pruevas en postman
+router.post('/guardarHorario', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    hr.guardarHorarios(params, function (error, data) {
+        hr.dameHorarios(function (error, data) {
+            res.status(200).send(data);
+        });
+    });
+});
+
+router.put('/actualizarHorario', function (req, res) {
+    var params = req.body;
+    hr.actualizarHorarios(params, function (error, data) {
+            res.status(500).send(data);      
+    });
+});
+
+
+router.put('/eliminarHorario', function (req, res) {
+    var params = req.body;
+    hr.eliminarHorarios(params, function (error, data) {
+            res.status(404).send(data);      
+    });
+});
+
 
 app.use((req, res, next)=>{
     res.header('Access-Control-Allow-Origin', '*');
