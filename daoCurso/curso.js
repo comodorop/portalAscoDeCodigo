@@ -13,20 +13,20 @@ function dameCursos(callback) {
     });
 }
 
-//function guardarCursos(curso, callback) {
-//    console.log("informacion para guardar");
-//    console.log(curso);
-//    var connection = con.conecction();
-//    var sql = "INSERT INTO curso (nombre) \n\
-//               VALUES ('" + curso.nombre + "')";
-//    connection.query(sql, function (err, result) {
-//        if (err) {
-//            throw  err;
-//        } else {
-//            callback(null, 1);
-//        }
-//    });
-//}
+function guardarCursos(curso, callback) {
+    console.log("informacion para guardar");
+    console.log(curso);
+    var connection = con.conecction();
+    var sql = "INSERT INTO curso (nombre) \n\
+               VALUES ('" + curso.nombre + "')";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
 
 //function actualizarCursos(curso, callback) {
 //    console.log("informacion para guardar");
@@ -58,8 +58,8 @@ function dameCursos(callback) {
 //}
 
 module.exports = {
-    dameCursos
-//    guardarCursos,
+    dameCursos,
+    guardarCursos
 //    actualizarCursos
 //    eliminarClientes
 };

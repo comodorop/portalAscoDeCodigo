@@ -33,20 +33,50 @@ router.post('/guardarCliente', function (req, res) {
     });
 });
 
+router.post('/obtenerCliente', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    cl.obtenerCliente(params, function (error, data) {
+        console.log(data);
+        res.status(200).send(data[0]);
+//        cl.dameClientes(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
+    });
+});
+
 router.put('/actualizarCliente', function (req, res) {
     var params = req.body;
     cl.actualizarClientes(params, function (error, data) {
-            res.status(500).send(data);      
+        if (data == 1) {
+            cl.dameClientes(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
     });
 });
+
+
 
 
 router.put('/eliminarCliente', function (req, res) {
     var params = req.body;
+    console.log(params)
     cl.eliminarClientes(params, function (error, data) {
-            res.status(404).send(data);      
+        if(data == 1){
+            cl.dameClientes(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+      
     });
 });
+
+
+
 /////*** CURSOS***/////
 
 router.get('/cursos', function (req, res) {
@@ -103,7 +133,7 @@ router.post('/guardarHorario', function (req, res) {
 router.put('/actualizarHorario', function (req, res) {
     var params = req.body;
     hr.actualizarHorarios(params, function (error, data) {
-            res.status(500).send(data);      
+        res.status(500).send(data);
     });
 });
 
@@ -111,14 +141,14 @@ router.put('/actualizarHorario', function (req, res) {
 router.put('/eliminarHorario', function (req, res) {
     var params = req.body;
     hr.eliminarHorarios(params, function (error, data) {
-            res.status(404).send(data);      
+        res.status(404).send(data);
     });
 });
 
 
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers','X-API-KEY, Origin, X-Requested-width, Content-Type, Accept, Access-Control-Request-Method');
+    res.header('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-width, Content-Type, Accept, Access-Control-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
     res.header('Allow', 'GET,Post,OPTIONS,PUT,DELETE');
     next();

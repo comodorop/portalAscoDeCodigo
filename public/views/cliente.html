@@ -33,7 +33,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
                     <button ng-click="guardarCliente();" type="submit" class="btn btn-info">Guardar</button>
-
+                    <button ng-click="actualizarCliente();">Actualizar Cliente</button>
 
 
                 </div>
@@ -44,6 +44,9 @@
     <table ng-table="cl.listaClientes" class="table" show-filter="true">
 
         <tr ng-repeat="cliente in $data" >
+            <td>
+                {{cliente.idcliente}}
+            </td>
             <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{cliente.nombre}}</td>
             <td title="'Apellido'" filter="{ apellido: 'text'}" sortable="'apellido'">
@@ -53,10 +56,11 @@
             <td title="'Telefono'" filter="{ telefono: 'number'}" sortable="'telefono'">
                 {{cliente.telefono}}</td>
             <td>
-                <a ng-click="actualizarCliente();" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
-            
-            
-               <a ng-click="eliminarCliente();" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
+            <td>
+                {{cliente.estado}}
+            </td>
+                <a ng-click="obtenerCliente(cliente.idcliente);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
+               <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
 
         </tr>
     </table>
