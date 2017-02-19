@@ -10,6 +10,9 @@ app.config(function ($routeProvider) {
     }).when('/horario', {
         templateUrl: './views/horario.html',
         controller: 'ctrHorario'
+        }).when('/aula', {
+        templateUrl: './views/aula.html',
+        controller: 'ctrAula'
     });
 
 
