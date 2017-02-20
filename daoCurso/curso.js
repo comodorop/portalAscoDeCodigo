@@ -1,7 +1,7 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameCursos(callback) {
+function dameCurso(callback) {
     var connection = con.conecction();
     var sql = "SELECT * from curso";
     connection.query(sql, function (err, result) {
@@ -13,12 +13,12 @@ function dameCursos(callback) {
     });
 }
 
-function guardarCursos(curso, callback) {
+function guardarCurso(curso, callback) {
     console.log("informacion para guardar");
     console.log(curso);
     var connection = con.conecction();
     var sql = "INSERT INTO curso (nombre) \n\
-               VALUES ('" + curso.nombre + "')";
+               VALUES ('" + curso.nombre + "' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -28,38 +28,60 @@ function guardarCursos(curso, callback) {
     });
 }
 
-//function actualizarCursos(curso, callback) {
-//    console.log("informacion para guardar");
-//    console.log(curso);
-//    var connection = con.conecction();
-//    var sql = "UPDATE curso SET  nombre='" + curso.nombre + "' WHERE idcurso='" + curso.idCurso + "'";
-//    connection.query(sql, function (err, result) {
-//        if (err) {
-//            throw  err;
-//        } else {
-//            callback(null, 1);
-//        }
-//    });
-//}
+function obtenerCurso(curso, callback){
+    console.log("informacion para guardar");
+    console.log(curso);
+    var connection = con.conecction();
+    var sql = "SELECT * FROM  curso WHERE idcurso = '"+curso.idcurso+"'";
+    console.log("la consulta es ");
+    console.log(sql);
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, result);
+        }
+    });
+}
 
-//function eliminarClientes(cliente, callback) {
-//    console.log("informacion para guardar");
-//    console.log(cliente);
-//    var connection = con.conecction();
-//    var sql = "DELETE FROM cliente WHERE idcliente='" + cliente.idCliente + "'";
-//
-//    connection.query(sql, function (err, result) {
-//        if (err) {
-//            throw  err;
-//        } else {
-//            callback(null, 1);
-//        }
-//    });
-//}
+
+
+function actualizarCurso(curso, callback) {
+    console.log("informacion para actualizar");
+    console.log(curso);
+    var connection = con.conecction();
+    var sql = "UPDATE curso SET  nombre='" + curso.nombre + "'";
+    console.log("**************");
+    console.log(sql);
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
+
+function bajaCurso(curso, callback) {
+    console.log("informacion para eliminar");
+    console.log(curso);
+    var connection = con.conecction();
+    
+    var sql = "UPDATE curso  set estado = '2'  WHERE idcurso='" + curso.idcurso + "'";
+    console.log(sql)
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
 
 module.exports = {
-    dameCursos,
-    guardarCursos
-//    actualizarCursos
-//    eliminarClientes
+    dameCurso,
+    obtenerCurso,
+    guardarCurso,
+    actualizarCurso,
+    bajaCurso
 };

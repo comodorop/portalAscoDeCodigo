@@ -80,32 +80,67 @@ router.put('/eliminarCliente', function (req, res) {
 /////*** CURSOS***/////
 
 router.get('/cursos', function (req, res) {
-    cr.dameCursos(function (error, data) {
+    cr.dameCurso(function (error, data) {
         res.status(200).send(data);
     });
 });
 
+//////////////pruevas en postman
 router.post('/guardarCurso', function (req, res) {
     console.log("entrooooo al api");
     var params = req.body;
     console.log("*********************");
     console.log(params);
     console.log("**********************");
-    cr.guardarCursos(params, function (error, data) {
-        cr.dameCursos(function (error, data) {
+    cr.guardarCurso(params, function (error, data) {
+        cr.dameCurso(function (error, data) {
             res.status(200).send(data);
         });
     });
 });
 
-router.put('/actualizarCursos', function (req, res) {
+router.post('/obtenerCurso', function (req, res) {
+    console.log("entrooooo al api");
     var params = req.body;
-    cr.guardarCursos(params, function (error, data) {
-        cr.dameCursos(function (error, data) {
-            res.status(200).send(data);
-        });
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    cr.obtenerCurso(params, function (error, data) {
+        console.log(data);
+        res.status(200).send(data[0]);
+//        cl.dameClientes(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
     });
 });
+
+router.put('/actualizarCurso', function (req, res) {
+    var params = req.body;
+    cr.actualizarCurso(params, function (error, data) {
+        if (data == 1) {
+            cr.dameCurso(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+
+
+
+
+router.put('/bajaCurso', function (req, res) {
+    var params = req.body;
+    console.log(params)
+    cr.bajaCurso(params, function (error, data) {
+        if(data == 1){
+            cr.dameCurso(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+      
+    });
+});
+
 
 
 
