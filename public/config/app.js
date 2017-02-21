@@ -6,13 +6,16 @@ app.config(function ($routeProvider) {
         controllerAs: 'cl'
     }).when('/curso', {
         templateUrl: './views/curso.html',
-        controller: 'ctrCurso'
+        controller: 'ctrCurso',
+        controllerAs: 'cr'
     }).when('/horario', {
         templateUrl: './views/horario.html',
-        controller: 'ctrHorario'
+        controller: 'ctrHorario',
+        controllerAs: 'hr'
         }).when('/aula', {
         templateUrl: './views/aula.html',
-        controller: 'ctrAula'
+        controller: 'ctrAula',
+        controllerAs: 'au'
     });
 
 

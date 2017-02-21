@@ -56,11 +56,12 @@
             <td title="'Telefono'" filter="{ telefono: 'number'}" sortable="'telefono'">
                 {{cliente.telefono}}</td>
             <td>
-            <td>
-                {{cliente.estado}}
-            </td>
-                <a ng-click="obtenerCliente(cliente.idcliente);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
-               <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
+            <td title="'Estado'" >
+                {{cliente.estado}}</td>
+            
+             <td <a ng-click="obtenerCliente(cliente.idcliente);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
+        <br>
+             <td <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
 
         </tr>
     </table>

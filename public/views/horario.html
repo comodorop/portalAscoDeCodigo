@@ -28,7 +28,8 @@
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                    <button ng-click="guardarCliente();" type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="guardarHorario();" type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="actualizarHorario();">Actualizar Curso</button>
 
 
 
@@ -47,10 +48,8 @@
             <td title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">
                 {{horario.horaFinal}}</td>
             <td>
-                <a ng-click="actualizarCliente();" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
-            
-            
-               <a ng-click="eliminarCliente();" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
+                <a ng-click="obtenerHorario(curso.idcurso);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
+                <a ng-click="bajaHorario(curso.idcurso);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
 
         </tr>
     </table>

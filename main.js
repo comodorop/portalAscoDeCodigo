@@ -2,7 +2,28 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var server = require('http').Server(app);
-var socket = require('socket.io')(server);
+var io = require('socket.io')(server);
+
+
+app.use(express.static('public')); // parte de socket.io
+
+app.get('/index.html', function(req, res){
+    res.status(200),send('Hola mundo desde una ruta');//
+});
+
+io.sockets.on('connection', function (socket){
+    console.log('usuario conectado');//
+    socket.on('disconnect', function(){
+       console.log('Usuario desconectado') 
+    });
+    
+});
+
+server.listen(3333, function(){
+    console.log("Servidor corriendo  en http://localhost:3333");
+    
+});
+
 var cl = require('./daoCliente/cliente');
 var cr = require('./daoCurso/curso');
 var hr = require('./daoHorario/horario');
@@ -146,7 +167,7 @@ router.put('/bajaCurso', function (req, res) {
 
 /////*** HORARIOS***/////
 router.get('/horarios', function (req, res) {
-    hr.guardarHorarios(function (error, data) {
+    hr.dameHorario(function (error, data) {
         res.status(200).send(data);
     });
 });
@@ -158,25 +179,52 @@ router.post('/guardarHorario', function (req, res) {
     console.log("*********************");
     console.log(params);
     console.log("**********************");
-    hr.guardarHorarios(params, function (error, data) {
-        hr.dameHorarios(function (error, data) {
+    hr.guardarHorario(params, function (error, data) {
+        hr.dameHorario(function (error, data) {
             res.status(200).send(data);
         });
     });
 });
 
+router.post('/obtenerHorario', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    hr.obtenerHorario(params, function (error, data) {
+        console.log(data);
+        res.status(200).send(data[0]);
+//        cl.dameClientes(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
+    });
+});
+
 router.put('/actualizarHorario', function (req, res) {
     var params = req.body;
-    hr.actualizarHorarios(params, function (error, data) {
-        res.status(500).send(data);
+    hr.actualizarHorario(params, function (error, data) {
+        if (data == 1) {
+            hr.dameHorario(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
     });
 });
 
 
-router.put('/eliminarHorario', function (req, res) {
+
+
+router.put('/bajaHorario', function (req, res) {
     var params = req.body;
-    hr.eliminarHorarios(params, function (error, data) {
-        res.status(404).send(data);
+    console.log(params)
+    hr.bajaHorario(params, function (error, data) {
+        if(data == 1){
+            hr.dameHorario(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+      
     });
 });
 
@@ -189,10 +237,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api', router);
-server.listen('3333', function () {
-    console.log("Servidor levantado satisfactoriamente");
-    console.log("http://localhost:3333/api");
-});
+//app.use('/api', router);
+//server.listen('3333', function () {
+//    console.log("Servidor levantado satisfactoriamente");
+//    console.log("http://localhost:3333/api");
+//});
 
 
