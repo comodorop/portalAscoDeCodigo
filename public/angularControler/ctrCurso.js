@@ -7,8 +7,8 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
 
     var tblCursos = this;
     $http.get("http://localhost:3333/api/cursos").success(function (data) {
-       // tblCursos.listaCursos = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: data});
-        console.log(respuesta);   //agregado domingo
+        tblCursos.listaCursos = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: data});
+        //console.log(respuesta);   //agregado domingo
     });
 
 
@@ -25,7 +25,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
         alert("va a entrar a guardar");
         $http.post("http://localhost:3333/api/guardarCurso", $scope.curso).success(function (respuesta) {
             tblCursos.listaCursos = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
-            console.log(respuesta);   //agregado domingo
+            //console.log(respuesta);   //agregado domingo
         });
     };
 

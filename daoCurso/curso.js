@@ -17,8 +17,8 @@ function guardarCurso(curso, callback) {
     console.log("informacion para guardar");
     console.log(curso);
     var connection = con.conecction();
-    var sql = "INSERT INTO curso (nombre) \n\
-               VALUES ('" + curso.nombre + "' )";
+    var sql = "INSERT INTO curso (nombre, estado) \n\
+               VALUES ('" + curso.nombre + "' ,'1')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

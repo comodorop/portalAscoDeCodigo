@@ -5,24 +5,24 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 
-app.use(express.static('public')); // parte de socket.io
-
-app.get('/index.html', function(req, res){
-    res.status(200),send('Hola mundo desde una ruta');//
-});
-
-io.sockets.on('connection', function (socket){
-    console.log('usuario conectado');//
-    socket.on('disconnect', function(){
-       console.log('Usuario desconectado') 
-    });
-    
-});
-
-server.listen(3333, function(){
-    console.log("Servidor corriendo  en http://localhost:3333");
-    
-});
+//app.use(express.static('public')); // parte de socket.io
+//
+//app.get('/index.html', function(req, res){
+//    res.status(200),send('Hola mundo desde una ruta');//
+//});
+//
+//io.sockets.on('connection', function (socket){
+//    console.log('usuario conectado');//
+//    socket.on('disconnect', function(){
+//       console.log('Usuario desconectado') 
+//    });
+//    
+//});
+//
+//server.listen(3333, function(){
+//    console.log("Servidor corriendo  en http://localhost:3333");
+//    
+//});
 
 var cl = require('./daoCliente/cliente');
 var cr = require('./daoCurso/curso');
@@ -228,6 +228,69 @@ router.put('/bajaHorario', function (req, res) {
     });
 });
 
+/////*** AULA***/////
+router.get('/aulas', function (req, res) {
+    cl.dameClientes(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+//////////////pruevas en postman
+router.post('/guardarCliente', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    cl.guardarClientes(params, function (error, data) {
+        cl.dameClientes(function (error, data) {
+            res.status(200).send(data);
+        });
+    });
+});
+
+router.post('/obtenerCliente', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    cl.obtenerCliente(params, function (error, data) {
+        console.log(data);
+        res.status(200).send(data[0]);
+//        cl.dameClientes(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
+    });
+});
+
+router.put('/actualizarCliente', function (req, res) {
+    var params = req.body;
+    cl.actualizarClientes(params, function (error, data) {
+        if (data == 1) {
+            cl.dameClientes(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+
+
+
+
+router.put('/eliminarCliente', function (req, res) {
+    var params = req.body;
+    console.log(params)
+    cl.eliminarClientes(params, function (error, data) {
+        if(data == 1){
+            cl.dameClientes(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+      
+    });
+});
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -237,10 +300,10 @@ app.use((req, res, next) => {
     next();
 });
 
-//app.use('/api', router);
-//server.listen('3333', function () {
-//    console.log("Servidor levantado satisfactoriamente");
-//    console.log("http://localhost:3333/api");
-//});
+app.use('/api', router);
+server.listen('3333', function () {
+    console.log("Servidor levantado satisfactoriamente");
+    console.log("http://localhost:3333/api");
+});
 
 

@@ -36,10 +36,15 @@
             <table ng-table="cr.listaCursos" class="table" show-filter="true">
 
                 <tr ng-repeat="curso in $data" >
+                    <td>
+                        {{cliente.idcliente}}
+                    </td>
                     <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
                         {{curso.nombre}}</td>
 
                     <td>
+                 
+                        
                         <a ng-click="obtenerCurso(curso.idcurso);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
                         <a ng-click="bajaCurso(curso.idcurso);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
 
