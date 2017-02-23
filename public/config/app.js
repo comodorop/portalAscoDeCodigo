@@ -12,10 +12,14 @@ app.config(function ($routeProvider) {
         templateUrl: './views/horario.html',
         controller: 'ctrHorario',
         controllerAs: 'hr'
-        }).when('/aula', {
+    }).when('/aula', {
         templateUrl: './views/aula.html',
         controller: 'ctrAula',
         controllerAs: 'au'
+    }).when('/egreso', {
+        templateUrl: './views/egreso.html',
+        controller: 'ctrEgreso',
+        controllerAs: 'eg'
     });
 
 

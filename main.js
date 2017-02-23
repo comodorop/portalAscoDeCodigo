@@ -228,7 +228,7 @@ router.put('/bajaHorario', function (req, res) {
     });
 });
 
-/////*** AULA***/////
+/////*** AULA***/////                                         TERMINAR (((CHECAR)))
 router.get('/aulas', function (req, res) {
     cl.dameClientes(function (error, data) {
         res.status(200).send(data);
@@ -290,6 +290,70 @@ router.put('/eliminarCliente', function (req, res) {
       
     });
 });
+
+/////*** EGRESO***/////                               TERMINAR (((CHECAR)))
+router.get('/clientes', function (req, res) {
+    cl.dameClientes(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+//////////////pruevas en postman
+router.post('/guardarCliente', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    cl.guardarClientes(params, function (error, data) {
+        cl.dameClientes(function (error, data) {
+            res.status(200).send(data);
+        });
+    });
+});
+
+router.post('/obtenerCliente', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    cl.obtenerCliente(params, function (error, data) {
+        console.log(data);
+        res.status(200).send(data[0]);
+//        cl.dameClientes(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
+    });
+});
+
+router.put('/actualizarCliente', function (req, res) {
+    var params = req.body;
+    cl.actualizarClientes(params, function (error, data) {
+        if (data == 1) {
+            cl.dameClientes(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+
+
+
+
+router.put('/eliminarCliente', function (req, res) {
+    var params = req.body;
+    console.log(params)
+    cl.eliminarClientes(params, function (error, data) {
+        if(data == 1){
+            cl.dameClientes(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+      
+    });
+});
+
 
 
 app.use((req, res, next) => {
