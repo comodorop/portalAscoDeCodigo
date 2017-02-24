@@ -50,7 +50,7 @@ function actualizarEgreso(egreso, callback) {
     console.log("informacion para actualizar");
     console.log(egreso);
     var connection = con.conecction();
-    var sql = "UPDATE egreso SET  nombre='" + cliente.nombre + "', apellido='" + cliente.apellido + "', correo='" + cliente.correo + "', telefono='" + cliente.telefono + "' WHERE idcliente='" + cliente.idcliente + "'";
+    var sql = "UPDATE egreso SET  idcliente='" + egreso.idcliente + "', estado='" + egreso.estado + "', concepto='" + egreso.concepto + "', descripcion='" + egreso.descripcion + "',total='" + egreso.total + "', fecha='" + egreso.fecha + "' WHERE idegreso='" + egreso.idegreso + "'";
     console.log("**************");
     console.log(sql);
     connection.query(sql, function (err, result) {
@@ -62,12 +62,12 @@ function actualizarEgreso(egreso, callback) {
     });
 }
 
-function eliminarClientes(cliente, callback) {
+function bajaEgreso(egreso, callback) {
     console.log("informacion para eliminar");
-    console.log(cliente);
+    console.log(egreso);
     var connection = con.conecction();
     
-    var sql = "UPDATE cliente  set estado = '2'  WHERE idcliente='" + cliente.idcliente + "'";
+    var sql = "UPDATE egreso  set estado = '2'  WHERE idegreso='" + egreso.idegreso + "'";
     console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
@@ -79,11 +79,11 @@ function eliminarClientes(cliente, callback) {
 }
 
 module.exports = {
-    dameClientes,
-    obtenerCliente,
-    guardarClientes,
-    actualizarClientes,
-    eliminarClientes
+    dameEgreso,
+    obtenerEgreso,
+    guardarEgreso,
+    actualizarEgreso,
+    bajaEgreso
 };
 
 

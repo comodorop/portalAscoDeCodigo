@@ -228,34 +228,34 @@ router.put('/bajaHorario', function (req, res) {
     });
 });
 
-/////*** AULA***/////                                         TERMINAR (((CHECAR)))
+/////*** AULA***/////                                         
 router.get('/aulas', function (req, res) {
-    cl.dameClientes(function (error, data) {
+    cl.dameAula(function (error, data) {
         res.status(200).send(data);
     });
 });
 
 //////////////pruevas en postman
-router.post('/guardarCliente', function (req, res) {
+router.post('/guardarAula', function (req, res) {
     console.log("entrooooo al api");
     var params = req.body;
     console.log("*********************");
     console.log(params);
     console.log("**********************");
-    cl.guardarClientes(params, function (error, data) {
-        cl.dameClientes(function (error, data) {
+    cl.guardarAula(params, function (error, data) {
+        cl.dameAula(function (error, data) {
             res.status(200).send(data);
         });
     });
 });
 
-router.post('/obtenerCliente', function (req, res) {
+router.post('/obtenerAula', function (req, res) {
     console.log("entrooooo al api");
     var params = req.body;
     console.log("*********************");
     console.log(params);
     console.log("**********************");
-    cl.obtenerCliente(params, function (error, data) {
+    cl.obtenerAula(params, function (error, data) {
         console.log(data);
         res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
@@ -264,11 +264,11 @@ router.post('/obtenerCliente', function (req, res) {
     });
 });
 
-router.put('/actualizarCliente', function (req, res) {
+router.put('/actualizarAula', function (req, res) {
     var params = req.body;
-    cl.actualizarClientes(params, function (error, data) {
+    cl.actualizarAula(params, function (error, data) {
         if (data == 1) {
-            cl.dameClientes(function (error, data) {
+            cl.dameAula(function (error, data) {
                 res.status(200).send(data);
             });
         }
@@ -278,12 +278,12 @@ router.put('/actualizarCliente', function (req, res) {
 
 
 
-router.put('/eliminarCliente', function (req, res) {
+router.put('/bajaAula', function (req, res) {
     var params = req.body;
     console.log(params)
-    cl.eliminarClientes(params, function (error, data) {
+    cl.bajaAula(params, function (error, data) {
         if(data == 1){
-            cl.dameClientes(function (error, data) {
+            cl.dameAula(function (error, data) {
                 res.status(200).send(data);
             });
         }
@@ -291,34 +291,34 @@ router.put('/eliminarCliente', function (req, res) {
     });
 });
 
-/////*** EGRESO***/////                               TERMINAR (((CHECAR)))
-router.get('/clientes', function (req, res) {
-    cl.dameClientes(function (error, data) {
+/////*** EGRESO***/////                               
+router.get('/Egresos', function (req, res) {
+    cl.dameEgreso(function (error, data) {
         res.status(200).send(data);
     });
 });
 
 //////////////pruevas en postman
-router.post('/guardarCliente', function (req, res) {
+router.post('/guardarEgreso', function (req, res) {
     console.log("entrooooo al api");
     var params = req.body;
     console.log("*********************");
     console.log(params);
     console.log("**********************");
-    cl.guardarClientes(params, function (error, data) {
-        cl.dameClientes(function (error, data) {
+    cl.guardarEgreso(params, function (error, data) {
+        cl.dameEgreso(function (error, data) {
             res.status(200).send(data);
         });
     });
 });
 
-router.post('/obtenerCliente', function (req, res) {
+router.post('/obtenerEgreso', function (req, res) {
     console.log("entrooooo al api");
     var params = req.body;
     console.log("*********************");
     console.log(params);
     console.log("**********************");
-    cl.obtenerCliente(params, function (error, data) {
+    cl.obtenerEgreso(params, function (error, data) {
         console.log(data);
         res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
@@ -327,11 +327,11 @@ router.post('/obtenerCliente', function (req, res) {
     });
 });
 
-router.put('/actualizarCliente', function (req, res) {
+router.put('/actualizarEgreso', function (req, res) {
     var params = req.body;
-    cl.actualizarClientes(params, function (error, data) {
+    cl.actualizarEgreso(params, function (error, data) {
         if (data == 1) {
-            cl.dameClientes(function (error, data) {
+            cl.dameEgreso(function (error, data) {
                 res.status(200).send(data);
             });
         }
@@ -341,12 +341,12 @@ router.put('/actualizarCliente', function (req, res) {
 
 
 
-router.put('/eliminarCliente', function (req, res) {
+router.put('/bajaEgreso', function (req, res) {
     var params = req.body;
     console.log(params)
-    cl.eliminarClientes(params, function (error, data) {
+    cl.bajaEgreso(params, function (error, data) {
         if(data == 1){
-            cl.dameClientes(function (error, data) {
+            cl.dameEgreso(function (error, data) {
                 res.status(200).send(data);
             });
         }
