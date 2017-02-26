@@ -20,6 +20,10 @@ app.config(function ($routeProvider) {
         templateUrl: './views/egreso.html',
         controller: 'ctrEgreso',
         controllerAs: 'eg'
+    }).when('/abono', {
+        templateUrl: './views/abono.html',
+        controller: 'ctrAbono',
+        controllerAs: 'ab'
     });
 
 
