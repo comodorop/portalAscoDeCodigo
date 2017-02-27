@@ -22,7 +22,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.validar = function () {
         var ok = false;
         if ($scope.cliente.nombre == "") {
-            sweetAlert("Oops...", "Se requiere un nombre", "warning");
+            sweetAlert("Oops...", "Se requiere un nombre", "advertencia");
         } else if ($scope.cliente.apellido == "") {
             sweetAlert("Oops...", "Se requiere un apellido", "warning");
         } else if ($scope.cliente.correo != "") {

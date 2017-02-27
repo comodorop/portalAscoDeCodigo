@@ -6,9 +6,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.cliente.apellido = "";
     $scope.cliente.correo = "";
     $scope.cliente.telefono = "";
-
-
-
+    
     var tblClientes = this;
     $http.get("http://localhost:3333/api/clientes").success(function (data) {
         tblClientes.listaClientes = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: data});
