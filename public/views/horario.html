@@ -10,7 +10,7 @@
                         <div class="col-md-6 col-sm-6">
 
                             <label class="control-label">Día</label>
-                            <input ng-model="horario.nombre" type="text" placeholder="Día" class="form-control" name="title">
+                            <input ng-model="horario.dia" type="text" placeholder="Día" class="form-control" name="title">
 
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
                     <button ng-click="guardarHorario();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarHorario();">Actualizar Curso</button>
+                    <button ng-click="actualizarHorario();" type="submit" class="btn btn-success">Actualizar Curso</button>
 
 
 
@@ -41,6 +41,9 @@
     <table ng-table="hr.listaHorarios" class="table" show-filter="true">
 
         <tr ng-repeat="horario in $data" >
+            <td>
+                {{horario.idhorario}}
+            </td>
             <td title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
                 {{horario.dia}}</td>
             <td title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
@@ -48,8 +51,12 @@
             <td title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">
                 {{horario.horaFinal}}</td>
             <td>
-                <a ng-click="obtenerHorario(curso.idcurso);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a>
-                <a ng-click="bajaHorario(curso.idcurso);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a>
+            <td title="'Estado'" >
+                {{horario.estado}}</td>
+            
+            <td <a ng-click="obtenerHorario(horario.idhorario);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
+        <br>
+             <td <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
 
         </tr>
     </table>

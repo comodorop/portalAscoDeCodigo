@@ -1,7 +1,7 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameCurso(callback) {
+function dameCursos(callback) {
     var connection = con.conecction();
     var sql = "SELECT * from curso";
     connection.query(sql, function (err, result) {
@@ -13,12 +13,12 @@ function dameCurso(callback) {
     });
 }
 
-function guardarCurso(curso, callback) {
+function guardarCursos(curso, callback) {
     console.log("informacion para guardar");
     console.log(curso);
     var connection = con.conecction();
     var sql = "INSERT INTO curso (nombre, estado) \n\
-               VALUES ('" + curso.nombre + "' ,'1')";
+               VALUES ('" + curso.nombre + "', '1' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -46,11 +46,11 @@ function obtenerCurso(curso, callback){
 
 
 
-function actualizarCurso(curso, callback) {
+function actualizarCursos(curso, callback) {
     console.log("informacion para actualizar");
     console.log(curso);
     var connection = con.conecction();
-    var sql = "UPDATE curso SET  nombre='" + curso.nombre + "'";
+    var sql = "UPDATE curso SET  nombre='" + curso.nombre + "' WHERE idcurso='" + curso.idcurso + "'";
     console.log("**************");
     console.log(sql);
     connection.query(sql, function (err, result) {
@@ -62,7 +62,7 @@ function actualizarCurso(curso, callback) {
     });
 }
 
-function bajaCurso(curso, callback) {
+function eliminarCursos(curso, callback) {
     console.log("informacion para eliminar");
     console.log(curso);
     var connection = con.conecction();
@@ -79,9 +79,9 @@ function bajaCurso(curso, callback) {
 }
 
 module.exports = {
-    dameCurso,
+    dameCursos,
     obtenerCurso,
-    guardarCurso,
-    actualizarCurso,
-    bajaCurso
+    guardarCursos,
+    actualizarCursos,
+    eliminarCursos
 };

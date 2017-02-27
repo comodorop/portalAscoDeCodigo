@@ -1,7 +1,7 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameHorario(callback) {
+function dameHorarios(callback) {
     var connection = con.conecction();
     var sql = "SELECT * from horario";
     connection.query(sql, function (err, result) {
@@ -13,12 +13,12 @@ function dameHorario(callback) {
     });
 }
 
-function guardarHorario(horario, callback) {
+function guardarHorarios(horario, callback) {
     console.log("informacion para guardar");
     console.log(horario);
     var connection = con.conecction();
-    var sql = "INSERT INTO horario (dia, horaInicio, horaFinal) \n\
-               VALUES ('" + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' )";
+    var sql = "INSERT INTO horario (dia, horaInicio, horaFinal, estado) \n\
+               VALUES ('" + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -46,11 +46,11 @@ function obtenerHorario(horario, callback){
 
 
 
-function actualizarHorario(horario, callback) {
+function actualizarHorarios(horario, callback) {
     console.log("informacion para actualizar");
     console.log(horario);
     var connection = con.conecction();
-    var sql = "UPDATE horario SET  dia='" + horario.dia + "', horaInicio='" + horario.horaInicio + "', horaFinal='" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario+ "'";
+    var sql = "UPDATE horario SET  dia='" + horario.dia + "', horaInicio='" + horario.horaInicio + "', horaFinal='" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario + "'";
     console.log("**************");
     console.log(sql);
     connection.query(sql, function (err, result) {
@@ -62,7 +62,7 @@ function actualizarHorario(horario, callback) {
     });
 }
 
-function bajaHorario(horario, callback) {
+function eliminarHorarios(horario, callback) {
     console.log("informacion para eliminar");
     console.log(horario);
     var connection = con.conecction();
@@ -79,9 +79,9 @@ function bajaHorario(horario, callback) {
 }
 
 module.exports = {
-    dameHorario,
+    dameHorarios,
     obtenerHorario,
-    guardarHorario,
-    actualizarHorario,
-    bajaHorario
+    guardarHorarios,
+    actualizarHorarios,
+    eliminarHorarios
 };
