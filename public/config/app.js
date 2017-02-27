@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngTable']);
+var app = angular.module('app', ['ngRoute', 'ngTable', 'ngMask']);
 app.config(function ($routeProvider) {
     $routeProvider.when('/cliente', {
         templateUrl: './views/cliente.html',

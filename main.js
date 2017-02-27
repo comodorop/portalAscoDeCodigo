@@ -42,11 +42,11 @@ router.get('/clientes', function (req, res) {
 
 //////////////pruevas en postman
 router.post('/guardarCliente', function (req, res) {
-    console.log("entrooooo al api");
+ //   console.log("entrooooo al api");
     var params = req.body;
-    console.log("*********************");
-    console.log(params);
-    console.log("**********************");
+   // console.log("*********************");
+    //console.log(params);
+    //console.log("**********************");
     cl.guardarClientes(params, function (error, data) {
         cl.dameClientes(function (error, data) {
             res.status(200).send(data);
