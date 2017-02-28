@@ -14,8 +14,8 @@ function dameClientes(callback) {
 }
 
 function guardarClientes(cliente, callback) {
-    console.log("informacion para guardar");
-    console.log(cliente);
+   // console.log("informacion para guardar");
+    //console.log(cliente);
     var connection = con.conecction();
     var sql = "INSERT INTO cliente (nombre, apellido, correo, telefono, estado) \n\
                VALUES ('" + cliente.nombre + "', '" + cliente.apellido + "', '" + cliente.correo + "', '" + cliente.telefono + "' ,'1' )";
@@ -30,11 +30,11 @@ function guardarClientes(cliente, callback) {
 
 function obtenerCliente(cliente, callback){
     console.log("informacion para guardar");
-    console.log(cliente);
+    //console.log(cliente);
     var connection = con.conecction();
     var sql = "SELECT * FROM  cliente WHERE idcliente = '"+cliente.idcliente+"'";
-    console.log("la consulta es ");
-    console.log(sql);
+    //console.log("la consulta es ");
+    //console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -47,12 +47,12 @@ function obtenerCliente(cliente, callback){
 
 
 function actualizarClientes(cliente, callback) {
-    console.log("informacion para actualizar");
-    console.log(cliente);
+    //console.log("informacion para actualizar");
+    //console.log(cliente);
     var connection = con.conecction();
     var sql = "UPDATE cliente SET  nombre='" + cliente.nombre + "', apellido='" + cliente.apellido + "', correo='" + cliente.correo + "', telefono='" + cliente.telefono + "' WHERE idcliente='" + cliente.idcliente + "'";
-    console.log("**************");
-    console.log(sql);
+    //console.log("**************");
+    //console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -63,12 +63,12 @@ function actualizarClientes(cliente, callback) {
 }
 
 function eliminarClientes(cliente, callback) {
-    console.log("informacion para eliminar");
-    console.log(cliente);
+    //console.log("informacion para eliminar");
+    //console.log(cliente);
     var connection = con.conecction();
     
     var sql = "UPDATE cliente  set estado = '2'  WHERE idcliente='" + cliente.idcliente + "'";
-    console.log(sql)
+    //console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

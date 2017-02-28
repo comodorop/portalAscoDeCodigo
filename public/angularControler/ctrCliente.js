@@ -6,6 +6,16 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.cliente.apellido = "";
     $scope.cliente.correo = "";
     $scope.cliente.telefono = "";
+    $scope.guardarCliente = function () {
+       
+        
+     if( $scope.validar())
+     {
+         sweetAlert("Correcto","¡Información enviada!","success");
+     }
+        
+       
+    };
 
 
 
@@ -18,22 +28,27 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
     };
+    
+  
+        
+       
+    };
 
     $scope.validar = function () {
         var ok = true;
         if ($scope.cliente.nombre == "") {
-           alert("Oops...", "Se requiere un nombre", "advertencia");
+           sweetAlert("Oops...", "Se requiere un nombre", "advertencia");
             ok=false;
         } else if ($scope.cliente.apellido == "") {
-            alert("Oops...", "Se requiere un apellido", "warning");
+            sweetAlert("Oops...", "Se requiere un apellido", "warning");
             ok=false;
         } else if ($scope.cliente.correo != "") {
             if ($scope.validarEmail($scope.cliente.correo) == false) {
-                alert("Error", "Correo electronico no valido", "warning");
+                sweetAlert("Error", "Correo electronico no valido", "warning");
                 ok=false;
             }
         } else if ($scope.cliente.telefono == "") {
-            alert("Oops...", "Se requiere un telefono", "warning");
+            sweetAlert("Oops...", "Se requiere un telefono", "warning");
             ok=false;
         }
         return ok;
