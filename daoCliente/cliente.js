@@ -29,7 +29,7 @@ function guardarClientes(cliente, callback) {
 }
 
 function obtenerCliente(cliente, callback){
-    console.log("informacion para guardar");
+    //console.log("informacion para guardar");
     //console.log(cliente);
     var connection = con.conecction();
     var sql = "SELECT * FROM  cliente WHERE idcliente = '"+cliente.idcliente+"'";

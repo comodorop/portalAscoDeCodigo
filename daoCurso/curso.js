@@ -3,7 +3,7 @@ var con = require('../daoConeccion/Connection');
 
 function dameCursos(callback) {
     var connection = con.conecction();
-    var sql = "SELECT * from curso";
+    var sql = "SELECT c.idcurso,c.nombre,e.estado as estado from curso c inner join estado e on c.estado=e.idestado";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -14,8 +14,8 @@ function dameCursos(callback) {
 }
 
 function guardarCursos(curso, callback) {
-    console.log("informacion para guardar");
-    console.log(curso);
+//    console.log("informacion para guardar");
+//    console.log(curso);
     var connection = con.conecction();
     var sql = "INSERT INTO curso (nombre, estado) \n\
                VALUES ('" + curso.nombre + "', '1' )";
@@ -29,12 +29,12 @@ function guardarCursos(curso, callback) {
 }
 
 function obtenerCurso(curso, callback){
-    console.log("informacion para guardar");
-    console.log(curso);
+//    console.log("informacion para guardar");
+//    console.log(curso);
     var connection = con.conecction();
     var sql = "SELECT * FROM  curso WHERE idcurso = '"+curso.idcurso+"'";
-    console.log("la consulta es ");
-    console.log(sql);
+//    console.log("la consulta es ");
+//    console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -47,12 +47,12 @@ function obtenerCurso(curso, callback){
 
 
 function actualizarCursos(curso, callback) {
-    console.log("informacion para actualizar");
-    console.log(curso);
+//    console.log("informacion para actualizar");
+//    console.log(curso);
     var connection = con.conecction();
     var sql = "UPDATE curso SET  nombre='" + curso.nombre + "' WHERE idcurso='" + curso.idcurso + "'";
-    console.log("**************");
-    console.log(sql);
+//    console.log("**************");
+//    console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -63,12 +63,12 @@ function actualizarCursos(curso, callback) {
 }
 
 function eliminarCursos(curso, callback) {
-    console.log("informacion para eliminar");
-    console.log(curso);
+//    console.log("informacion para eliminar");
+//    console.log(curso);
     var connection = con.conecction();
     
     var sql = "UPDATE curso  set estado = '2'  WHERE idcurso='" + curso.idcurso + "'";
-    console.log(sql)
+//    console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

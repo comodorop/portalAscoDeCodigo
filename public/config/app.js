@@ -26,9 +26,38 @@ app.config(function ($routeProvider) {
         controllerAs: 'ab'
     });
 
+    app.config("PruebaController", function ($scope) {
+        $scope.dias = [
+            {
+                idhorario: 2,
+                dia: "Domingo"
+            },
+            {
+                idhorario: 3,
+                dia: "Lunes"
+            },
+            {
+                idhorario: 4,
+                dia: "Martes"
+            },
+            {
+                idhorario: 5,
+                dia: "Miercoles"
+            },
+            {
+                idhorario: 6,
+                dia: "Jueves"
+            },
+            {
+                idhorario: 7,
+                dia: "Viernes"
+            }
+        ];
 
+        $scope.DiaSeleccionada = {
+            idhorario: 8,
+            dia: "Sabado"
+        }
 
-
-
-
+    });
 });

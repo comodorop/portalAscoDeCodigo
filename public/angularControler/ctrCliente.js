@@ -21,7 +21,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 
     var tblClientes = this;
     $http.get("http://localhost:3333/api/clientes").success(function (data) {
-        tblClientes.listaClientes = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: data});
+        tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [], dataset: data});
     });
 
     $scope.validarEmail = function (mail)
@@ -29,38 +29,45 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
     };
     
-  
+    $scope.validar = function ()
+    {
         
-       
-    };
-
-    $scope.validar = function () {
-        var ok = true;
-        if ($scope.cliente.nombre == "") {
-           sweetAlert("Oops...", "Se requiere un nombre", "advertencia");
-            ok=false;
-        } else if ($scope.cliente.apellido == "") {
-            sweetAlert("Oops...", "Se requiere un apellido", "warning");
-            ok=false;
-        } else if ($scope.cliente.correo != "") {
-            if ($scope.validarEmail($scope.cliente.correo) == false) {
+        if ($scope.cliente.nombre==="")
+        {
+            sweetAlert("Error...", "¡Ingrese Nombre!", "error");
+            return false;
+        } else
+        if ($scope.cliente.apellido === "")
+        {
+            sweetAlert("Error...", "¡Ingrese Apellido!", "error");
+            return false;
+        } else
+        if ($scope.cliente.correo === "")
+        {
+            if ($scope.validarEmail($scope.cliente.correo) === false) {
                 sweetAlert("Error", "Correo electronico no valido", "warning");
-                ok=false;
-            }
-        } else if ($scope.cliente.telefono == "") {
-            sweetAlert("Oops...", "Se requiere un telefono", "warning");
-            ok=false;
+                return false;
         }
-        return ok;
+        } else
+        if ($scope.cliente.telefono === "")
+        {
+            sweetAlert("Error...", "¡Ingrese Telefono!", "error");
+            return false;
+        } else
+        {
+            return true;
+        }
+
+
     };
-
-
+    
+ 
     $scope.guardarCliente = function () {
        if( $scope.validar())
        {
-        alert("va a entrar a guardar");
+        //alert("va a entrar a guardar");
         $http.post("http://localhost:3333/api/guardarCliente", $scope.cliente).success(function (respuesta) {
-            tblClientes.listaClientes = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
+            tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [], dataset: respuesta});
         });
     }else
     {alert("ocurrió un error");}
@@ -79,7 +86,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 
     $scope.actualizarCliente = function () {
         $http.put("http://localhost:3333/api/actualizarCliente", $scope.cliente).success(function (respuesta) {
-            tblClientes.listaClientes = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
+            tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [], dataset: respuesta});
             console.log(respuesta);
         });
     };
@@ -88,7 +95,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 //        var ok = $scope.validar();
 //        if (ok == true) {
         $scope.cliente.idcliente = id;
-        alert("va a entrar a actualizar");
+        //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarCliente", $scope.cliente).success(function (respuesta) {
             console.log(respuesta);
         });

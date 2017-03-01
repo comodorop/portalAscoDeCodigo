@@ -4,14 +4,15 @@
             <h4>Registro de Horarios</h4>
         </div>
         <div class="panel-body">
+           <div ng-controller="PruebaController">
             <form id="movieForm" method="post">
                 <div class="form-group">
-                    <div class="row gutter">
+                    <div class="row gutter">                
                         <div class="col-md-6 col-sm-6">
-
-                            <label class="control-label">Día</label>
-                            <input ng-model="horario.dia" type="text" placeholder="Día" class="form-control" name="title">
-
+                            <label class="control-label">Días de la Semana</label>
+                            <select ng-model="DiaSeleccionada" ng-options="horario as horario.dia for horario in dias track by horario.idhorario" >
+                                <option value="">--Elige opcion--</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -19,7 +20,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Hora de Inicio</label>
                         <input ng-model="horario.horaInicio" type="text" placeholder="Hora de Inicio" class="form-control" name="title">
-                    </div>
+                    </div> 
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Hora Final</label>
                         <input ng-model="horario.horaFinal" type="text" placeholder="Hora Final" class="form-control" name="title">
@@ -53,10 +54,10 @@
             <td>
             <td title="'Estado'" >
                 {{horario.estado}}</td>
-            
+
             <td <a ng-click="obtenerHorario(horario.idhorario);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
         <br>
-             <td <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
+        <td <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
 
         </tr>
     </table>

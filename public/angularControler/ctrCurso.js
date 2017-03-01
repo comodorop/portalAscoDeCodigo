@@ -3,31 +3,51 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
     $scope.curso = {};
     $scope.curso.idcurso = "";
     $scope.curso.nombre = "";
+    $scope.guardarCurso = function () {
 
 
+        if ($scope.validar())
+        {
+            sweetAlert("Correcto", "¡Información enviada!", "success");
+        }
 
+
+    };
 
     var tblCursos = this;
     $http.get("http://localhost:3333/api/cursos").success(function (data) {
-        tblCursos.listaCursos = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: data});
+        tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [], dataset: data});
     });
 
-   
 
-    $scope.validar = function () {
-        var ok = false;
-        if ($scope.cliente.nombre == "") {
-            sweetAlert("Oops...", "Se requiere un nombre", "warning");
-        } 
-        return ok;
+
+    $scope.validar = function ()
+    {
+
+        if ($scope.curso.nombre === "")
+        {
+            sweetAlert("Error...", "¡Ingrese El nombre del Curso!", "error");
+            return false;
+        } else
+        {
+            return true;
+        }
+
+
     };
 
 
     $scope.guardarCurso = function () {
-        alert("va a entrar a guardar");
-        $http.post("http://localhost:3333/api/guardarCurso", $scope.curso).success(function (respuesta) {
-            tblCursos.listaCursos = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
-        });
+        if ($scope.validar())
+        {
+            //alert("va a entrar a guardar");
+            $http.post("http://localhost:3333/api/guardarCurso", $scope.curso).success(function (respuesta) {
+                tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [], dataset: respuesta});
+            });
+        } else
+        {
+            alert("ocurrió un error");
+        }
     };
 
     $scope.obtenerCurso = function (id) {
@@ -43,7 +63,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
 
     $scope.actualizarCurso = function () {
         $http.put("http://localhost:3333/api/actualizarCurso", $scope.curso).success(function (respuesta) {
-            tblCursos.listaCursos = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
+            tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [], dataset: respuesta});
             console.log(respuesta);
         });
     };
