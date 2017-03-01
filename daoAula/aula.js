@@ -1,9 +1,9 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameAula(callback) {
+function dameAulas(callback) {
     var connection = con.conecction();
-    var sql = "SELECT * from aula";
+    var sql = "SELECT c.idcliente,c.nombre,c.apellido,c.correo,c.telefono,e.estado as estado from cliente c inner join estado e on c.estado=e.idestado";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -13,12 +13,12 @@ function dameAula(callback) {
     });
 }
 
-function guardarAula(aula, callback) {
-    console.log("informacion para guardar");
-    console.log(aula);
+function guardarAulas(aula, callback) {
+   // console.log("informacion para guardar");
+    //console.log(cliente);
     var connection = con.conecction();
     var sql = "INSERT INTO aula (idhorario, fechaInicio, fechaFinal, estado) \n\
-               VALUES ('" + aula.idhorario + "', '" + aula.fechaInicio + "', '" + aula.fechaFinal + "', '1' )";
+               VALUES ('" + aula.idhorario + "', '" + aula.fechaInicio + "', '" + aula.fechaFinal + "','1' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -29,12 +29,12 @@ function guardarAula(aula, callback) {
 }
 
 function obtenerAula(aula, callback){
-    console.log("informacion para guardar");
-    console.log(aula);
+    //console.log("informacion para guardar");
+    //console.log(cliente);
     var connection = con.conecction();
     var sql = "SELECT * FROM  aula WHERE idaula = '"+aula.idaula+"'";
-    console.log("la consulta es ");
-    console.log(sql);
+    //console.log("la consulta es ");
+    //console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -46,13 +46,13 @@ function obtenerAula(aula, callback){
 
 
 
-function actualizarAula(aula, callback) {
-    console.log("informacion para actualizar");
-    console.log(aula);
+function actualizarAulas(aula, callback) {
+    //console.log("informacion para actualizar");
+    //console.log(cliente);
     var connection = con.conecction();
-    var sql = "UPDATE aula SET  idhorario='" + aula.idhorario + "', fechaInicio='" + aula.fechaInicio + "', fechaFinal='" + aula.fechaFinal + "', estado='" + aula.estado + "' WHERE idaula='" + aula.idaula + "'";
-    console.log("**************");
-    console.log(sql);
+    var sql = "UPDATE aula SET  fechaInicio='" + aula.fechaInicio + "', fechaFinal='" + aula.fechaFinal + "' WHERE idaula='" + aula.idaula + "'";
+    //console.log("**************");
+    //console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -62,13 +62,13 @@ function actualizarAula(aula, callback) {
     });
 }
 
-function bajaAula(aula, callback) {
-    console.log("informacion para eliminar");
-    console.log(aula);
+function eliminarAulas(aula, callback) {
+    //console.log("informacion para eliminar");
+    //console.log(cliente);
     var connection = con.conecction();
     
     var sql = "UPDATE aula  set estado = '2'  WHERE idaula='" + aula.idaula + "'";
-    console.log(sql)
+    //console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -79,9 +79,9 @@ function bajaAula(aula, callback) {
 }
 
 module.exports = {
-    dameAula,
+    dameAulas,
     obtenerAula,
-    guardarAula,
-    actualizarAula,
-    bajaAula
+    guardarAulas,
+    actualizarAulas,
+    eliminarAulas
 };

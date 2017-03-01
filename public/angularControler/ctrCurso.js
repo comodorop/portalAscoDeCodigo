@@ -16,7 +16,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
 
     var tblCursos = this;
     $http.get("http://localhost:3333/api/cursos").success(function (data) {
-        tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [], dataset: data});
+        tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
     });
 
 
@@ -42,7 +42,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
         {
             //alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarCurso", $scope.curso).success(function (respuesta) {
-                tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [], dataset: respuesta});
+                tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             });
         } else
         {
@@ -63,7 +63,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
 
     $scope.actualizarCurso = function () {
         $http.put("http://localhost:3333/api/actualizarCurso", $scope.curso).success(function (respuesta) {
-            tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [], dataset: respuesta});
+            tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
         });
     };
@@ -72,8 +72,9 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
 //        var ok = $scope.validar();
 //        if (ok == true) {
         $scope.curso.idcurso = id;
-        alert("va a entrar a actualizar");
+       // alert("va a entrar a actualizar");
         $http.put("http://localhost:3333/api/eliminarCurso", $scope.curso).success(function (respuesta) {
+            tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
         });
 //        }

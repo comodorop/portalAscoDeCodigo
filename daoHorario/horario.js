@@ -3,7 +3,7 @@ var con = require('../daoConeccion/Connection');
 
 function dameHorarios(callback) {
     var connection = con.conecction();
-    var sql = "SELECT * from horario";
+    var sql = "SELECT c.idhorario,c.dia,c.horaInicio,c.horaFinal,e.estado as estado from horario c inner join estado e on c.estado=e.idestado";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -14,8 +14,8 @@ function dameHorarios(callback) {
 }
 
 function guardarHorarios(horario, callback) {
-    console.log("informacion para guardar");
-    console.log(horario);
+//    console.log("informacion para guardar");
+//    console.log(horario);
     var connection = con.conecction();
     var sql = "INSERT INTO horario (dia, horaInicio, horaFinal, estado) \n\
                VALUES ('" + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
@@ -29,12 +29,12 @@ function guardarHorarios(horario, callback) {
 }
 
 function obtenerHorario(horario, callback){
-    console.log("informacion para guardar");
-    console.log(horario);
+//    console.log("informacion para guardar");
+//    console.log(horario);
     var connection = con.conecction();
     var sql = "SELECT * FROM  horario WHERE idhorario = '"+horario.idhorario+"'";
-    console.log("la consulta es ");
-    console.log(sql);
+//    console.log("la consulta es ");
+//    console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -47,12 +47,12 @@ function obtenerHorario(horario, callback){
 
 
 function actualizarHorarios(horario, callback) {
-    console.log("informacion para actualizar");
-    console.log(horario);
+//    console.log("informacion para actualizar");
+//    console.log(horario);
     var connection = con.conecction();
     var sql = "UPDATE horario SET  dia='" + horario.dia + "', horaInicio='" + horario.horaInicio + "', horaFinal='" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario + "'";
-    console.log("**************");
-    console.log(sql);
+//    console.log("**************");
+//    console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

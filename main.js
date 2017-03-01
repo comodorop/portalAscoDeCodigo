@@ -27,11 +27,20 @@ var io = require('socket.io')(server);
 var cl = require('./daoCliente/cliente');
 var cr = require('./daoCurso/curso');
 var hr = require('./daoHorario/horario');
+var au = require('./daoAula/aula');
+var di = require('./daoDias/dias');
 app.use(express.static('public'));
 var router = express.Router();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+/////*** Dias***/////
+router.get('/dias', function (req, res) {
+    di.dameDias(function (error, data) {
+        res.status(200).send(data);
+    });
+});
 
 /////*** CLIENTES***/////
 router.get('/clientes', function (req, res) {
@@ -55,13 +64,13 @@ router.post('/guardarCliente', function (req, res) {
 });
 
 router.post('/obtenerCliente', function (req, res) {
-    console.log("entrooooo al api");
+    //console.log("entrooooo al api");
     var params = req.body;
-    console.log("*********************");
-    console.log(params);
-    console.log("**********************");
+    //console.log("*********************");
+    //console.log(params);
+    //console.log("**********************");
     cl.obtenerCliente(params, function (error, data) {
-        console.log(data);
+       // console.log(data);
         res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
 //            res.status(200).sendStatus (data);
@@ -80,12 +89,9 @@ router.put('/actualizarCliente', function (req, res) {
     });
 });
 
-
-
-
 router.put('/eliminarCliente', function (req, res) {
     var params = req.body;
-    console.log(params)
+    //console.log(params)
     cl.eliminarClientes(params, function (error, data) {
         if(data == 1){
             cl.dameClientes(function (error, data) {
@@ -295,193 +301,69 @@ router.put('/eliminarHorario', function (req, res) {
 });
 
 ///////*** AULA***/////                                         
-//router.get('/aulas', function (req, res) {
-//    cl.dameAula(function (error, data) {
-//        res.status(200).send(data);
-//    });
-//});
-//
-////////////////pruevas en postman
-//router.post('/guardarAula', function (req, res) {
-//    console.log("entrooooo al api");
-//    var params = req.body;
-//    console.log("*********************");
-//    console.log(params);
-//    console.log("**********************");
-//    cl.guardarAula(params, function (error, data) {
-//        cl.dameAula(function (error, data) {
-//            res.status(200).send(data);
-//        });
-//    });
-//});
-//
-//router.post('/obtenerAula', function (req, res) {
-//    console.log("entrooooo al api");
-//    var params = req.body;
-//    console.log("*********************");
-//    console.log(params);
-//    console.log("**********************");
-//    cl.obtenerAula(params, function (error, data) {
-//        console.log(data);
-//        res.status(200).send(data[0]);
-////        cl.dameClientes(function (error, data) {
-////            res.status(200).sendStatus (data);
-////        });
-//    });
-//});
-//
-//router.put('/actualizarAula', function (req, res) {
-//    var params = req.body;
-//    cl.actualizarAula(params, function (error, data) {
-//        if (data == 1) {
-//            cl.dameAula(function (error, data) {
-//                res.status(200).send(data);
-//            });
-//        }
-//    });
-//});
-//
-//
-//
-//
-//router.put('/bajaAula', function (req, res) {
-//    var params = req.body;
-//    console.log(params)
-//    cl.bajaAula(params, function (error, data) {
-//        if(data == 1){
-//            cl.dameAula(function (error, data) {
-//                res.status(200).send(data);
-//            });
-//        }
-//      
-//    });
-//});
-//
-///////*** EGRESO***/////                               
-//router.get('/Egresos', function (req, res) {
-//    cl.dameEgreso(function (error, data) {
-//        res.status(200).send(data);
-//    });
-//});
-//
-////////////////pruevas en postman
-//router.post('/guardarEgreso', function (req, res) {
-//    console.log("entrooooo al api");
-//    var params = req.body;
-//    console.log("*********************");
-//    console.log(params);
-//    console.log("**********************");
-//    cl.guardarEgreso(params, function (error, data) {
-//        cl.dameEgreso(function (error, data) {
-//            res.status(200).send(data);
-//        });
-//    });
-//});
-//
-//router.post('/obtenerEgreso', function (req, res) {
-//    console.log("entrooooo al api");
-//    var params = req.body;
-//    console.log("*********************");
-//    console.log(params);
-//    console.log("**********************");
-//    cl.obtenerEgreso(params, function (error, data) {
-//        console.log(data);
-//        res.status(200).send(data[0]);
-////        cl.dameClientes(function (error, data) {
-////            res.status(200).sendStatus (data);
-////        });
-//    });
-//});
-//
-//router.put('/actualizarEgreso', function (req, res) {
-//    var params = req.body;
-//    cl.actualizarEgreso(params, function (error, data) {
-//        if (data == 1) {
-//            cl.dameEgreso(function (error, data) {
-//                res.status(200).send(data);
-//            });
-//        }
-//    });
-//});
-//
-//
-//
-//
-//router.put('/bajaEgreso', function (req, res) {
-//    var params = req.body;
-//    console.log(params)
-//    cl.bajaEgreso(params, function (error, data) {
-//        if(data == 1){
-//            cl.dameEgreso(function (error, data) {
-//                res.status(200).send(data);
-//            });
-//        }
-//      
-//    });
-//});
-//
-///////*** ABONO***/////
-//router.get('/clientes', function (req, res) {
-//    cl.dameClientes(function (error, data) {
-//        res.status(200).send(data);
-//    });
-//});
-//
-////////////////pruevas en postman
-//router.post('/guardarCliente', function (req, res) {
-//    console.log("entrooooo al api");
-//    var params = req.body;
-//    console.log("*********************");
-//    console.log(params);
-//    console.log("**********************");
-//    cl.guardarClientes(params, function (error, data) {
+router.get('/aulas', function (req, res) {
+    au.dameAulas(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+//////////////pruevas en postman
+router.post('/guardarAula', function (req, res) {
+ //   console.log("entrooooo al api");
+    var params = req.body;
+   // console.log("*********************");
+    //console.log(params);
+    //console.log("**********************");
+    au.guardarAulas(params, function (error, data) {
+        au.dameAulas(function (error, data) {
+            res.status(200).send(data);
+        });
+    });
+});
+
+router.post('/obtenerAula', function (req, res) {
+    console.log("entrooooo al api");
+    var params = req.body;
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
+    au.obtenerAula(params, function (error, data) {
+        console.log(data);
+        res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
-//            res.status(200).send(data);
+//            res.status(200).sendStatus (data);
 //        });
-//    });
-//});
-//
-//router.post('/obtenerCliente', function (req, res) {
-//    console.log("entrooooo al api");
-//    var params = req.body;
-//    console.log("*********************");
-//    console.log(params);
-//    console.log("**********************");
-//    cl.obtenerCliente(params, function (error, data) {
-//        console.log(data);
-//        res.status(200).send(data[0]);
-////        cl.dameClientes(function (error, data) {
-////            res.status(200).sendStatus (data);
-////        });
-//    });
-//});
-//
-//router.put('/actualizarCliente', function (req, res) {
-//    var params = req.body;
-//    cl.actualizarClientes(params, function (error, data) {
-//        if (data == 1) {
-//            cl.dameClientes(function (error, data) {
-//                res.status(200).send(data);
-//            });
-//        }
-//    });
-//});
-//
-//
-//
-//
-//router.put('/eliminarCliente', function (req, res) {
-//    var params = req.body;
-//    console.log(params)
-//    cl.eliminarClientes(params, function (error, data) {
-//        if(data == 1){
-//            cl.dameClientes(function (error, data) {
-//                res.status(200).send(data);
-//            });
-//        }
-//      
-//    });
-//});
+    });
+});
+
+router.put('/actualizarAula', function (req, res) {
+    var params = req.body;
+    au.actualizarAulas(params, function (error, data) {
+        if (data == 1) {
+            au.dameAulas(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+
+
+
+
+router.put('/eliminarAula', function (req, res) {
+    var params = req.body;
+    console.log(params)
+    au.eliminarAulas(params, function (error, data) {
+        if(data == 1){
+            au.dameAulas(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+      
+    });
+});
+
+
 
 
 

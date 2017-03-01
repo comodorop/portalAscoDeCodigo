@@ -1,68 +1,69 @@
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="panel">
-        <div class="panel-heading">
-            <h4>Registro de Horarios</h4>
-        </div>
-        <div class="panel-body">
-           <div ng-controller="PruebaController">
-            <form id="movieForm" method="post">
-                <div class="form-group">
-                    <div class="row gutter">                
-                        <div class="col-md-6 col-sm-6">
-                            <label class="control-label">Días de la Semana</label>
-                            <select ng-model="DiaSeleccionada" ng-options="horario as horario.dia for horario in dias track by horario.idhorario" >
-                                <option value="">--Elige opcion--</option>
-                            </select>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <h4>Registro de Horarios</h4>
+            </div>
+            <div class="panel-body">
+                <form id="movieForm" method="post">
+                    <div class="form-group">
+                        <div class="row gutter">                
+                            <div class="col-md-6 col-sm-6">
+                                <label class="control-label">Días</label>
+                                <select  ng-model="valorCmb" 
+                                         ng-options="dias.iddias as dias.nombre for dias in lstDias" >
+                                    <option value="">Seleccione una opcion</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row gutter">
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Hora de Inicio</label>
-                        <input ng-model="horario.horaInicio" type="text" placeholder="Hora de Inicio" class="form-control" name="title">
-                    </div> 
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Hora Final</label>
-                        <input ng-model="horario.horaFinal" type="text" placeholder="Hora Final" class="form-control" name="title">
-                    </div>
-                </div>
-                <br>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="row gutter">
+                            <div class="col-md-6 col-sm-6">
+                                <label class="control-label">Hora de Inicio</label>
+                                <input ng-model="horario.horaInicio" type="text" placeholder="00:00" class="form-control" name="title">
+                            </div> 
+                            <div class="col-md-6 col-sm-6">
+                                <label class="control-label">Hora Final</label>
+                                <input ng-model="horario.horaFinal" type="text" placeholder="00:00" class="form-control" name="title">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                    <button ng-click="guardarHorario();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarHorario();" type="submit" class="btn btn-success">Actualizar Curso</button>
+                            <button ng-click="guardarHorario();" type="submit" class="btn btn-info">Guardar</button>
+                            <button ng-click="actualizarHorario();" type="submit" class="btn btn-success">Actualizar Horario</button>
 
 
 
-                </div>
-            </form>
+                        </div>
+                </form>
+            </div>
         </div>
+
+        <table ng-table="hr.listaHorarios" class="table" show-filter="true">
+
+            <tr ng-repeat="horario in $data" >
+                <td>
+                    {{horario.idhorario}}
+                </td>
+                <td title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
+                    {{horario.dia}}</td>
+                <td title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
+                    {{horario.horaInicio}}</td>
+                <td title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">
+                    {{horario.horaFinal}}</td>
+                <td>
+                <td title="'Estado'" >
+                    {{horario.estado}}</td>
+
+                <td <a ng-click="obtenerHorario(horario.idhorario);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
+            <br>
+            <td <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
+
+            </tr>
+        </table>
+
     </div>
+</div>
 
-    <table ng-table="hr.listaHorarios" class="table" show-filter="true">
-
-        <tr ng-repeat="horario in $data" >
-            <td>
-                {{horario.idhorario}}
-            </td>
-            <td title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
-                {{horario.dia}}</td>
-            <td title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
-                {{horario.horaInicio}}</td>
-            <td title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">
-                {{horario.horaFinal}}</td>
-            <td>
-            <td title="'Estado'" >
-                {{horario.estado}}</td>
-
-            <td <a ng-click="obtenerHorario(horario.idhorario);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
-        <br>
-        <td <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
-
-        </tr>
-    </table>
-
-</div>  
 
 
 
