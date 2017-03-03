@@ -61,7 +61,7 @@
                 {{cliente.estado}}</td>
              
              <td
-                 <a ng-click="obtenerCliente(cliente.idcliente);" type="submit" class="btn btn-success">
+                 <a ng-click="btn_actualizar" ng-click="obtenerCliente(cliente.idcliente);" type="submit" class="btn btn-success">
                      <i class="icon-repeat2"></i>
                  
                  </td>
@@ -78,4 +78,12 @@
 
 
 
-
+<script> 
+    function activar_btn()
+    {
+        
+        angular.element(document.getElementById('btn_actualizar'))[0].disabled = true;
+    }
+    
+</script> 
+    
