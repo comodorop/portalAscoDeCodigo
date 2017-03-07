@@ -10,7 +10,7 @@
                             <div class="col-md-6 col-sm-6">
                                 <label class="control-label">Días</label>
                                 <select  ng-model="valorCmb" 
-                                         ng-options="dias.iddias as dias.nombre for dias in lstDias" >
+                                         ng-options="horario.iddia as horario.nombre group by horario.dia for horario in lstDias">  
                                     <option value="">Seleccione una opcion</option>
                                 </select>
                             </div>
@@ -29,8 +29,8 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
                             <button ng-click="guardarHorario();" type="submit" class="btn btn-info">Guardar</button>
-                            <button ng-click="actualizarHorario();" type="submit" class="btn btn-success">Actualizar Horario</button>
-
+                            <button ng-click="actualizarHorario();" type="submit" class="btn btn-success">Actualizar</button>
+                            <button ng-click="CancelarHorario();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
                         </div>

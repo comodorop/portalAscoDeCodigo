@@ -1,9 +1,9 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameEgreso(callback) {
+function dameEgresos(callback) {
     var connection = con.conecction();
-    var sql = "SELECT * from egreso";
+    var sql = "SELECT c.idegreso,c.idabono,c.idcliente,c.concepto,c.descripcion,c.total,c.fecha,e.estado as estado from egreso c inner join estado e on c.estado=e.idestado";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -13,12 +13,12 @@ function dameEgreso(callback) {
     });
 }
 
-function guardarEgreso(egreso, callback) {
-    console.log("informacion para guardar");
-    console.log(egreso);
+function guardarEgresos(egreso, callback) {
+   // console.log("informacion para guardar");
+    //console.log(cliente);
     var connection = con.conecction();
-    var sql = "INSERT INTO egreso (idcliente, estado, concepto, descripcion, total, fecha) \n\
-               VALUES ('" + egreso.idcliente + "', '1', '" + egreso.concepto + "', '" + egreso.descripcion + "' , '" + egreso.total + "', '" + egreso.fecha + "')";
+    var sql = "INSERT INTO egreso (idabono,idcliente,concepto,descripcion,total,fecha,estado) \n\
+               VALUES ('" + egreso.idabono + "', '" + egreso.idcliente + "', '" + egreso.concepto + "', '" + egreso.descripcion + "' ,'" + egreso.total + "', '" + egreso.fecha + "', '1' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -28,13 +28,13 @@ function guardarEgreso(egreso, callback) {
     });
 }
 
-function obtenerEgreso(egreso, callback){
-    console.log("informacion para guardar");
-    console.log(egreso);
+function obtenerEgreso (egreso, callback){
+    //console.log("informacion para guardar");
+    //console.log(cliente);
     var connection = con.conecction();
     var sql = "SELECT * FROM  egreso WHERE idegreso = '"+egreso.idegreso+"'";
-    console.log("la consulta es ");
-    console.log(sql);
+    //console.log("la consulta es ");
+    //console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -46,13 +46,13 @@ function obtenerEgreso(egreso, callback){
 
 
 
-function actualizarEgreso(egreso, callback) {
-    console.log("informacion para actualizar");
-    console.log(egreso);
+function actualizarEgresos(egreso, callback) {
+    //console.log("informacion para actualizar");
+    //console.log(cliente);
     var connection = con.conecction();
-    var sql = "UPDATE egreso SET  idcliente='" + egreso.idcliente + "', estado='" + egreso.estado + "', concepto='" + egreso.concepto + "', descripcion='" + egreso.descripcion + "',total='" + egreso.total + "', fecha='" + egreso.fecha + "' WHERE idegreso='" + egreso.idegreso + "'";
-    console.log("**************");
-    console.log(sql);
+    var sql = "UPDATE egreso SET  idabono='" + egreso.idabono + "', idcliente='" + egreso.idcliente + "', concepto='" + egreso.concepto + "', descripcion='" + egreso.descripcion + "', total='" + egreso.total + "', , fecha='" + egreso.fecha + "'  WHERE idegreso='" + egreso.idegreso + "'";
+    //console.log("**************");
+    //console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -62,13 +62,13 @@ function actualizarEgreso(egreso, callback) {
     });
 }
 
-function bajaEgreso(egreso, callback) {
-    console.log("informacion para eliminar");
-    console.log(egreso);
+function eliminarEgresos(egreso, callback) {
+    //console.log("informacion para eliminar");
+    //console.log(cliente);
     var connection = con.conecction();
     
     var sql = "UPDATE egreso  set estado = '2'  WHERE idegreso='" + egreso.idegreso + "'";
-    console.log(sql)
+    //console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -79,12 +79,9 @@ function bajaEgreso(egreso, callback) {
 }
 
 module.exports = {
-    dameEgreso,
+    dameEgresos,
     obtenerEgreso,
-    guardarEgreso,
-    actualizarEgreso,
-    bajaEgreso
+    guardarEgresos,
+    actualizarEgresos,
+    eliminarEgresos
 };
-
-
-

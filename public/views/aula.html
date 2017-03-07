@@ -13,10 +13,6 @@
                             <input ng-model="aula.idhorario" type="text" placeholder="Idhorario" class="form-control" name="title">
 
                         </div>
-                        <div class="col-md-6 col-sm-6">
-                            <label class="control-label">Estado </label>
-                            <input ng-model="aula.estado" type="text" placeholder="Estado" class="form-control" name="title">
-                        </div>
                     </div>
                 </div>
                 <div class="row gutter">
@@ -25,16 +21,16 @@
                         <input ng-model="aula.fechaInicio" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <label for="inputDate">Fecha de Inicio</label>
-                        <input ng-model="aula.fechaInicio" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
+                        <label for="inputDate">Fecha Final</label>
+                        <input ng-model="aula.fechaFinal" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
                     </div>
                 </div>
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
                     <button ng-click="guardarAula();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarAula();" type="submit" class="btn btn-success">Actualizar Aula</button>
-
+                    <button ng-click="actualizarAula();" type="submit" class="btn btn-success">Actualizar</button>
+                     <button ng-click="CancelarAula();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
                 </div>
@@ -42,13 +38,11 @@
         </div>
     </div>
 
-    <table ng-table="hr.listaHorarios" class="table" show-filter="true">
+    <table ng-table="au.listaAulas" class="table" show-filter="true">
 
         <tr ng-repeat="aula in $data" >
             <td title="'idhorario'" filter="{ idhorario: 'text'}" sortable="'idhorario'">
                 {{aula.idhorario}}</td>
-            <td title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
-                {{aula.estado}}</td>
             <td title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
                 {{aula.fechaInicio}}</td>
             <td title="'Fecha Final'" filter="{ fechaFinal: 'text'}" sortable="'fechaFinal'">

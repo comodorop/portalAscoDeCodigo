@@ -3,15 +3,10 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
     $scope.curso = {};
     $scope.curso.idcurso = "";
     $scope.curso.nombre = "";
-    $scope.guardarCurso = function () {
+    $scope.CancelarCurso = function () {
 
-
-        if ($scope.validar())
-        {
-            sweetAlert("Correcto", "¡Información enviada!", "success");
-        }
-
-
+        $scope.curso.idcurso = "";
+        $scope.curso.nombre = "";
     };
 
     var tblCursos = this;
@@ -20,21 +15,21 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
     });
 
 
-
-    $scope.validar = function ()
+$scope.validar = function ()
     {
-
+        var ok = false;
         if ($scope.curso.nombre === "")
         {
-            sweetAlert("Error...", "¡Ingrese El nombre del Curso!", "error");
-            return false;
-        } else
-        {
-            return true;
-        }
+            sweetAlert("Error...", "¡Ingrese Nombre!", "error");
 
+          } else
+        {
+            ok = true;
+        }
+        return ok;
 
     };
+
 
 
     $scope.guardarCurso = function () {
@@ -43,11 +38,10 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
             //alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarCurso", $scope.curso).success(function (respuesta) {
                 tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+                sweetAlert("Exito", "Nuevo registro disponible", "success");
+                $scope.CancelarCurso();
             });
-        } else
-        {
-            alert("ocurrió un error");
-        }
+        } 
     };
 
     $scope.obtenerCurso = function (id) {
@@ -55,7 +49,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
         $scope.curso.idcurso = id;
         $http.post("http://localhost:3333/api/obtenerCurso", $scope.curso).success(function (respuesta) {
 
-            console.log(respuesta);
+            //console.log(respuesta);
             $scope.curso = respuesta;
         });
 //        }
@@ -64,7 +58,8 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
     $scope.actualizarCurso = function () {
         $http.put("http://localhost:3333/api/actualizarCurso", $scope.curso).success(function (respuesta) {
             tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-            console.log(respuesta);
+            //console.log(respuesta);
+        $scope.curso = respuesta;
         });
     };
 
@@ -75,7 +70,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
        // alert("va a entrar a actualizar");
         $http.put("http://localhost:3333/api/eliminarCurso", $scope.curso).success(function (respuesta) {
             tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-            console.log(respuesta);
+           // console.log(respuesta);
         });
 //        }
     };
