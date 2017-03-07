@@ -8,7 +8,6 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
     $scope.egreso.descripcion = "";
     $scope.egreso.total = "";
     $scope.egreso.fecha = "";
-    $scope.egreso.estado = "";
     
     $scope.CancelarEgreso = function () {
 
@@ -19,7 +18,6 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
     $scope.egreso.descripcion = "";
     $scope.egreso.total = "";
     $scope.egreso.fecha = "";
-    $scope.egreso.estado = "";
 
     };
 
@@ -76,7 +74,7 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
 
     $scope.obtenerEgreso = function (id) {
 
-        $scope.egreso.idcliente = id;
+        $scope.egreso.idegreso = id;
         $http.post("http://localhost:3333/api/obtenerEgreso", $scope.egreso).success(function (respuesta) {
 
             //console.log(respuesta);

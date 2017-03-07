@@ -7,6 +7,12 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.cliente.correo = "";
     $scope.cliente.telefono = "";
 
+
+    $scope.obtenerCliente = function () {
+        $scope('actualizarCliente').hide();
+        $scope('actualizarCliente').show();
+    };
+
     $scope.CancelarCliente = function () {
 
         $scope.cliente.idcliente = "";
@@ -69,7 +75,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
                 $scope.CancelarCliente();
             });
-            
+
         }
     };
 
@@ -103,8 +109,6 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         });
 //        }
     };
-
-
 
 
 

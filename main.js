@@ -115,11 +115,11 @@ router.get('/cursos', function (req, res) {
 
 //////////////pruevas en postman
 router.post('/guardarCurso', function (req, res) {
-    console.log("entrooooo al api");
+//    console.log("entrooooo al api");
     var params = req.body;
-    console.log("*********************");
-    console.log(params);
-    console.log("**********************");
+//    console.log("*********************");
+//    console.log(params);
+//    console.log("**********************");
     cr.guardarCursos(params, function (error, data) {
         cr.dameCursos(function (error, data) {
             res.status(200).send(data);
@@ -128,13 +128,13 @@ router.post('/guardarCurso', function (req, res) {
 });
 
 router.post('/obtenerCurso', function (req, res) {
-    console.log("entrooooo al api");
+//    console.log("entrooooo al api");
     var params = req.body;
-    console.log("*********************");
-    console.log(params);
-    console.log("**********************");
+//    console.log("*********************");
+//    console.log(params);
+//    console.log("**********************");
     cr.obtenerCurso(params, function (error, data) {
-        console.log(data);
+   //     console.log(data);
         res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
 //            res.status(200).sendStatus (data);
@@ -202,9 +202,9 @@ router.post('/obtenerHorario', function (req, res) {
     hr.obtenerHorario(params, function (error, data) {
 //        console.log(data);
         res.status(200).send(data[0]);
-        hr.dameHorarios(function (error, data) {
-            res.status(200).sendStatus (data);
-        });
+//        hr.dameHorarios(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
     });
 });
 
@@ -262,9 +262,9 @@ router.post('/obtenerAula', function (req, res) {
     au.obtenerAula(params, function (error, data) {
 //        console.log(data);
         res.status(200).send(data[0]);
-        au.dameAulas(function (error, data) {
-            res.status(200).sendStatus (data);
-        });
+//        au.dameAulas(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
     });
 });
 
