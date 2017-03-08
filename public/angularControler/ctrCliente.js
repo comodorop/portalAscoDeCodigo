@@ -8,10 +8,10 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.cliente.telefono = "";
 
 
-    $scope.obtenerCliente = function () {
-        $scope('actualizarCliente').hide();
-        $scope('actualizarCliente').show();
-    };
+//    $scope.obtenerCliente = function () {
+//        $scope('actualizarCliente').hide();
+//        $scope('actualizarCliente').show();
+//    };
 
     $scope.CancelarCliente = function () {
 
