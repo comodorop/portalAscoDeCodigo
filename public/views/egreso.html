@@ -7,12 +7,13 @@
             <form id="movieForm" method="post">
                 <div class="form-group">
                     <div class="row gutter">
-                        <div class="col-md-6 col-sm-6">
-
-                            <label class="control-label">idcliente</label>
-                            <input ng-model="egreso.idcliente" type="text" placeholder="idcliente" class="form-control" name="title">
-
-                        </div>
+                         <div class="col-md-6 col-sm-6">
+                                <label class="control-label">Cliente</label>
+                                <select  ng-model="valorCmb" 
+                                         ng-options="cliente.idcliente as cliente.nombre group by cliente.dia for cliente in listaClientes">  
+                                    <option value="">Seleccione una opcion</option>
+                                </select>
+                            </div>
                         <div class="col-md-6 col-sm-6">
                             <label class="control-label">Concepto</label>
                             <input ng-model="egreso.concepto" type="text" placeholder="Concepto" class="form-control" name="title">
@@ -31,8 +32,8 @@
                 </div>
                 <div class="row gutter">  
                     <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Fecha</label>
-                        <input ng-model="egreso.fecha" type="text" placeholder="Fecha" class="form-control" name="title">
+                        <label for="inputDate">Fecha</label>
+                        <input ng-model="egreso.fecha" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
                     </div>
                 </div>
                 <br>

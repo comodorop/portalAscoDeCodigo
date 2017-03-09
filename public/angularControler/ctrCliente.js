@@ -110,6 +110,17 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 //        }
     };
 
+    $scope.activarCliente = function (id) {
+//        var ok = $scope.validar();
+//        if (ok == true) {
+        $scope.cliente.idcliente = id;
+        //alert("va a entrar a eliminar");
+        $http.put("http://localhost:3333/api/eliminarCliente", $scope.cliente).success(function (respuesta) {
+            tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            //console.log(respuesta);
+        });
+//        }
+    };
 
 
 

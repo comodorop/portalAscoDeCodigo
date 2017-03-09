@@ -78,10 +78,27 @@ function eliminarClientes(cliente, callback) {
     });
 }
 
+function activarClientes(cliente, callback) {
+    //console.log("informacion para eliminar");
+    //console.log(cliente);
+    var connection = con.conecction();
+    
+    var sql = "UPDATE cliente  set estado = '1'  WHERE idcliente='" + cliente.idcliente + "'";
+    //console.log(sql)
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
+
 module.exports = {
     dameClientes,
     obtenerCliente,
     guardarClientes,
     actualizarClientes,
-    eliminarClientes
+    eliminarClientes,
+    activarClientes
 };

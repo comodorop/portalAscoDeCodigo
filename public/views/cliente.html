@@ -26,14 +26,14 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Telefono</label>
-                       <input ng-model="cliente.telefono" mask="(999) 999-9999" clean="true" type="text" placeholder="Telefono" class="form-control" name="title">
+                       <input ng-model="cliente.telefono" mask="(999) 999-9999" clean="true" type="text" placeholder="(000) 000-0000" class="form-control" name="title">
                     </div>
                 </div>
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                    
                     <button ng-click="guardarCliente();" type="submit" class="btn btn-info">Guardar</button>
-                    <button  ng-if="show"  ng-click="actualizarCliente();" type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="actualizarCliente();" type="submit" class="btn btn-success">Actualizar</button>
                     <button ng-click="CancelarCliente();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
@@ -66,12 +66,17 @@
                  
                  </td>
         <br>
-             <td 
-                 <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger">
-                     <i ng-if="cliente.estado==='activo'" class="icon-delete_forever"></i>
-                 <i ng-if="cliente.estado==='inactivo'" class="icon-check3"></i>
-                 </td>
-        </tr>
+            <td 
+                <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger">
+                <i ng-if="cliente.estado==='activo'" class="icon-checkmark"></i>
+                <i ng-if="cliente.estado==='inactivo'" class="icon-cross"></i>
+            </td>
+            <td 
+                <a ng-click="activarCliente(cliente.idcliente);" type="submit" class="btn btn-warning">
+                <i ng-if="cliente.estado==='inactivo'" class="icon-thumb_up"></i>
+                <i ng-if="cliente.estado==='activo'" class="icon-thumb_down"></i>
+            </td>
+     
     </table>
 
 </div>  
