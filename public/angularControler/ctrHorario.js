@@ -53,15 +53,16 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 //    };
 
     $scope.guardarHorario = function () {
-        if ($scope.validar())
-        {
+//        if ($scope.validar())
+//        {
             // alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarHorario", $scope.horario).success(function (respuesta) {
                 tblHorarios.listaHorarios = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-                sweetAlert("Exito", "Nuevo registro disponible", "success");
-                $scope.CancelarHorario();
+//                sweetAlert("Exito", "Nuevo registro disponible", "success");
+//                $scope.CancelarHorario();
+                  console.log(respuesta);
             });
-        } 
+//        } 
     };
 
     $scope.obtenerHorario = function (id) {

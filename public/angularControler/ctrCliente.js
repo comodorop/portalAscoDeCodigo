@@ -7,7 +7,13 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.cliente.correo = "";
     $scope.cliente.telefono = "";
 
-
+    
+    
+    $scope.formVisibility=false;
+    $scope.obtenerCliente=function(){
+      $scope.formVisibility=true;
+      console.log($scope.formVisibility)
+    };
 //    $scope.obtenerCliente = function () {
 //        $scope('actualizarCliente').hide();
 //        $scope('actualizarCliente').show();
@@ -95,6 +101,8 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
             tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             // console.log(respuesta);
             $scope.cliente = respuesta;
+            $scope.formVisibility=true;
+            console.log($scope.formVisibility)
         });
     };
 

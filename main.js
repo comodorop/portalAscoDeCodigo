@@ -195,11 +195,11 @@ router.get('/horarios', function (req, res) {
 
 //////////////pruevas en postman
 router.post('/guardarHorario', function (req, res) {
-//    console.log("entrooooo al api");
+    console.log("entrooooo al api");
     var params = req.body;
-//    console.log("*********************");
-//    console.log(params);
-//    console.log("**********************");
+    console.log("*********************");
+    console.log(params);
+    console.log("**********************");
     hr.guardarHorarios(params, function (error, data) {
         hr.dameHorarios(function (error, data) {
             res.status(200).send(data);

@@ -14,8 +14,8 @@ function dameHorarios(callback) {
 }
 
 function guardarHorarios(horario, callback) {
-//    console.log("informacion para guardar");
-//    console.log(horario);
+    console.log("informacion para guardar");
+    console.log(horario);
     var connection = con.conecction();
     var sql = "INSERT INTO horario (dia, horaInicio, horaFinal, estado) \n\
                VALUES ('" + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
