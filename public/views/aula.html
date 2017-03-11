@@ -9,8 +9,8 @@
                     <div class="row gutter">
                         <div class="col-md-6 col-sm-6">
                                 <label class="control-label">Horario</label>
-                                <select  ng-model="valorCmb" 
-                                         ng-options="aula.idhorario as aula.idhorario group by aula.dia for aula in listaAulas">  
+                                <select  ng-model="valorCmbn" 
+                                          ng-options="horario.idhorario as horario.idhorario +' '+ horario.dia  for horario in listaAulas"> 
                                     <option value="">Seleccione una opcion</option>
                                 </select>
                             </div>

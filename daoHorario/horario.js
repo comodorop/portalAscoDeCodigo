@@ -18,7 +18,7 @@ function guardarHorarios(horario, callback) {
     console.log(horario);
     var connection = con.conecction();
     var sql = "INSERT INTO horario (dia, horaInicio, horaFinal, estado) \n\
-               VALUES ('" + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
+               VALUES ('" + horario.valorCmb + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

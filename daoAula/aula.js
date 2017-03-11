@@ -18,7 +18,7 @@ function guardarAulas(aula, callback) {
     //console.log(cliente);
     var connection = con.conecction();
     var sql = "INSERT INTO aula (idhorario, fechaInicio, fechaFinal, estado) \n\
-               VALUES ('" + aula.idhorario + "', '" + aula.fechaInicio + "', '" + aula.fechaFinal + "','1' )";
+               VALUES ('" + aula.valorCmbn + "', '" + aula.fechaInicio + "', '" + aula.fechaFinal + "','1' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
