@@ -33,7 +33,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                    
                     <button ng-click="guardarCliente();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarCliente();" ng-show="formVisibility" type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="actualizarCliente();"  type="submit" class="btn btn-success">Actualizar</button>
                     <button ng-click="CancelarCliente();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
@@ -61,7 +61,7 @@
                 {{cliente.estado}}</td>
              
              <td
-                 <a  ng-click="obtenerCliente(cliente.idcliente);" ng-hide="formVisibility"  type="submit" class="btn btn-success">
+                 <a  ng-click="obtenerCliente(cliente.idcliente);"  type="submit" class="btn btn-success">
                      <i class="icon-repeat2"></i>
                  
                  </td>
@@ -71,11 +71,7 @@
                 <i ng-if="cliente.estado==='activo'" class="icon-checkmark"></i>
                 <i ng-if="cliente.estado==='inactivo'" class="icon-cross"></i>
             </td>
-            <td 
-                <a ng-click="activarCliente(cliente.idcliente);" type="submit" class="btn btn-warning">
-                <i ng-if="cliente.estado==='inactivo'" class="icon-thumb_up"></i>
-                <i ng-if="cliente.estado==='activo'" class="icon-thumb_down"></i>
-            </td>
+            
      
     </table>
 

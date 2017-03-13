@@ -10,7 +10,8 @@
                         <div class="col-md-6 col-sm-6">
                                 <label class="control-label">Horario</label>
                                 <select  ng-model="valorCmbn" 
-                                          ng-options="horario.idhorario as horario.idhorario +' '+ horario.dia  for horario in listaAulas"> 
+                                          ng-options="horario.idhorario as horario.idhorario +'dia'+'horaInicio'+'horaFinal'+ horario.dia  for horario in listaHorarios"> 
+                                          
                                     <option value="">Seleccione una opcion</option>
                                 </select>
                             </div>
