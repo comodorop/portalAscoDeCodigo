@@ -32,8 +32,8 @@
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                    
-                    <button ng-click="guardarCliente();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarCliente();"  type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="guardarCliente();" ng-hide="ocultarBoton"  type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="actualizarCliente();"  ng-show="mostrarBoton" type="submit" class="btn btn-success">Actualizar</button>
                     <button ng-click="CancelarCliente();" type="submit" class="btn btn-danger">Cancelar</button>
 
 

@@ -70,7 +70,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
         $scope.horario.idhorario = id;
         $http.post("http://localhost:3333/api/obtenerHorario", $scope.horario).success(function (respuesta) {
 
-         //   console.log(respuesta);
+            console.log(respuesta);
             $scope.horario = respuesta;
         });
 //        }
@@ -79,7 +79,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
     $scope.actualizarHorario = function () {
         $http.put("http://localhost:3333/api/actualizarHorario", $scope.horario).success(function (respuesta) {
             tblHorarios.listaHorarios = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-          //  console.log(respuesta);
+            console.log(respuesta);
            $scope.curso = respuesta;
         });
     };
@@ -91,7 +91,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
         //alert("va a entrar a actualizar");
         $http.put("http://localhost:3333/api/eliminarHorario", $scope.horario).success(function (respuesta) {
             tblHorarios.listaHorarios = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-            //console.log(respuesta);
+            console.log(respuesta);
         });
 //        }
     };

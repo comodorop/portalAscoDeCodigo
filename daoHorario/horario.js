@@ -18,7 +18,7 @@ function guardarHorarios(horario, callback) {
     console.log(horario);
     var connection = con.conecction();
     var sql = "INSERT INTO horario (dia, horaInicio, horaFinal, estado) \n\
-               VALUES ('" + horario.valorCmb + horario.dia + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
+               VALUES ('" + horario.valorCmb + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -50,7 +50,7 @@ function actualizarHorarios(horario, callback) {
 //    console.log("informacion para actualizar");
 //    console.log(horario);
     var connection = con.conecction();
-    var sql = "UPDATE horario SET  dia='" + horario.dia + "', horaInicio='" + horario.horaInicio + "', horaFinal='" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario + "'";
+    var sql = "UPDATE horario SET  dia='" + horario.valorCmb + "', horaInicio='" + horario.horaInicio + "', horaFinal='" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario + "'";
 //    console.log("**************");
 //    console.log(sql);
     connection.query(sql, function (err, result) {
