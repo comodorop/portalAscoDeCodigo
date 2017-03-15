@@ -10,7 +10,7 @@
                         <div class="col-md-6 col-sm-6">
                                 <label class="control-label">Horario</label>
                                 <select  ng-model="valorCombo" 
-                                          ng-options="horario.dia as horario.dia for horario in listaHorarios"> 
+                                          ng-options="horario.dia as horario.dia for horario in listaHorarios "> 
                                           
                                     <option value="">Seleccione una opcion</option>
                                 </select>
@@ -19,12 +19,12 @@
                 </div>
                 <div class="row gutter">
                     <div class="col-md-6 col-sm-6">
-                        <label for="inputDate">Fecha de Inicio</label>
-                        <input ng-model="aula.fechaInicio" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
+                        <label for="fechaInicio">Fecha de Inicio</label>
+                        <input ng-model="aula.fechaInicio" type="date" class="form-control" id="fechaInicio" placeholder="Enter Date">
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <label for="inputDate">Fecha Final</label>
-                        <input ng-model="aula.fechaFinal" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
+                        <label for="fechaFinal">Fecha Final</label>
+                        <input ng-model="aula.fechaFinal" type="date" class="form-control" id="fechaFinal" placeholder="Enter Date">
                     </div>
                 </div>
                 
@@ -47,9 +47,9 @@
             <td title="'idhorario'" filter="{ idhorario: 'text'}" sortable="'idhorario'">
                 {{aula.idhorario}}</td>
             <td title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
-                {{aula.fechaInicio}}</td>
+                {{aula.fechaInicio | date: 'dd-MM-yyyy'}}</td>
             <td title="'Fecha Final'" filter="{ fechaFinal: 'text'}" sortable="'fechaFinal'">
-                {{aula.fechaFinal}}</td>
+                {{aula.fechaFinal | date: 'dd-MM-yyyy'}}</td>
             <td>
             <td title="'Estado'" >
                 {{cliente.estado}}</td>
