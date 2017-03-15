@@ -26,14 +26,14 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Telefono</label>
-                       <input ng-model="cliente.telefono" mask="(999) 999-9999" clean="true" type="text" placeholder="(000) 000-0000" class="form-control" name="title">
+                        <input ng-model="cliente.telefono" mask="(999) 999-9999" clean="true" type="text" placeholder="(000) 000-0000" class="form-control" name="title">
                     </div>
                 </div>
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                   
-                    <button ng-click="guardarCliente();" ng-hide="ocultarBoton"  type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarCliente();"  ng-show="mostrarBoton" type="submit" class="btn btn-success">Actualizar</button>
+
+                    <button ng-click="guardarCliente();"    ng-show="cliente.idcliente == 0"  type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="actualizarCliente();"  ng-show="cliente.idcliente >0" type="submit" class="btn btn-success">Actualizar</button>
                     <button ng-click="CancelarCliente();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
@@ -59,20 +59,20 @@
             <td>
             <td title="'Estado'" >
                 {{cliente.estado}}</td>
-             
-             <td
-                 <a  ng-click="obtenerCliente(cliente.idcliente);"  type="submit" class="btn btn-success">
-                     <i class="icon-repeat2"></i>
-                 
-                 </td>
-        <br>
-            <td 
-                <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger">
-                <i ng-if="cliente.estado==='activo'" class="icon-checkmark"></i>
-                <i ng-if="cliente.estado==='inactivo'" class="icon-cross"></i>
+
+            <td
+                <a  ng-click="obtenerCliente(cliente.idcliente);"  type="submit" class="btn btn-success">
+                    <i class="icon-repeat2"></i>
+
             </td>
-            
-     
+        <br>
+        <td 
+            <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger">
+                <i ng-if="cliente.estado === 'activo'" class="icon-checkmark"></i>
+                <i ng-if="cliente.estado === 'inactivo'" class="icon-cross"></i>
+        </td>
+
+
     </table>
 
 </div>  

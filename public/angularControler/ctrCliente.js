@@ -25,7 +25,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 
     $scope.CancelarCliente = function () {
 
-        $scope.cliente.idcliente = "";
+        $scope.cliente.idcliente = 0;
         $scope.cliente.nombre = "";
         $scope.cliente.apellido = "";
         $scope.cliente.correo = "";

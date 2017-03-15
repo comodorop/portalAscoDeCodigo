@@ -9,9 +9,8 @@
                     <div class="row gutter">
                         <div class="col-md-6 col-sm-6">
                                 <label class="control-label">Horario</label>
-                                <select  ng-model="valorCombo" 
-                                          ng-options="horario.dia as horario.dia for horario in listaHorarios "> 
-                                          
+                                <select  ng-model="aula.idHorario" 
+                                          ng-options="horario.idhorario as horario.dia for horario in listaHorarios "> 
                                     <option value="">Seleccione una opcion</option>
                                 </select>
                             </div>
@@ -42,7 +41,6 @@
     </div>
 
     <table ng-table="au.listaAulas" class="table" show-filter="true">
-
         <tr ng-repeat="aula in $data" >
             <td title="'idhorario'" filter="{ idhorario: 'text'}" sortable="'idhorario'">
                 {{aula.idhorario}}</td>

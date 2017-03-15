@@ -3,7 +3,7 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
     $scope.egreso = {};
     $scope.egreso.idegreso = "";
     $scope.egreso.idabono = "";
-    $scope.egreso.idcliente = "";
+    $scope.egreso.idcliente = 0;
     $scope.egreso.concepto = "";
     $scope.egreso.descripcion = "";
     $scope.egreso.total = "";
