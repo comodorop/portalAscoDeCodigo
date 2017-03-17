@@ -25,6 +25,10 @@ app.config(function ($routeProvider) {
         templateUrl: './views/abono.html',
         controller: 'ctrAbono',
         controllerAs: 'ab'
+    }).when('/pago', {
+        templateUrl: './views/pago.html',
+        controller: 'ctrPago',
+        controllerAs: 'pg'
     });
 });
 

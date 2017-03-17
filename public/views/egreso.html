@@ -9,8 +9,8 @@
                     <div class="row gutter">
                          <div class="col-md-6 col-sm-6">
                                 <label class="control-label">Cliente</label>
-                                <select  ng-model="valorCmb" 
-                                         ng-options="cliente.idcliente as cliente.nombre group by cliente.dia for cliente in listaClientes">  
+                                <select  ng-model="egreso.idcliente" 
+                                         ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
                                     <option value="">Seleccione una opcion</option>
                                 </select>
                             </div>
@@ -55,8 +55,6 @@
             <td>
                 {{egreso.idegreso}}
             </td>
-            <td title="'Idabono'" filter="{ idabono: 'text'}" sortable="'idabono'">
-                {{egreso.idabono}}</td>
             <td title="'Idcliente'" filter="{ idcliente: 'text'}" sortable="'idcliente'">
                 {{egreso.idcliente}}</td>
             <td title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
@@ -66,7 +64,7 @@
             <td title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{egreso.total}}</td>
             <td title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
-                {{egreso.fecha}}</td>
+                {{egreso.fecha | date: 'dd-MM-yyyy'}}</td>
             <td title="'Estado'" >
                 {{cliente.estado}}</td>
 

@@ -30,6 +30,7 @@ var hr = require('./daoHorario/horario');
 var au = require('./daoAula/aula');
 var di = require('./daoDias/dias');
 var eg = require('./daoEgreso/egreso');
+var pg = require('./daoPago/pago');
 app.use(express.static('public'));
 var router = express.Router();
 
@@ -359,6 +360,59 @@ router.put('/eliminarEgreso', function (req, res) {
     eg.eliminarEgresos(params, function (error, data) {
         if(data == 1){
             eg.dameEgresos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+      
+    });
+});
+
+
+/////*** PAGOS***/////
+router.get('/pagos', function (req, res) {
+    pg.damePagos(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+//////////////pruevas en postman
+router.post('/guardarPago', function (req, res) {
+    var params = req.body;
+    console.log(params);
+    console.log("**********************");
+    pg.guardarPagos(params, function (error, data) {
+        pg.damePagos(function (error, data) {
+            res.status(200).send(data);
+        });
+    });
+});
+
+router.post('/obtenerPago', function (req, res) {
+    var params = req.body;
+    console.log(params);
+    console.log("**********************");
+    pg.obtenerPago(params, function (error, data) {
+        res.status(200).send(data[0]);
+    });
+});
+
+router.put('/actualizarPago', function (req, res) {
+    var params = req.body;
+    pg.actualizarPagos(params, function (error, data) {
+        if (data == 1) {
+            pg.damePagos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+
+router.put('/eliminarPago', function (req, res) {
+    var params = req.body;
+    //console.log(params)
+    pg.eliminarPagos(params, function (error, data) {
+        if(data == 1){
+            pg.damePagos(function (error, data) {
                 res.status(200).send(data);
             });
         }

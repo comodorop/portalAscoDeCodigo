@@ -12,7 +12,6 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
     $scope.CancelarEgreso = function () {
 
     $scope.egreso.idegreso = "";
-    $scope.egreso.idabono = "";
     $scope.egreso.idcliente = "";
     $scope.egreso.concepto = "";
     $scope.egreso.descripcion = "";
@@ -21,42 +20,19 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
 
     };
 
+//     $scope.dameClientes = function () {
+//        $http.get("http://localhost:3333/api/clientes").success(function (respuesta) {
+//            console.log(respuesta);
+//            $scope.listaClientes = respuesta;
+//        });
+//    };
+//    
+    
     var tblEgresos = this;
     $http.get("http://localhost:3333/api/egresos").success(function (data) {
         tblEgresos.listaEgresos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
     });
 
-//    $scope.validar = function ()
-//    {
-//        var ok = false;
-//        if ($scope.cliente.nombre === "")
-//        {
-//            sweetAlert("Error...", "¡Ingrese Nombre!", "error");
-//
-//        } else
-//        if ($scope.cliente.apellido === "")
-//        {
-//            sweetAlert("Error...", "¡Ingrese Apellido!", "error");
-//
-//        } else
-//        if ($scope.cliente.correo === "")
-//        {
-//            if ($scope.validarEmail($scope.cliente.correo) === false) {
-//                sweetAlert("Error", "Correo electronico no valido", "warning");
-//
-//            }
-//        } else
-//        if ($scope.cliente.telefono === "")
-//        {
-//            sweetAlert("Error...", "¡Ingrese Telefono!", "error");
-//
-//        } else
-//        {
-//            ok = true;
-//        }
-//        return ok;
-//
-//    };
 
 
     $scope.guardarEgreso = function () {
@@ -102,4 +78,7 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
 //        }
     };
 
+//    $scope.dameClientes();
+
+    
 });
