@@ -1,47 +1,47 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel">
         <div class="panel-heading">
-            <h4>Registro de Egresos</h4>
+            <h4>Registro de Pagos</h4>
         </div>
         <div class="panel-body">
             <form id="movieForm" method="post">
                 <div class="form-group">
                     <div class="row gutter">
-                         <div class="col-md-6 col-sm-6">
-                                <label class="control-label">Cliente</label>
-                                <select  ng-model="valorCmb" 
-                                         ng-options="cliente.idcliente as cliente.nombre group by cliente.dia for cliente in listaClientes">  
-                                    <option value="">Seleccione una opcion</option>
-                                </select>
-                            </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label class="control-label">Cliente</label>
+                            <select  ng-model="pago.idcliente" 
+                                     ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
+                                <option value="">Seleccione una opcion</option>
+                            </select>
+                        </div>
                         <div class="col-md-6 col-sm-6">
                             <label class="control-label">Concepto</label>
-                            <input ng-model="egreso.concepto" type="text" placeholder="Concepto" class="form-control" name="title">
+                            <input ng-model="pago.concepto" type="text" placeholder="Concepto" class="form-control" name="title">
                         </div>
                     </div>
                 </div>
                 <div class="row gutter">
-                        <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <label class="control-label">Descripcion</label>
-                        <input ng-model="egreso.descripcion" type="text" placeholder="Descripcion" class="form-control" name="title">
+                        <input ng-model="pago.descripcion" type="text" placeholder="Descripcion" class="form-control" name="title">
                     </div>
-                     <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <label class="control-label">Total</label>
-                        <input ng-model="egreso.total" type="text" placeholder="Total" class="form-control" name="title">
+                        <input ng-model="pago.total" type="text" placeholder="Total" class="form-control" name="title">
                     </div>
                 </div>
                 <div class="row gutter">  
                     <div class="col-md-6 col-sm-6">
                         <label for="inputDate">Fecha</label>
-                        <input ng-model="egreso.fecha" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
+                        <input ng-model="pago.fecha" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
                     </div>
                 </div>
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                    <button ng-click="guardarEgreso();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarEgreso();" type="submit" class="btn btn-success">Actualizar</button>
-                    <button ng-click="CancelarEgreso();" type="submit" class="btn btn-danger">Cancelar</button>
+                    <button ng-click="guardarPago();" type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="actualizarPago();" type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="CancelarPago();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
                 </div>
@@ -49,112 +49,32 @@
         </div>
     </div>
 
+    <table ng-table="pg.listaPagos" class="table" show-filter="true">
+        <tr ng-repeat="pago in $data" >
+            <td>
+                {{pago.idpago}}
+            </td>
+            <td title="'idcliente'" filter="{ idcliente: 'text'}" sortable="'idcliente'">
+                {{pago.idcliente}}</td>
+            <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
+                {{pago.nombre}}</td>
+            <td title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
+                {{pago.descripcion}}</td>
+            <td title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
+                {{pago.fecha}}</td>
+            <td title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
+                {{pago.concepto}}</td>
+            <td title="'Total'" filter="{ total: 'text'}" sortable="'total'">
+                {{pago.total}}</td>
+            <td title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
+                {{pago.fechaInicio | date: 'dd-MM-yyyy'}}</td>
+            <td title="'Estado'" >
+                {{pago.estado}}</td>
+            <td <a ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
+        <br>
+        <td <a ng-click="eliminarPago(pago.idpago);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
 
+        </tr>
+    </table>
 
-<div class="panel-body">
-
-    <br>
-    <div class="row gutter">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th style="width:10%">Cliente</th>
-                            <th style="width:10%">Curso</th>
-                            <th style="width:30%">Concepto</th>
-                            <th style="width:30%">Descripción</th>
-                            <th style="width:10%">Fecha</th>  
-                            <th style="width:10%">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>Product A</td>
-                            <td>
-                                <span>Best Selling Admin Dashboard</span>
-                            </td>
-                            <td>
-                                <span class="btn btn-info btn-xs">5</span>
-                            </td>
-                            <td>2.24%</td>
-                            <td>50.00$</td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Product B</td>
-                            <td>
-                                <span>Top selling admin theme</span>
-                            </td>
-                            <td>
-                                <span class="btn btn-danger btn-xs">22</span>
-                            </td>
-                            <td>6.59%</td>
-                            <td>7130.00$</td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>Product C</td>
-                            <td>
-                                <span>Best Dashboard Design</span>
-                            </td>
-                            <td>
-                                <span class="btn btn-success btn-xs">09</span>
-                            </td>
-                            <td>2.50%</td>
-                            <td>4220.00$</td>
-                        </tr>
-                        <tr>
-                            <td>004</td>
-                            <td>Product D</td>
-                            <td>
-                                <span>Horizontal Menu Admin Dashboard</span>
-                            </td>
-                            <td>
-                                <span class="btn btn-info btn-xs">11</span>
-                            </td>
-                            <td>2.50%</td>
-                            <td>11220.00$</td>
-                        </tr>
-                        <tr>
-                            <td>005</td>
-                            <td>Product E</td>
-                            <td>Colorful Dashboard Design</td>
-                            <td>
-                                <span class="btn btn-warning btn-xs">35</span>
-                            </td>
-                            <td>2.50%</td>
-                            <td>9450.00$</td>
-                        </tr>
-                        <tr>
-                            <td class="total" colspan="5">Subtotal</td>
-                            <td>38000.00$</td>
-                        </tr>
-                        <tr>
-                            <td class="total" colspan="5">Tax (10%)</td>
-                            <td>4100.00$</td>
-                        </tr>
-                        <tr>
-                            <td class="total" colspan="5">Discount</td>
-                            <td>10%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="row gutter">
-        <div class="col-lg-offset-6 col-md-offset-6 col-sm-offset-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="btn-group">
-                <button type="button" class="btn btn-danger">
-                    <i class="icon-print"></i>Print</button> 
-                    <button type="button" class="btn btn-warning">
-                        <i class="icon-download4"></i>Save</button>
-                        <button type="button" class="btn btn-info">
-                            <i class="icon-email"></i>Email</button>
-            </div>
-            <div class="btn btn-success btn-lg btn-block">Total<br>$43,000 USD</div>
-        </div>
-    </div>
 </div>

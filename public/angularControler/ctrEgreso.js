@@ -2,7 +2,6 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
 
     $scope.egreso = {};
     $scope.egreso.idegreso = "";
-    $scope.egreso.idabono = "";
     $scope.egreso.idcliente = 0;
     $scope.egreso.concepto = "";
     $scope.egreso.descripcion = "";
@@ -20,13 +19,13 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
 
     };
 
-//     $scope.dameClientes = function () {
-//        $http.get("http://localhost:3333/api/clientes").success(function (respuesta) {
-//            console.log(respuesta);
-//            $scope.listaClientes = respuesta;
-//        });
-//    };
-//    
+     $scope.dameClientes = function () {
+        $http.get("http://localhost:3333/api/clientes").success(function (respuesta) {
+            console.log(respuesta);
+            $scope.listaClientes = respuesta;
+        });
+    };
+    
     
     var tblEgresos = this;
     $http.get("http://localhost:3333/api/egresos").success(function (data) {
@@ -78,7 +77,7 @@ app.controller('ctrEgreso', function ($scope, $http, NgTableParams) {
 //        }
     };
 
-//    $scope.dameClientes();
+    $scope.dameClientes();
 
     
 });

@@ -1,4 +1,4 @@
-app.controller('ctrPago', function ($scope, $htpp, NgTbaleParams) {
+app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
     $scope.pago = {};
     $scope.pago.idpago = "";
@@ -9,14 +9,13 @@ app.controller('ctrPago', function ($scope, $htpp, NgTbaleParams) {
     $scope.pago.descripcion = "";
     $scope.pago.curso = "";
 
-    $scope.mostrarBoton = false;
-    $scope.ocultarBoton = false;
-    $scope.activarBtnGuardar = false;
+//    $scope.mostrarBoton = false;
+//    $scope.ocultarBoton = false;
+//    $scope.activarBtnGuardar = false;
 
     $scope.CancelarPago = function () {
 
     $scope.pago.idpago = "";
-    $scope.pago.estado = "";
     $scope.pago.concepto = "";
     $scope.pago.total = "";
     $scope.pago.fecha = "";
@@ -24,7 +23,14 @@ app.controller('ctrPago', function ($scope, $htpp, NgTbaleParams) {
     $scope.pago.curso = "";
 
     };
-
+    
+    $scope.dameClientes = function () {
+        $http.get("http://localhost:3333/api/clientes").success(function (respuesta) {
+            console.log(respuesta);
+            $scope.listaClientes = respuesta;
+        });
+    };
+    
     var tblPagos = this;
     $http.get("http://localhost:3333/api/pagos").success(function (data) {
         tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
@@ -35,7 +41,7 @@ app.controller('ctrPago', function ($scope, $htpp, NgTbaleParams) {
         //alert("va a entrar a guardar");
         $http.post("http://localhost:3333/api/guardarPago", $scope.pago).success(function (respuesta) {
             tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-            sweetAlert("Exito", "Nuevo registro disponible", "success");
+            //sweetAlert("Exito", "Nuevo registro disponible", "success");
             $scope.CancelarPago();
             //  $scope.ocultarBoton = true;
 
@@ -50,8 +56,8 @@ app.controller('ctrPago', function ($scope, $htpp, NgTbaleParams) {
 
             console.log(respuesta);
             $scope.pago = respuesta;
-            $scope.mostrarBoton = true;
-            $scope.ocultarBoton = true;
+//            $scope.mostrarBoton = true;
+//            $scope.ocultarBoton = true;
 
         });
 //        }
@@ -62,7 +68,7 @@ app.controller('ctrPago', function ($scope, $htpp, NgTbaleParams) {
             tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
             $scope.pago = respuesta;
-            $scope.mostrarBoton = true;
+//            $scope.mostrarBoton = true;
 
         });
     };
@@ -83,7 +89,7 @@ app.controller('ctrPago', function ($scope, $htpp, NgTbaleParams) {
 
 
 
-
+$scope.dameClientes();
 
 
 

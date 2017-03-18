@@ -3,7 +3,7 @@ var con = require('../daoConeccion/Connection');
 
 function damePagos(callback){
     var connection = con.conecction();
-    var sql = "SELECT * from Pago";
+    var sql = "SELECT c.idpago,c.idcliente,c.concepto,c.total,c.fecha,c.descripcion,c.curso, e.estado as estado, h.nombre from pago c inner join estado e on c.estado=e.idestado inner join cliente h on c.idcliente=h.idcliente";
     connection.query(sql, function (err, result){
        if (err) {
            throw err;
@@ -15,11 +15,11 @@ function damePagos(callback){
 }
 
 
-function guardarPagos(cliente, callback) {
+function guardarPagos(pago, callback) {
     console.log(pago);
     var connection = con.conecction();
-    var sql = "INSERT INTO pago (idcliente, estado, concepto, total, fecha, descripcion, curso,  estado) \n\
-               VALUES ('" + pago.idcliente + "', '" + pago.estado + "', '" + pago.concepto + "', '" + pago.total + "' , '" + pago.fecha + "', '" + pago.descripcion + "', '" + pago.curso + "','1' )";
+    var sql = "INSERT INTO pago (idcliente, concepto, total, fecha, descripcion, curso,  estado) \n\
+               VALUES ('" + pago.idcliente + "', '" + pago.concepto + "', '" + pago.total + "' , '" + pago.fecha + "', '" + pago.descripcion + "', '" + pago.curso + "','1' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -32,7 +32,7 @@ function guardarPagos(cliente, callback) {
 function obtenerPago(pago, callback){
     console.log(pago);
     var connection = con.conecction();
-    var sql = "SELECT * FROM pago WHERE idpago='" + pago.idpago + "', estado='" + pago.estado + "', concepto='" + pago.concepto + "', total='" + pago.total + "' , fecha='" + pago.fecha + "', descripcion='" +pago.descripcion +"', curso='"+ pago.curso +"' WHERE idpago='" + pago.idpago + "'";
+    var sql = "SELECT * FROM pago WHERE idpago='" + pago.idpago + "',  concepto='" + pago.concepto + "', total='" + pago.total + "' , fecha='" + pago.fecha + "', descripcion='" +pago.descripcion +"', curso='"+ pago.curso +"' WHERE idpago='" + pago.idpago + "'";
     console.log("la consulta es");
     console.log(sql);
     connection.query(sql, function (err, result){
@@ -48,7 +48,7 @@ function obtenerPago(pago, callback){
 function actualizarPagos(pago, callback){
     console.log(pago);
     var connection = con.conecction();
-    var sql = "UPDATE pago SET pago='" + pago.idcliente + "',   ";
+    var sql = "UPDATE pago SET pago='" + pago.idpago + "',   ";
     console.log(sql);
     connection.query(sql, function (err, result){
           if (err) {
@@ -61,8 +61,8 @@ function actualizarPagos(pago, callback){
 }
 
 function eliminarPagos(pago, callback) {
-    //console.log("informacion para eliminar");
-    //console.log(cliente);
+    console.log("informacion para eliminar");
+    console.log(pago);
     var connection = con.conecction();
     
     var sql = "UPDATE pago  set estado = '2'  WHERE idpago='" + pago.idpago + "'";

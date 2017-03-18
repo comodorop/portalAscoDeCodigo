@@ -10,7 +10,7 @@
                         <div class="col-md-6 col-sm-6">
                                 <label class="control-label">Horario</label>
                                 <select  ng-model="aula.idhorario" 
-                                         ng-options="horario.idhorario as horario.dia for horario in listaHorarios "> 
+                                         ng-options="horario.idhorario as horario.idhorario +' / '+  horario.dia for horario in listaHorarios "> 
                                     <option value="">Seleccione una opcion</option>
                                 </select>
                             </div>
@@ -42,9 +42,12 @@
 
     <table ng-table="au.listaAulas" class="table" show-filter="true">
         <tr ng-repeat="aula in $data" >
+            <td>
+                {{aula.idaula}}
+            </td>
             <td title="'idhorario'" filter="{ idhorario: 'text'}" sortable="'idhorario'">
                 {{aula.idhorario}}</td>
-             <td title="Dias" filter="{ dia: 'text'}" sortable="'dia'">
+              <td title="Dia" filter="{ dia: 'text'}" sortable="'dia'">
                  {{aula.dia}}</td>
             <td title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
                 {{aula.fechaInicio | date: 'dd-MM-yyyy'}}</td>
