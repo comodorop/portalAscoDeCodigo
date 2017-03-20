@@ -31,6 +31,14 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         });
     };
     
+        $scope.dameConceptos = function () {
+        $http.get("http://localhost:3333/api/conceptos").success(function (respuesta) {
+          //  console.log(respuesta);
+            $scope.lstConceptos = respuesta;
+
+        });
+    };
+    
     var tblPagos = this;
     $http.get("http://localhost:3333/api/pagos").success(function (data) {
         tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
@@ -90,7 +98,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
 
 $scope.dameClientes();
-
+$scope.dameConceptos();
 
 
 });

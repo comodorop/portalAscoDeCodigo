@@ -15,6 +15,7 @@
                         </select>
                     </div>
                 </div>
+                <br>
                 <div class="row gutter">
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Hora de Inicio</label>
@@ -24,6 +25,13 @@
                         <label class="control-label">Hora Final</label>
                         <input ng-model="horario.horaFinal" type="text" placeholder="00:00" class="form-control" name="title">
                     </div>
+                </div>
+                <br>
+                 <div class="row gutter">
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">Precio</label>
+                        <input ng-model="horario.precio" type="text" placeholder="$" class="form-control" name="title">
+                    </div> 
                 </div>
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -47,6 +55,10 @@
             </td>
             <td title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
                 {{horario.dia}}</td>
+            <td title="'Curso'" filter="{ curso: 'text'}" sortable="'curso'">
+                {{horario.curso}}</td>
+            <td title="'Precio'" filter="{ precio: 'text'}" sortable="'precio'">
+                {{horario.precio}}</td>
             <td title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
                 {{horario.horaInicio}}</td>
             <td title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">

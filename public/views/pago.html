@@ -1,7 +1,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel">
         <div class="panel-heading">
-            <h4>Registro de Pagos</h4>
+            <h4>Registro de Trabajos y Servicios</h4>
         </div>
         <div class="panel-body">
             <form id="movieForm" method="post">
@@ -16,25 +16,27 @@
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label class="control-label">Concepto</label>
-                            <input ng-model="pago.concepto" type="text" placeholder="Concepto" class="form-control" name="title">
+                            <select  ng-model="pago.valorCmboCncept"                             
+                                     ng-options="concepto.nombre as concepto.nombre for concepto in lstConceptos">                                       
+                                <option value="">Seleccione una opcion</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="row gutter">
                     <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Descripcion</label>
-                        <input ng-model="pago.descripcion" type="text" placeholder="Descripcion" class="form-control" name="title">
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Total</label>
-                        <input ng-model="pago.total" type="text" placeholder="Total" class="form-control" name="title">
-                    </div>
-                </div>
-                <div class="row gutter">  
-                    <div class="col-md-6 col-sm-6">
-                        <label for="inputDate">Fecha</label>
+                        <label for="inputDate">Fecha:</label>
                         <input ng-model="pago.fecha" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
                     </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">Total:</label>
+                        <input ng-model="pago.total" type="text" placeholder="$" class="form-control" name="title">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="control-label">Descripción:</label>
+                    <textarea ng-model="pago.descripcion" type="text" placeholder="Descripción" class="form-control" name="Descripción" rows="5"></textarea>
                 </div>
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -51,23 +53,21 @@
 
     <table ng-table="pg.listaPagos" class="table" show-filter="true">
         <tr ng-repeat="pago in $data" >
-            <td>
+            <td title="'#'">
                 {{pago.idpago}}
             </td>
-            <td title="'idcliente'" filter="{ idcliente: 'text'}" sortable="'idcliente'">
-                {{pago.idcliente}}</td>
+            <td title="'Dia'" filter="{ concepto: 'text'}" sortable="'concepto'">
+                {{pago.concepto}}</td>
             <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{pago.nombre}}</td>
             <td title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
                 {{pago.descripcion}}</td>
             <td title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
-                {{pago.fecha}}</td>
+                {{pago.fecha | date: 'dd-MM-yyyy'}}</td>
             <td title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
                 {{pago.concepto}}</td>
             <td title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total}}</td>
-            <td title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
-                {{pago.fechaInicio | date: 'dd-MM-yyyy'}}</td>
             <td title="'Estado'" >
                 {{pago.estado}}</td>
             <td <a ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>

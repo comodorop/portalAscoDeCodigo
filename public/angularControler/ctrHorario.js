@@ -3,12 +3,14 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
     $scope.horario = {};
     $scope.horario.idhorario = "";
     $scope.horario.dia = "";
+    $scope.horario.precio = "";
     $scope.horario.horaInicio = "";
     $scope.horario.horaFinal = "";
     $scope.CancelarHorario = function () {
 
         $scope.horario.idhorario = "";
         $scope.horario.dia = "";
+         $scope.horario.precio = "";
         $scope.horario.horaInicio = "";
         $scope.horario.horaFinal = "";
 
@@ -18,6 +20,13 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
           //  console.log(respuesta);
             $scope.lstDias = respuesta;
 
+        });
+    };
+    
+        $scope.dameCursos = function () {
+        $http.get("http://localhost:3333/api/cursos").success(function (respuesta) {
+            console.log(respuesta);
+            $scope.listaCursos = respuesta;
         });
     };
 
@@ -99,6 +108,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 
 
     $scope.dameDias();
+    $scope.dameCursos();
 
 
 });

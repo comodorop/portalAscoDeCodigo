@@ -18,8 +18,8 @@ function damePagos(callback){
 function guardarPagos(pago, callback) {
     console.log(pago);
     var connection = con.conecction();
-    var sql = "INSERT INTO pago (idcliente, concepto, total, fecha, descripcion, curso,  estado) \n\
-               VALUES ('" + pago.idcliente + "', '" + pago.concepto + "', '" + pago.total + "' , '" + pago.fecha + "', '" + pago.descripcion + "', '" + pago.curso + "','1' )";
+    var sql = "INSERT INTO pago (concepto, total, fecha, descripcion, curso,  estado) \n\
+               VALUES ('" + pago.valorCmboCncept + "', '" + pago.total + "' , '" + pago.fecha + "', '" + pago.descripcion + "', '" + pago.curso + "','1' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

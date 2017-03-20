@@ -31,6 +31,7 @@ var au = require('./daoAula/aula');
 var di = require('./daoDias/dias');
 var eg = require('./daoEgreso/egreso');
 var pg = require('./daoPago/pago');
+var cn = require('./daoConceptos/conceptos');
 app.use(express.static('public'));
 var router = express.Router();
 
@@ -40,6 +41,13 @@ app.use(bodyParser.json());
 /////*** Dias***/////
 router.get('/dias', function (req, res) {
     di.dameDias(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+/////*** CONCEPTOS***/////
+router.get('/conceptos', function (req, res) {
+    cn.dameConceptos(function (error, data) {
         res.status(200).send(data);
     });
 });

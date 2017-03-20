@@ -3,7 +3,7 @@ var con = require('../daoConeccion/Connection');
 
 function dameHorarios(callback) {
     var connection = con.conecction();
-    var sql = "SELECT c.idhorario,c.dia,c.horaInicio,c.horaFinal,e.estado as estado from horario c inner join estado e on c.estado=e.idestado";
+    var sql = "SELECT c.idhorario,c.dia,c.precio,c.horaInicio,c.horaFinal,e.estado as estado from horario c inner join estado e on c.estado=e.idestado";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -17,8 +17,8 @@ function guardarHorarios(horario, callback) {
     console.log("informacion para guardar");
     console.log(horario);
     var connection = con.conecction();
-    var sql = "INSERT INTO horario (dia, horaInicio, horaFinal, estado) \n\
-               VALUES ('" + horario.valorCmb + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
+    var sql = "INSERT INTO horario (dia, precio, horaInicio, horaFinal, estado) \n\
+               VALUES ('" + horario.valorCmb + "','" + horario.precio + "', '" + horario.horaInicio + "', '" + horario.horaFinal + "' ,'1')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -50,7 +50,7 @@ function actualizarHorarios(horario, callback) {
 //    console.log("informacion para actualizar");
 //    console.log(horario);
     var connection = con.conecction();
-    var sql = "UPDATE horario SET  dia='" + horario.valorCmb + "', horaInicio='" + horario.horaInicio + "', horaFinal='" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario + "'";
+    var sql = "UPDATE horario SET  dia='" + horario.valorCmb + "', precio='" + horario.precio + "', horaInicio='" + horario.horaInicio + "', horaFinal='" + horario.horaFinal + "' WHERE idhorario='" + horario.idhorario + "'";
 //    console.log("**************");
 //    console.log(sql);
     connection.query(sql, function (err, result) {
