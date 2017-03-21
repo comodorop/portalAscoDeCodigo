@@ -18,12 +18,14 @@
                 </div>
                 <div class="row gutter">
                     <div class="col-md-6 col-sm-6">
-                        <label for="fechaInicio">Fecha de Inicio</label>
-                        <input ng-model="aula.fechaInicio" type="date" class="form-control" id="fechaInicio" placeholder="Enter Date">
+                       <label for="fechaInicio">Fecha Inicio</label>
+                        <ng-datepicker ng-model="aula.fechaInicio" locale="sl" format="dddd, dd, mmmm, aaaa" view-format="dddd, dd, mmmm, aaaa"></ng-datepicker>
+                      
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="fechaFinal">Fecha Final</label>
-                        <input ng-model="aula.fechaFinal" type="date" class="form-control" id="fechaFinal" placeholder="Enter Date">
+                        <ng-datepicker ng-model="aula.fechaFinal" locale="sl" format="DD.MM.YYYY" view-format="Do MMMM YYYY"></ng-datepicker>
+                        
                     </div>
                 </div>
                 

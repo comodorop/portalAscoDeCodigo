@@ -32,7 +32,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 
     var tblHorarios = this;
     $http.get("http://localhost:3333/api/horarios").success(function (data) {
-        tblHorarios.listaHorarios = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
+        tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: data});
     });
 
 
@@ -66,7 +66,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 //        {
             // alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarHorario", $scope.horario).success(function (respuesta) {
-                tblHorarios.listaHorarios = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+                tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
 //                sweetAlert("Exito", "Nuevo registro disponible", "success");
 //                $scope.CancelarHorario();
                   console.log(respuesta);
@@ -87,7 +87,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 
     $scope.actualizarHorario = function () {
         $http.put("http://localhost:3333/api/actualizarHorario", $scope.horario).success(function (respuesta) {
-            tblHorarios.listaHorarios = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
            $scope.curso = respuesta;
         });
@@ -99,7 +99,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
         $scope.horario.idhorario = id;
         //alert("va a entrar a actualizar");
         $http.put("http://localhost:3333/api/eliminarHorario", $scope.horario).success(function (respuesta) {
-            tblHorarios.listaHorarios = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
         });
 //        }
