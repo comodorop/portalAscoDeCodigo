@@ -6,13 +6,13 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.cliente.apellido = "";
     $scope.cliente.correo = "";
     $scope.cliente.telefono = "";
-    
-    $scope.mostrarBoton = false; 
-    $scope.ocultarBoton = false; 
+
+    $scope.mostrarBoton = false;
+    $scope.ocultarBoton = false;
     $scope.activarBtnGuardar = false;
-   
-    
-    
+
+
+
 //    $scope.formVisibility=false;
 //    $scope.obtenerCliente=function(){
 //      $scope.formVisibility=true;
@@ -85,8 +85,8 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
                 $scope.CancelarCliente();
                 $scope.ocultarBoton = true;
-                
-                
+
+
             });
 
         }
@@ -99,9 +99,9 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 
             console.log(respuesta);
             $scope.cliente = respuesta;
-            $scope.mostrarBoton = true; 
+            $scope.mostrarBoton = true;
             $scope.ocultarBoton = true;
-            
+
         });
 //        }
     };
@@ -109,9 +109,10 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.actualizarCliente = function () {
         $http.put("http://localhost:3333/api/actualizarCliente", $scope.cliente).success(function (respuesta) {
             tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-             console.log(respuesta);
-            $scope.cliente = respuesta;
-             $scope.mostrarBoton = true;
+//             console.log(respuesta);
+//            $scope.cliente = respuesta;
+            $scope.mostrarBoton = true;
+            $scope.CancelarCliente();
 
         });
     };

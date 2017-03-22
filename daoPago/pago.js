@@ -1,6 +1,20 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
+function damePagosCliente(cliente,callback){
+    var connection = con.conecction();
+    var sql = "SELECT * FROM pago Where idcliente='"+cliente.idCliente+"'";
+    connection.query(sql, function (err, result){
+       if (err){
+           throw err;
+       } else{
+           callback(null, result);
+       }
+    });
+}
+
+
+
 function damePagos(callback){
     var connection = con.conecction();
     var sql = "SELECT c.idpago,c.idcliente,c.concepto,c.total,c.fecha,c.descripcion,c.curso, e.estado as estado, h.nombre from pago c inner join estado e on c.estado=e.idestado inner join cliente h on c.idcliente=h.idcliente";
@@ -77,7 +91,8 @@ function eliminarPagos(pago, callback) {
 }
 
 module.exports = {
-
+    
+    damePagosCliente,
     damePagos,
     guardarPagos,
     obtenerPago,

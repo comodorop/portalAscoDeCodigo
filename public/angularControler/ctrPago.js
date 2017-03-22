@@ -8,41 +8,56 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.pago.fecha = "";
     $scope.pago.descripcion = "";
     $scope.pago.curso = "";
+    var tblPagos = this;
 
-//    $scope.mostrarBoton = false;
-//    $scope.ocultarBoton = false;
-//    $scope.activarBtnGuardar = false;
 
     $scope.CancelarPago = function () {
 
-    $scope.pago.idpago = "";
-    $scope.pago.concepto = "";
-    $scope.pago.total = "";
-    $scope.pago.fecha = "";
-    $scope.pago.descripcion = "";
-    $scope.pago.curso = "";
+        $scope.pago.idpago = "";
+        $scope.pago.concepto = "";
+        $scope.pago.total = "";
+        $scope.pago.fecha = "";
+        $scope.pago.descripcion = "";
+        $scope.pago.curso = "";
 
     };
-    
+
+    $scope.devuelvePagos = function () {
+        var cliente = {};
+        cliente.idCliente = $scope.pago.idcliente;
+        console.log(cliente);
+        $http.post("http://localhost:3333/api/damePagosCliente", cliente).success(function (respuesta) {
+            tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            console.log(respuesta);
+
+
+        });
+    };
+
+
+
+
+
+
+
+
+
     $scope.dameClientes = function () {
         $http.get("http://localhost:3333/api/clientes").success(function (respuesta) {
             console.log(respuesta);
             $scope.listaClientes = respuesta;
         });
     };
-    
-        $scope.dameConceptos = function () {
+
+    $scope.dameConceptos = function () {
         $http.get("http://localhost:3333/api/conceptos").success(function (respuesta) {
-          //  console.log(respuesta);
+            //  console.log(respuesta);
             $scope.lstConceptos = respuesta;
 
         });
     };
-    
-    var tblPagos = this;
-    $http.get("http://localhost:3333/api/pagos").success(function (data) {
-        tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
-    });
+
+
 
 
     $scope.guardarPago = function () {
@@ -96,9 +111,9 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
 
 
-
-$scope.dameClientes();
-$scope.dameConceptos();
+    $scope.devuelvePagos();
+    $scope.dameClientes();
+    $scope.dameConceptos();
 
 
 });

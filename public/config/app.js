@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngTable', 'ngMask', 'jkuri.datepicker']);
+var app = angular.module('app', ['ngRoute', 'ngTable', 'ngMask', 'jkuri.datepicker', 'localytics.directives']);
 app.config(function ($routeProvider) {
     $routeProvider.when('/cliente', {
         templateUrl: './views/cliente.html',

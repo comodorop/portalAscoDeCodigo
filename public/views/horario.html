@@ -9,13 +9,13 @@
                 <div class="row gutter">                
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Días</label>
-                        <select  ng-model="horario.valorCmb"                             
+                        <select ng-model="horario.valorCmb"                             
                                  ng-options="dia.nombre as dia.nombre for dia in lstDias">                                       
                             <option value="">Seleccione una opcion</option>
                         </select>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <label class="control-label">curso</label>
+                        <label class="control-label">Curso</label>
                         <select  ng-model="horario.idcurso" 
                                  ng-options="curso.idcurso as  curso.nombre for curso in listaCursos"> 
                             <option value="">Seleccione una opcion</option>

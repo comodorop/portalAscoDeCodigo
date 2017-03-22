@@ -61,9 +61,9 @@ router.get('/clientes', function (req, res) {
 
 //////////////pruevas en postman
 router.post('/guardarCliente', function (req, res) {
- //   console.log("entrooooo al api");
+    //   console.log("entrooooo al api");
     var params = req.body;
-   // console.log("*********************");
+    // console.log("*********************");
     //console.log(params);
     //console.log("**********************");
     cl.guardarClientes(params, function (error, data) {
@@ -80,7 +80,7 @@ router.post('/obtenerCliente', function (req, res) {
     //console.log(params);
     //console.log("**********************");
     cl.obtenerCliente(params, function (error, data) {
-       // console.log(data);
+        // console.log(data);
         res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
 //            res.status(200).sendStatus (data);
@@ -103,12 +103,12 @@ router.put('/eliminarCliente', function (req, res) {
     var params = req.body;
     //console.log(params)
     cl.eliminarClientes(params, function (error, data) {
-        if(data == 1){
+        if (data == 1) {
             cl.dameClientes(function (error, data) {
                 res.status(200).send(data);
             });
         }
-      
+
     });
 });
 
@@ -116,12 +116,12 @@ router.put('/activarCliente', function (req, res) {
     var params = req.body;
     //console.log(params)
     cl.activarClientes(params, function (error, data) {
-        if(data == 2){
+        if (data == 2) {
             cl.dameClientes(function (error, data) {
                 res.status(200).send(data);
             });
         }
-      
+
     });
 });
 
@@ -157,7 +157,7 @@ router.post('/obtenerCurso', function (req, res) {
 //    console.log(params);
 //    console.log("**********************");
     cr.obtenerCurso(params, function (error, data) {
-   //     console.log(data);
+        //     console.log(data);
         res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
 //            res.status(200).sendStatus (data);
@@ -183,12 +183,12 @@ router.put('/eliminarCurso', function (req, res) {
     var params = req.body;
     console.log(params)
     cr.eliminarCursos(params, function (error, data) {
-        if(data == 1){
+        if (data == 1) {
             cr.dameCursos(function (error, data) {
                 res.status(200).send(data);
             });
         }
-      
+
     });
 });
 
@@ -246,12 +246,12 @@ router.put('/eliminarHorario', function (req, res) {
     var params = req.body;
 //    console.log(params)
     hr.eliminarHorarios(params, function (error, data) {
-        if(data == 1){
+        if (data == 1) {
             hr.dameHorarios(function (error, data) {
                 res.status(200).send(data);
             });
         }
-      
+
     });
 });
 
@@ -264,9 +264,9 @@ router.get('/aulas', function (req, res) {
 
 //////////////pruevas en postman
 router.post('/guardarAula', function (req, res) {
- //   console.log("entrooooo al api");
+    //   console.log("entrooooo al api");
     var params = req.body;
-   // console.log("*********************");
+    // console.log("*********************");
     //console.log(params);
     //console.log("**********************");
     au.guardarAulas(params, function (error, data) {
@@ -306,12 +306,12 @@ router.put('/eliminarAula', function (req, res) {
     var params = req.body;
 //    console.log(params)
     au.eliminarAulas(params, function (error, data) {
-        if(data == 1){
+        if (data == 1) {
             au.dameAulas(function (error, data) {
                 res.status(200).send(data);
             });
         }
-      
+
     });
 });
 
@@ -324,9 +324,9 @@ router.get('/egresos', function (req, res) {
 
 //////////////pruevas en postman
 router.post('/guardarEgreso', function (req, res) {
- //   console.log("entrooooo al api");
+    //   console.log("entrooooo al api");
     var params = req.body;
-   // console.log("*********************");
+    // console.log("*********************");
     //console.log(params);
     //console.log("**********************");
     eg.guardarEgresos(params, function (error, data) {
@@ -343,7 +343,7 @@ router.post('/obtenerEgreso', function (req, res) {
     //console.log(params);
     //console.log("**********************");
     eg.obtenerEgreso(params, function (error, data) {
-       // console.log(data);
+        // console.log(data);
         res.status(200).send(data[0]);
 //        cl.dameClientes(function (error, data) {
 //            res.status(200).sendStatus (data);
@@ -366,12 +366,12 @@ router.put('/eliminarEgreso', function (req, res) {
     var params = req.body;
     //console.log(params)
     eg.eliminarEgresos(params, function (error, data) {
-        if(data == 1){
+        if (data == 1) {
             eg.dameEgresos(function (error, data) {
                 res.status(200).send(data);
             });
         }
-      
+
     });
 });
 
@@ -379,6 +379,12 @@ router.put('/eliminarEgreso', function (req, res) {
 /////*** PAGOS***/////
 router.get('/pagos', function (req, res) {
     pg.damePagos(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+router.post('/damePagosCliente', function (req, res) {
+    var objCliente = req.body;
+    pg.damePagosCliente(objCliente, function (error, data) {
         res.status(200).send(data);
     });
 });
@@ -419,12 +425,12 @@ router.put('/eliminarPago', function (req, res) {
     var params = req.body;
     //console.log(params)
     pg.eliminarPagos(params, function (error, data) {
-        if(data == 1){
+        if (data == 1) {
             pg.damePagos(function (error, data) {
                 res.status(200).send(data);
             });
         }
-      
+
     });
 });
 

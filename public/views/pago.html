@@ -4,19 +4,22 @@
             <h4>Registro de Trabajos y Servicios</h4>
         </div>
         <div class="panel-body">
-            <form id="movieForm" method="post">
+           
                 <div class="form-group">
                     <div class="row gutter">
                         <div class="col-md-6 col-sm-6">
                             <label class="control-label">Cliente</label>
-                            <select   ng-model="pago.idcliente" 
+                            <select  ng-model="pago.idcliente" 
+                                     chosen
+                                     ng-change="devuelvePagos()"
                                      ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
                                 <option value="">Seleccione una opcion</option>
                             </select>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label class="control-label">Concepto</label>
-                            <select  ng-model="pago.valorCmboCncept"                             
+                            <select  ng-model="pago.valorCmboCncept" 
+                                     class="form-control"
                                      ng-options="concepto.nombre as concepto.nombre for concepto in lstConceptos">                                       
                                 <option value="">Seleccione una opcion</option>
                             </select>
@@ -47,7 +50,7 @@
 
 
                 </div>
-            </form>
+         
         </div>
     </div>
 
