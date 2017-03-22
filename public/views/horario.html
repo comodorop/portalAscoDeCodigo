@@ -14,6 +14,13 @@
                             <option value="">Seleccione una opcion</option>
                         </select>
                     </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">curso</label>
+                        <select  ng-model="horario.idcurso" 
+                                 ng-options="curso.idcurso as  curso.nombre for curso in listaCursos"> 
+                            <option value="">Seleccione una opcion</option>
+                        </select>
+                    </div>
                 </div>
                 <br>
                 <div class="row gutter">
@@ -27,7 +34,7 @@
                     </div>
                 </div>
                 <br>
-                 <div class="row gutter">
+                <div class="row gutter">
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Precio</label>
                         <input ng-model="horario.precio" type="text" placeholder="$" class="form-control" name="title">
@@ -55,8 +62,8 @@
             </td>
             <td title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
                 {{horario.dia}}</td>
-            <td title="'Curso'" filter="{ curso: 'text'}" sortable="'curso'">
-                {{horario.curso}}</td>
+            <td title="'Curso'" filter="{ nombre: 'text'}" sortable="'nombre'">
+                {{horario.nombre}}</td>
             <td title="'Precio'" filter="{ precio: 'text'}" sortable="'precio'">
                 {{horario.precio}}</td>
             <td title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
@@ -65,7 +72,7 @@
                 {{horario.horaFinal}}</td>
             <td>
             <td title="'Estado'" >
-                {{horario.estado }}
+                {{horario.estado}}
             </td>
 
             <td <a ng-click="obtenerHorario(horario.idhorario);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>

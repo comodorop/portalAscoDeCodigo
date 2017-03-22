@@ -2,6 +2,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 
     $scope.horario = {};
     $scope.horario.idhorario = "";
+    $scope.horario.idcurso = "";
     $scope.horario.dia = "";
     $scope.horario.precio = "";
     $scope.horario.horaInicio = "";
@@ -9,6 +10,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
     $scope.CancelarHorario = function () {
 
         $scope.horario.idhorario = "";
+        $scope.horario.idcurso = "";
         $scope.horario.dia = "";
          $scope.horario.precio = "";
         $scope.horario.horaInicio = "";
