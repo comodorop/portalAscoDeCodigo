@@ -5,6 +5,12 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
     $scope.aula.idhorario = "";
     $scope.aula.fechaInicio = "";
     $scope.aula.fechaFinal = "";
+    
+    $scope.mostrarBoton = false;
+    $scope.ocultarBoton = false;
+    $scope.activarBtnGuardar = false;
+    
+    
     $scope.CancelarAula = function () {
 
         $scope.aula.idaula = "";
@@ -26,18 +32,55 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
     $http.get("http://localhost:3333/api/aulas").success(function (data) {
         console.log("INFROAMCIONA   ");
         console.log(data);
-        tblAulas.listaAulas = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
+        tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: data});
     });
+    
+     $scope.validarBaja = function ()
+    {
+        if ($scope.aula.idaula === "")
+        {
+            sweetAlert("Exito!", "El registro de baja.", "success");
 
+        }
+    };
+    
+     $scope.validar = function ()
+    {
+        var ok = false;
+        if ($scope.aula.idhorario === "")
+        {
+            sweetAlert("Error...", "¡Ingrese El Día y Curso!", "error");
+
+        } else
+        if ($scope.aula.fechaInicio === "")
+        {
+            sweetAlert("Error...", "¡Ingrese Fecha De Inicio!", "error");
+
+        } else
+        if ($scope.aula.fechaFinal === "")
+        {
+            sweetAlert("Error...", "¡Ingrese Fecha Final!", "error");
+
+        } else
+        {
+            ok = true;
+        }
+        return ok;
+
+    };
 
     $scope.guardarAula = function () {
-        console.log($scope.aula);
+        if($scope.validar())
+        {
+//        console.log($scope.aula);
         $http.post("http://localhost:3333/api/guardarAula", $scope.aula).success(function (respuesta) {
-            tblAulas.listaAulas = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-            // sweetAlert("Exito", "Nuevo registro disponible", "success");
-            console.log(respuesta);
+            tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Nuevo registro disponible", "success");
+//            console.log(respuesta);
             $scope.CancelarAula();
+            $scope.ocultarBoton = true;
         });
+    }
     };
 
     $scope.obtenerAula = function (id) {
@@ -47,16 +90,24 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
 
             console.log(respuesta);
             $scope.aula = respuesta;
+            $scope.mostrarBoton = true;
+            $scope.ocultarBoton = true;
         });
 //        }
     };
 
     $scope.actualizarAula = function () {
+        if ($scope.validar())
+        {
         $http.put("http://localhost:3333/api/actualizarAula", $scope.aula).success(function (respuesta) {
-            tblAulas.listaAulas = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-            console.log(respuesta);
-            $scope.aula = respuesta;
+            tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro actualizado", "success");
+//            console.log(respuesta);
+//            $scope.aula = respuesta;
+              $scope.mostrarBoton = true;
+              $scope.CancelarAula();
         });
+    }
     };
 
     $scope.eliminarAula = function (id) {
@@ -65,7 +116,8 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
         $scope.aula.idaula = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarAula", $scope.aula).success(function (respuesta) {
-            tblAulas.listaAulas = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro Dado De Baja", "success");
             console.log(respuesta);
         });
 //        }

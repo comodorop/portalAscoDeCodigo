@@ -7,35 +7,36 @@
            
                 <div class="form-group">
                     <div class="row gutter">
-                        <div class="col-md-6 col-sm-6">
-                            <label class="control-label">Cliente</label>
-                            <select  ng-model="pago.idcliente" 
-                                     chosen
-                                     ng-change="devuelvePagos()"
-                                     ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
-                                <option value="">Seleccione una opcion</option>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label class="control-label">Cliente:</label>
+                            <select chosen
+                                    ng-model="pago.idcliente"                          
+                                    class="form-control"
+                                    ng-change="devuelvePagos()"
+                                    ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
+                                <option value="">Seleccione Un Cliente</option>
                             </select>
                         </div>
-                        <div class="col-md-6 col-sm-6">
-                            <label class="control-label">Concepto</label>
-                            <select  ng-model="pago.valorCmboCncept" 
-                                     class="form-control"
-                                     ng-options="concepto.nombre as concepto.nombre for concepto in lstConceptos">                                       
-                                <option value="">Seleccione una opcion</option>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label class="control-label">Concepto:</label>
+                            <select chosen
+                                    ng-model="pago.valorCmboCncept" 
+                                    class="form-control"
+                                    ng-options="concepto.nombre as concepto.nombre for concepto in lstConceptos">                                       
+                                <option value="">Seleccione Un Concepto</option>
                             </select>
                         </div>
-                    </div>
-                </div>
-                <div class="row gutter">
-                    <div class="col-md-6 col-sm-6">
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label for="inputDate">Fecha:</label>
                         <input ng-model="pago.fecha" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
                     </div>
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="control-label">Total:</label>
                         <input ng-model="pago.total" type="text" placeholder="$" class="form-control" name="title">
                     </div>
-                </div>
+              
+              </div>            
                 <br>
                 <div class="form-group">
                     <label class="control-label">Descripción:</label>
@@ -44,8 +45,8 @@
                 <br>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                    <button ng-click="guardarPago();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarPago();" type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="guardarPago();" ng-show="pago.idpago == 0" type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="actualizarPago();" ng-show="pago.idpago >0" type="submit" class="btn btn-success">Actualizar</button>
                     <button ng-click="CancelarPago();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
@@ -59,25 +60,29 @@
             <td title="'#'">
                 {{pago.idpago}}
             </td>
-            <td title="'Dia'" filter="{ concepto: 'text'}" sortable="'concepto'">
-                {{pago.concepto}}</td>
+           
             <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{pago.nombre}}</td>
-            <td title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
-                {{pago.descripcion}}</td>
-            <td title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
-                {{pago.fecha | date: 'dd-MM-yyyy'}}</td>
-            <td title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
+             <td title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
                 {{pago.concepto}}</td>
+            <td title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
+                {{pago.fecha | date: 'dd-MM-yyyy'}}</td>    
             <td title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total}}</td>
             <td title="'Estado'" >
                 {{pago.estado}}</td>
-            <td <a ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
+            <td 
+                <a ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success">
+                    <i class="icon-mode_edit"></i>
+            </td>
         <br>
-        <td <a ng-click="eliminarPago(pago.idpago);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
+        <td 
+            <a ng-click="eliminarPago(pago.idpago);" type="submit" class="btn btn-danger">
+            <i ng-if="pago.estado === 'activo'" class="icon-delete"></i>
+            <i ng-if="pago.estado === 'inactivo'" class="icon-delete_forever"></i> 
 
         </tr>
     </table>
 
+  </div>
 </div>

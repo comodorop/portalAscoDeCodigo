@@ -3,6 +3,11 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
     $scope.curso = {};
     $scope.curso.idcurso = "";
     $scope.curso.nombre = "";
+    
+  $scope.mostrarBoton = false;
+  $scope.ocultarBoton = false;
+  $scope.activarBtnGuardar = false;
+    
     $scope.CancelarCurso = function () {
 
         $scope.curso.idcurso = "";
@@ -15,12 +20,22 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
     });
 
 
-$scope.validar = function ()
+    $scope.validarBaja = function ()
+    {
+        if ($scope.curso.idcurso === "")
+        {
+            sweetAlert("Exito!", "El registro de baja.", "success");
+
+        }
+    };
+    
+    
+    $scope.validar = function ()
     {
         var ok = false;
         if ($scope.curso.nombre === "")
         {
-            sweetAlert("Error...", "¡Ingrese Nombre!", "error");
+            sweetAlert("Error...", "¡Ingrese El Nombre del Curso!", "error");
 
           } else
         {
@@ -40,8 +55,10 @@ $scope.validar = function ()
                 tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
                 $scope.CancelarCurso();
+                $scope.ocultarBoton = true;
+            
             });
-        } 
+        }
     };
 
     $scope.obtenerCurso = function (id) {
@@ -51,16 +68,25 @@ $scope.validar = function ()
 
             //console.log(respuesta);
             $scope.curso = respuesta;
+            $scope.mostrarBoton = true;
+            $scope.ocultarBoton = true;
+ 
         });
 //        }
     };
 
     $scope.actualizarCurso = function () {
-        $http.put("http://localhost:3333/api/actualizarCurso", $scope.curso).success(function (respuesta) {
-            tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-            //console.log(respuesta);
-        $scope.curso = respuesta;
-        });
+        if ($scope.validar())
+        {
+            $http.put("http://localhost:3333/api/actualizarCurso", $scope.curso).success(function (respuesta) {
+                tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+                sweetAlert("Exito", "Registro actualizado", "success");
+                //console.log(respuesta);
+//            $scope.curso = respuesta;
+            $scope.mostrarBoton = true;
+            $scope.CancelarCurso();
+            });
+        }
     };
 
     $scope.eliminarCurso = function (id) {
@@ -70,7 +96,8 @@ $scope.validar = function ()
        // alert("va a entrar a actualizar");
         $http.put("http://localhost:3333/api/eliminarCurso", $scope.curso).success(function (respuesta) {
             tblCursos.listaCursos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
-           // console.log(respuesta);
+          console.log(respuesta);
+          sweetAlert("Exito", "Registro Dado De Baja", "success");
         });
 //        }
     };

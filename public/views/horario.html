@@ -7,44 +7,49 @@
 
             <div class="form-group">
                 <div class="row gutter">                
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Días</label>
-                        <select ng-model="horario.valorCmb"                             
-                                 ng-options="dia.nombre as dia.nombre for dia in lstDias">                                       
-                            <option value="">Seleccione una opcion</option>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Días:</label>
+                        <select chosen
+                                ng-model="horario.valorCmb"   
+                                class="form-control"
+                                ng-options="dia.nombre as dia.nombre for dia in lstDias">                                          
+                            <option value="">Seleccione Un Día</option>
                         </select>
                     </div>
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Curso</label>
-                        <select  ng-model="horario.idcurso" 
-                                 ng-options="curso.idcurso as  curso.nombre for curso in listaCursos"> 
-                            <option value="">Seleccione una opcion</option>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Curso:</label>
+                        <select chosen 
+                                ng-model="horario.idcurso" 
+                                class="form-control"
+                                ng-options="curso.idcurso as  curso.nombre for curso in listaCursos"> 
+                            <option value="">Seleccione Un Curso</option>
                         </select>
                     </div>
-                </div>
-                <br>
-                <div class="row gutter">
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Hora de Inicio</label>
+                
+             
+         
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Hora de Inicio:</label>
                         <input ng-model="horario.horaInicio" type="text" placeholder="00:00" class="form-control" name="title">
                     </div> 
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Hora Final</label>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Hora Final:</label>
                         <input ng-model="horario.horaFinal" type="text" placeholder="00:00" class="form-control" name="title">
                     </div>
-                </div>
-                <br>
+               </div>
+             <br>
                 <div class="row gutter">
-                    <div class="col-md-6 col-sm-6">
-                        <label class="control-label">Precio</label>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Precio:</label>
                         <input ng-model="horario.precio" type="text" placeholder="$" class="form-control" name="title">
                     </div> 
                 </div>
                 <br>
+              
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                    <button ng-click="guardarHorario();" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarHorario();" type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="guardarHorario();" ng-show="horario.idhorario == 0" type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="actualizarHorario();" ng-show="horario.idhorario >0" type="submit" class="btn btn-success">Actualizar</button>
                     <button ng-click="CancelarHorario();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
@@ -72,14 +77,18 @@
                 {{horario.horaFinal}}</td>
             <td>
             <td title="'Estado'" >
-                {{horario.estado}}
+                {{horario.estado}}</td>
+
+           <td
+                <a  ng-click="obtenerHorario(horario.idhorario);"  type="submit" class="btn btn-success">
+                    <i class="icon-mode_edit"></i>
+
             </td>
-
-            <td <a ng-click="obtenerHorario(horario.idhorario);" type="submit" class="btn btn-success"><i class="icon-repeat2"></i></a></td>
-        <br>
-        <td <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger"><i class="icon-delete_forever"></i></a></td>
-
-        </tr>
+        <td 
+            <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger">
+                <i ng-if="horario.estado === 'activo'" class="icon-delete"></i>
+                <i ng-if="horario.estado === 'inactivo'" class="icon-delete_forever"></i>
+        </td>
     </table>
 
 
