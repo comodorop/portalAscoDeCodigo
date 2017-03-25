@@ -6,6 +6,16 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.cliente.apellido = "";
     $scope.cliente.correo = "";
     $scope.cliente.telefono = "";
+    var socket = io();
+
+//    aquei iniciamos el socket y le damos un nombre
+    socket.on('messages', function () { ///puse
+        setTimeout(function () {
+            $scope.dameClientes();
+        });
+    });
+
+
 
     $scope.mostrarBoton = false;
     $scope.ocultarBoton = false;
@@ -42,7 +52,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
     };
-    
+
 
     $scope.validarBaja = function ()
     {
@@ -84,9 +94,14 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         return ok;
 
     };
+    $scope.dameClientes = function () {
+        $http.get("http://localhost:3333/api/clientes").success(function (data) {
+            console.log(data);
+            $scope.listaClientes = data;
+        });
+    };
 
-
-
+    $scope.dameClientes();
     $scope.guardarCliente = function () {
         if ($scope.validar())
         {
@@ -96,6 +111,12 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
                 $scope.CancelarCliente();
                 $scope.ocultarBoton = true;
+                
+                setTimeout(function () {   ///socket.io
+                console.log(respuesta);
+                $scope.listaClientes = respuesta;
+                socket.emit('new-message');
+            });
 
 
             });
