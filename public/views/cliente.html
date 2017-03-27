@@ -66,10 +66,12 @@
 
             </td>
         <br>
-        <td 
-            <a ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger">
-                <i ng-if="cliente.estado === 'activo'" class="icon-delete"></i>
-                <i ng-if="cliente.estado === 'inactivo'" class="icon-delete_forever"></i>
+        <td ng-click="eliminarCliente(cliente.idcliente);"  ng-show="activoBoton" type="submit" class="btn btn-warning">
+                <i ng-if="cliente.estado === 'activo'" class="icon-delete"></i>               
+        </td>
+        
+        <td ng-click="activarCliente(cliente.idcliente);"  type="submit" class="btn btn-danger">  
+            <i ng-if="cliente.estado === 'inactivo'" class="icon-delete_forever"></i>   
         </td>
  
     </table>

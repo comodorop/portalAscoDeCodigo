@@ -94,7 +94,7 @@ router.put('/activarCliente', function (req, res) {
     var params = req.body;
     //console.log(params)
     cl.activarClientes(params, function (error, data) {
-        if (data == 2) {
+        if (data == 1) {
             cl.dameClientes(function (error, data) {
                 res.status(200).send(data);
             });

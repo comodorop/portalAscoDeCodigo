@@ -79,12 +79,12 @@ function eliminarClientes(cliente, callback) {
 }
 
 function activarClientes(cliente, callback) {
-    //console.log("informacion para eliminar");
-    //console.log(cliente);
+//    console.log("informacion para activarCliente");
+    console.log(cliente);
     var connection = con.conecction();
     
     var sql = "UPDATE cliente  set estado = '1'  WHERE idcliente='" + cliente.idcliente + "'";
-    //console.log(sql)
+    console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

@@ -15,24 +15,15 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         });
     });
 
-
-
     $scope.mostrarBoton = false;
     $scope.ocultarBoton = false;
     $scope.activarBtnGuardar = false;
-
-
-
-//    $scope.formVisibility=false;
-//    $scope.obtenerCliente=function(){
-//      $scope.formVisibility=true;
-//      console.log($scope.formVisibility)
-//    };
-//    $scope.obtenerCliente = function () {
-//        $scope('actualizarCliente').hide();
-//        $scope('actualizarCliente').show();
-//    };
-
+    
+    $scope.activoBoton = false;
+    $scope.inactivoBoton = false;
+    
+    
+    
     $scope.CancelarCliente = function () {
 
         $scope.cliente.idcliente = 0;
@@ -160,7 +151,9 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
             tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Baja", "success");
             console.log(respuesta);
-            $scope.activarClientes = true;
+             $scope.activoBoton = true;
+             $scope.inactivoBoton = true;
+            
         });
 
     };
@@ -169,10 +162,13 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 //        var ok = $scope.validar();
 //        if (ok == true) {
         $scope.cliente.idcliente = id;
-        //alert("va a entrar a eliminar");
-        $http.put("http://localhost:3333/api/activarClientes", $scope.cliente).success(function (respuesta) {
+//        alert("va a entrar a activar el estado");
+        $http.put("http://localhost:3333/api/activarCliente", $scope.cliente).success(function (respuesta) {
             tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro Dado De Alta", "success");
             console.log(respuesta);
+            $scope.activoBoton = true;
+            $scope.inactivoBoton = true;
         });
 //        }
     };
