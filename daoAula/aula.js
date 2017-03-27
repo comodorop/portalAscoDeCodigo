@@ -3,7 +3,7 @@ var con = require('../daoConeccion/Connection');
 
 function dameAulas(callback) {
     var connection = con.conecction();
-    var sql = "SELECT c.idaula,c.idhorario,c.fechaInicio,c.fechaFinal, e.estado as estado, h.dia from aula c inner join estado e on c.estado=e.idestado inner join horario h on c.idhorario=h.idhorario";
+    var sql = "SELECT c.idaula,c.idhorario,c.fechaInicio,c.fechaFinal, e.estado as estado, h.dia, u.nombre from aula c inner join estado e on c.estado=e.idestado inner join horario h on c.idhorario=h.idhorario inner join curso u on c.idhorario=u.idcurso";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

@@ -27,9 +27,10 @@
                             </select>
                         </div>
 
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <label for="inputDate">Fecha:</label>
-                        <input ng-model="pago.fecha" type="date" class="form-control" id="inputDate" placeholder="Enter Date">
+                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        <label for="fecha">Fecha:</label>
+                        <ng-datepicker ng-model="pago.fecha" format="DD.MM.YYYY" id="fecha" ></ng-datepicker>
+                        
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="control-label">Total:</label>
