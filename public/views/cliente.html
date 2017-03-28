@@ -48,16 +48,16 @@
             <td>
                 {{cliente.idcliente}}
             </td>
-            <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
+            <td style="width:20%" title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{cliente.nombre}}</td>
-            <td title="'Apellido'" filter="{ apellido: 'text'}" sortable="'apellido'">
+            <td style="width:15%" title="'Apellido'" filter="{ apellido: 'text'}" sortable="'apellido'">
                 {{cliente.apellido}}</td>
-            <td title="'Correo'" filter="{ correo: 'text'}" sortable="'correo'">
+            <td style="width:20%" title="'Correo'" filter="{ correo: 'text'}" sortable="'correo'">
                 {{cliente.correo}}</td>
-            <td title="'Telefono'" filter="{ telefono: 'number'}" sortable="'telefono'">
+            <td style="width:15%" title="'Telefono'" filter="{ telefono: 'number'}" sortable="'telefono'">
                 {{cliente.telefono}}</td>
             <td>
-            <td title="'Estado'" >
+            <td style="width:10%" title="'Estado'" >
                 {{cliente.estado}}</td>
 
             <td
@@ -67,11 +67,13 @@
             </td>
         <br>
         <td ng-click="eliminarCliente(cliente.idcliente);"  type="submit" class="btn btn-warning">
-                <i ng-if="cliente.estado === 'activo'" class="icon-delete"></i>               
+                <i ng-if="cliente.estado === 'activo'" class="icon-delete"></i>
+                <i ng-if="cliente.estado === 'inactivo'" class=""></i>  
         </td>
         
         <td ng-click="activarCliente(cliente.idcliente);"  type="submit" class="btn btn-danger">  
-            <i ng-if="cliente.estado === 'inactivo'" class="icon-delete_forever"></i>   
+            <i ng-if="cliente.estado === 'inactivo'" class="icon-delete_forever"></i> 
+            <i ng-if="cliente.estado === 'activo'" class=""></i>
         </td>
  
     </table>

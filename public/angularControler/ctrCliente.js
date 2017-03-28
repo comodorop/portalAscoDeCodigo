@@ -19,8 +19,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.ocultarBoton = false;
     $scope.activarBtnGuardar = false;
     
-    $scope.activoBoton = false;
-    $scope.inactivoBoton = false;
+
     
     
     
@@ -151,8 +150,8 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
             tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Baja", "success");
             console.log(respuesta);
-             $scope.activoBoton = true;
-             $scope.inactivoBoton = true;
+        
+            
             
         });
 
@@ -167,8 +166,9 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
             tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Alta", "success");
             console.log(respuesta);
-            $scope.activoBoton = true;
-            $scope.inactivoBoton = true;
+            
+         
+            
         });
 //        }
     };
