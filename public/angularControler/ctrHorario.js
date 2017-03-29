@@ -3,15 +3,15 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
     $scope.horario = {};
     $scope.horario.idhorario = "";
     $scope.horario.idcurso = "";
-    $scope.horario.dia = "";    
+    $scope.horario.dia = "";
     $scope.horario.horaInicio = "";
     $scope.horario.horaFinal = "";
     $scope.horario.precio = "";
-    
+
     $scope.mostrarBoton = false;
     $scope.ocultarBoton = false;
     $scope.activarBtnGuardar = false;
-    
+
     $scope.CancelarHorario = function () {
 
         $scope.horario.idhorario = "";
@@ -24,13 +24,13 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
     };
     $scope.dameDias = function () {
         $http.get("http://localhost:3333/api/dias").success(function (respuesta) {
-          //  console.log(respuesta);
+            //  console.log(respuesta);
             $scope.lstDias = respuesta;
 
         });
     };
-    
-        $scope.dameCursos = function () {
+
+    $scope.dameCursos = function () {
         $http.get("http://localhost:3333/api/cursos").success(function (respuesta) {
             console.log(respuesta);
             $scope.listaCursos = respuesta;
@@ -39,9 +39,9 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 
     var tblHorarios = this;
     $http.get("http://localhost:3333/api/horarios").success(function (data) {
-        tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: data});
+        tblHorarios.listaHorarios = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: data});
     });
-    
+
     $scope.validarBaja = function ()
     {
         if ($scope.horario.idhorario === "")
@@ -55,7 +55,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
     $scope.validar = function ()
     {
         var ok = false;
-       if ($scope.horario.valorCmb === "")
+        if ($scope.horario.valorCmb === "")
         {
             sweetAlert("Error...", "¡Ingrese Día!", "error");
 
@@ -92,13 +92,13 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
         {
             // alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarHorario", $scope.horario).success(function (respuesta) {
-                tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
+                tblHorarios.listaHorarios = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
                 $scope.CancelarHorario();
                 $scope.ocultarBoton = true;
 //                  console.log(respuesta);
             });
-        } 
+        }
     };
 
     $scope.obtenerHorario = function (id) {
@@ -117,15 +117,15 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
     $scope.actualizarHorario = function () {
         if ($scope.validar())
         {
-        $http.put("http://localhost:3333/api/actualizarHorario", $scope.horario).success(function (respuesta) {
-            tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
-           sweetAlert("Exito", "Registro actualizado", "success");
+            $http.put("http://localhost:3333/api/actualizarHorario", $scope.horario).success(function (respuesta) {
+                tblHorarios.listaHorarios = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+                sweetAlert("Exito", "Registro actualizado", "success");
 //             console.log(respuesta);
 //           $scope.curso = respuesta;
-             $scope.mostrarBoton = true;
-             $scope.CancelarHorario();
-        });
-    }
+                $scope.mostrarBoton = true;
+                $scope.CancelarHorario();
+            });
+        }
     };
 
     $scope.eliminarHorario = function (id) {
@@ -134,12 +134,32 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
         $scope.horario.idhorario = id;
         //alert("va a entrar a actualizar");
         $http.put("http://localhost:3333/api/eliminarHorario", $scope.horario).success(function (respuesta) {
-            tblHorarios.listaHorarios = new NgTableParams({count: 4}, {counts: [25, 50, 100], dataset: respuesta});
-           sweetAlert("Exito", "Registro Dado De Baja", "success");
+            tblHorarios.listaHorarios = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro Dado De Baja", "success");
             console.log(respuesta);
-           
+
         });
 //        }
+    };
+
+    $scope.activarHorario = function (id) {
+        $scope.horario.idhorario = id;
+//        alert("va a entrar a activar el estado");
+        $http.put("http://localhost:3333/api/activarHorario", $scope.horario).success(function (respuesta) {
+            tblHorarios.listaHorarios = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro Dado De Alta", "success");
+            console.log(respuesta);
+        });
+    };
+    
+        $scope.activarHorario = function (id) {
+        $scope.horario.idhorario = id;
+//        alert("va a entrar a activar el estado");
+        $http.put("http://localhost:3333/api/activarHorario", $scope.horario).success(function (respuesta) {
+            tblHorarios.listaHorarios = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro Dado De Alta", "success");
+            console.log(respuesta);     
+        });
     };
 
 

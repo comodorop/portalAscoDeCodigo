@@ -78,10 +78,27 @@ function eliminarHorarios(horario, callback) {
     });
 }
 
+function activarHorarios(horario, callback) {
+//    console.log("informacion para activarCliente");
+    console.log(horario);
+    var connection = con.conecction();
+    
+    var sql = "UPDATE horario  set estado = '1'  WHERE idhorario='" + horario.idhorario + "'";
+    console.log(sql)
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
+
 module.exports = {
     dameHorarios,
     obtenerHorario,
     guardarHorarios,
     actualizarHorarios,
-    eliminarHorarios
+    eliminarHorarios,
+    activarHorarios
 };

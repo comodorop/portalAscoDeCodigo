@@ -4,40 +4,40 @@
             <h4>Registro de Trabajos y Servicios</h4>
         </div>
         <div class="panel-body">
-           
-                <div class="form-group">
-                    <div class="row gutter">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label class="control-label">Cliente:</label>
-                            <select chosen
-                                    ng-model="pago.idcliente"                          
-                                    class="form-control"
-                                    ng-change="devuelvePagos()"
-                                    ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
-                                <option value="">Seleccione Un Cliente</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label class="control-label">Concepto:</label>
-                            <select chosen
-                                    ng-model="pago.valorCmboCncept" 
-                                    class="form-control"
-                                    ng-options="concepto.nombre as concepto.nombre for concepto in lstConceptos">                                       
-                                <option value="">Seleccione Un Concepto</option>
-                            </select>
-                        </div>
+
+            <div class="form-group">
+                <div class="row gutter">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Cliente:</label>
+                        <select chosen
+                                ng-model="pago.idcliente"                          
+                                class="form-control"
+                                ng-change="devuelvePagos()"
+                                ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
+                            <option value="">Seleccione Un Cliente</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Concepto:</label>
+                        <select chosen
+                                ng-model="pago.valorCmboCncept" 
+                                class="form-control"
+                                ng-options="concepto.nombre as concepto.nombre for concepto in lstConceptos">                                       
+                            <option value="">Seleccione Un Concepto</option>
+                        </select>
+                    </div>
 
                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label for="fecha">Fecha:</label>
                         <ng-datepicker ng-model="pago.fecha" format="DD.MM.YYYY" id="fecha" ></ng-datepicker>
-                        
+
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="control-label">Total:</label>
                         <input ng-model="pago.total" type="text" placeholder="$" class="form-control" name="title">
                     </div>
-              
-              </div>            
+
+                </div>            
                 <br>
                 <div class="form-group">
                     <label class="control-label">Descripción:</label>
@@ -47,43 +47,42 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
                     <button ng-click="guardarPago();" ng-show="pago.idpago == 0" type="submit" class="btn btn-info">Guardar</button>
-                    <button ng-click="actualizarPago();" ng-show="pago.idpago >0" type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="actualizarPago();" ng-show="pago.idpago > 0" type="submit" class="btn btn-success">Actualizar</button>
                     <button ng-click="CancelarPago();" type="submit" class="btn btn-danger">Cancelar</button>
 
 
                 </div>
-         
+
+            </div>
         </div>
     </div>
 
-    <table ng-table="pg.listaPagos" class="table" show-filter="true">
+    <table ng-table="pg.listaPagos" class="table" show-filter="true" style="text-align:center;">
         <tr ng-repeat="pago in $data" >
             <td title="'#'">
-                {{pago.idpago}}
-            </td>
-           
-            <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
+                {{$index + 1}}</td>       
+            <td style="width:15%" title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{pago.nombre}}</td>
-             <td title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
+            <td style="width:15%" title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
                 {{pago.concepto}}</td>
-            <td title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
-                {{pago.fecha | date: 'dd-MM-yyyy'}}</td>    
-            <td title="'Total'" filter="{ total: 'text'}" sortable="'total'">
+            <td style="width:15%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
+                {{pago.fecha| date: 'dd-MM-yyyy'}}</td>    
+            <td style="width:15%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total}}</td>
-            <td title="'Estado'" >
+            <td style="width:15%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{pago.estado}}</td>
-            <td 
-                <a ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success">
-                    <i class="icon-mode_edit"></i>
-            </td>
-        <br>
-        <td 
-            <a ng-click="eliminarPago(pago.idpago);" type="submit" class="btn btn-danger">
-            <i ng-if="pago.estado === 'activo'" class="icon-delete"></i>
-            <i ng-if="pago.estado === 'inactivo'" class="icon-delete_forever"></i> 
+            <td> 
+                <button ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success">
+                    <i class="icon-mode_edit"></i></button>
 
+                <button ng-click="eliminarPago(pago.idpago);" type="submit" class="btn btn-warning" ng-if="pago.estado === 'activo'">
+                    <i class="icon-thumbs-up"></i></button>
+
+                <button ng-click="activarPago(pago.idpago);"  type="submit" class="btn btn-danger" ng-if="pago.estado === 'inactivo'">
+                    <i class="icon-thumbs-down"></i></button> 
+            </td>
         </tr>
     </table>
 
-  </div>
 </div>
+

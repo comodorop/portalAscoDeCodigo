@@ -102,6 +102,7 @@ router.put('/activarCliente', function (req, res) {
 
     });
 });
+
 /////*** CURSOS***/////
 
 router.get('/cursos', function (req, res) {
@@ -150,6 +151,18 @@ router.put('/eliminarCurso', function (req, res) {
     var params = req.body;
     console.log(params)
     cr.eliminarCursos(params, function (error, data) {
+        if (data == 1) {
+            cr.dameCursos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+
+    });
+});
+router.put('/activarCurso', function (req, res) {
+    var params = req.body;
+    //console.log(params)
+    cr.activarCursos(params, function (error, data) {
         if (data == 1) {
             cr.dameCursos(function (error, data) {
                 res.status(200).send(data);
@@ -213,6 +226,19 @@ router.put('/eliminarHorario', function (req, res) {
 
     });
 });
+router.put('/activarHorario', function (req, res) {
+    var params = req.body;
+    //console.log(params)
+    hr.activarHorarios(params, function (error, data) {
+        if (data == 1) {
+            hr.dameHorarios(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+
+    });
+});
+
 ///////*** AULA***/////                                         
 router.get('/aulas', function (req, res) {
     au.dameAulas(function (error, data) {
@@ -268,61 +294,20 @@ router.put('/eliminarAula', function (req, res) {
 
     });
 });
-/////*** EGRESO***/////
-router.get('/egresos', function (req, res) {
-    eg.dameEgresos(function (error, data) {
-        res.status(200).send(data);
-    });
-});
-//////////////pruevas en postman
-router.post('/guardarEgreso', function (req, res) {
-    //   console.log("entrooooo al api");
-    var params = req.body;
-    // console.log("*********************");
-    //console.log(params);
-    //console.log("**********************");
-    eg.guardarEgresos(params, function (error, data) {
-        eg.dameEgresos(function (error, data) {
-            res.status(200).send(data);
-        });
-    });
-});
-router.post('/obtenerEgreso', function (req, res) {
-    //console.log("entrooooo al api");
-    var params = req.body;
-    //console.log("*********************");
-    //console.log(params);
-    //console.log("**********************");
-    eg.obtenerEgreso(params, function (error, data) {
-        // console.log(data);
-        res.status(200).send(data[0]);
-//        cl.dameClientes(function (error, data) {
-//            res.status(200).sendStatus (data);
-//        });
-    });
-});
-router.put('/actualizarEgreso', function (req, res) {
-    var params = req.body;
-    eg.actualizarEgresos(params, function (error, data) {
-        if (data == 1) {
-            eg.dameEgresos(function (error, data) {
-                res.status(200).send(data);
-            });
-        }
-    });
-});
-router.put('/eliminarEgreso', function (req, res) {
+router.put('/activarAula', function (req, res) {
     var params = req.body;
     //console.log(params)
-    eg.eliminarEgresos(params, function (error, data) {
+    au.activarAulas(params, function (error, data) {
         if (data == 1) {
-            eg.dameEgresos(function (error, data) {
+            au.dameAulas(function (error, data) {
                 res.status(200).send(data);
             });
         }
 
     });
 });
+
+
 /////*** PAGOS***/////
 router.get('/pagos', function (req, res) {
     pg.damePagos(function (error, data) {
@@ -376,6 +361,19 @@ router.put('/eliminarPago', function (req, res) {
 
     });
 });
+router.put('/activarPago', function (req, res) {
+    var params = req.body;
+    //console.log(params)
+    pg.activarPagos(params, function (error, data) {
+        if (data == 1) {
+            pg.damePagos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+
+    });
+});
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-width, Content-Type, Accept, Access-Control-Request-Method');
@@ -392,6 +390,8 @@ socket.on('connection', function (socket) {
         socket.emit('messages');
     });
 });
+
+
 app.use('/api', router);
 server.listen('3333', function () {
     console.log("Servidor levantado satisfactoriamente");

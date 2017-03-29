@@ -78,10 +78,26 @@ function eliminarAulas(aula, callback) {
     });
 }
 
+function activarAulas(aula, callback) {
+    console.log(aula);
+    var connection = con.conecction();
+    
+    var sql = "UPDATE aula  set estado = '1'  WHERE idaula='" + aula.idaula + "'";
+    console.log(sql)
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
+
 module.exports = {
     dameAulas,
     obtenerAula,
     guardarAulas,
     actualizarAulas,
-    eliminarAulas
+    eliminarAulas,
+    activarAulas
 };

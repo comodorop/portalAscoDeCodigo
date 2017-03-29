@@ -78,10 +78,27 @@ function eliminarCursos(curso, callback) {
     });
 }
 
+function activarCursos(curso, callback) {
+//    console.log("informacion para activarCliente");
+    console.log(curso);
+    var connection = con.conecction();
+    
+    var sql = "UPDATE curso  set estado = '1'  WHERE idcurso='" + curso.idcurso + "'";
+    console.log(sql)
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
+
 module.exports = {
     dameCursos,
     obtenerCurso,
     guardarCursos,
     actualizarCursos,
-    eliminarCursos
+    eliminarCursos,
+    activarCursos
 };

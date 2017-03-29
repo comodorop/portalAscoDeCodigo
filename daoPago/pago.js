@@ -1,30 +1,30 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function damePagosCliente(cliente,callback){
+function damePagosCliente(cliente, callback) {
     var connection = con.conecction();
-    var sql = "SELECT * FROM pago Where idcliente='"+cliente.idCliente+"'";
-    connection.query(sql, function (err, result){
-       if (err){
-           throw err;
-       } else{
-           callback(null, result);
-       }
+    var sql = "SELECT * FROM pago Where idcliente='" + cliente.idCliente + "'";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw err;
+        } else {
+            callback(null, result);
+        }
     });
 }
 
 
 
-function damePagos(callback){
+function damePagos(callback) {
     var connection = con.conecction();
     var sql = "SELECT c.idpago,c.idcliente,c.concepto,c.total,c.fecha,c.descripcion, e.estado as estado, h.nombre from pago c inner join estado e on c.estado=e.idestado inner join cliente h on c.idcliente=h.idcliente";
-    connection.query(sql, function (err, result){
-       if (err) {
-           throw err;
-       }else{
-           callback(null, result);
-       }
-       
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw err;
+        } else {
+            callback(null, result);
+        }
+
     });
 }
 
@@ -43,42 +43,42 @@ function guardarPagos(pago, callback) {
     });
 }
 
-function obtenerPago(pago, callback){
+function obtenerPago(pago, callback) {
     console.log(pago);
     var connection = con.conecction();
-    var sql = "SELECT * FROM pago WHERE idpago = '"+pago.idpago+"'";
+    var sql = "SELECT * FROM pago WHERE idpago = '" + pago.idpago + "'";
     console.log("la consulta es");
     console.log(sql);
-    connection.query(sql, function (err, result){
-        if(err){
-         throw err;
-        }else{
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw err;
+        } else {
             callback(null, result);
         }
     });
-    
+
 }
 
-function actualizarPagos(pago, callback){
+function actualizarPagos(pago, callback) {
     console.log(pago);
     var connection = con.conecction();
-    var sql = "UPDATE pago SET  concepto='" + pago.valorCmboCncept + "', total='" + pago.total + "' , fecha='" + pago.fecha + "', descripcion='" +pago.descripcion +"' WHERE idpago='" + pago.idpago + "'";
+    var sql = "UPDATE pago SET  concepto='" + pago.valorCmboCncept + "', total='" + pago.total + "' , fecha='" + pago.fecha + "', descripcion='" + pago.descripcion + "' WHERE idpago='" + pago.idpago + "'";
     console.log(sql);
-    connection.query(sql, function (err, result){
-          if (err) {
+    connection.query(sql, function (err, result) {
+        if (err) {
             throw  err;
         } else {
             callback(null, 1);
         }
     });
-    
+
 }
 
 function eliminarPagos(pago, callback) {
     console.log("informacion para eliminar");
     console.log(pago);
     var connection = con.conecction();
-    
+
     var sql = "UPDATE pago  set estado = '2'  WHERE idpago='" + pago.idpago + "'";
     //console.log(sql)
     connection.query(sql, function (err, result) {
@@ -90,12 +90,29 @@ function eliminarPagos(pago, callback) {
     });
 }
 
-module.exports = {
+function activarPagos(pago, callback) {
+//    console.log("informacion para activarCliente");
+    console.log(pago);
+    var connection = con.conecction();
     
+    var sql = "UPDATE pago  set estado = '1'  WHERE idpago='" + pago.idpago + "'";
+    console.log(sql)
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, 1);
+        }
+    });
+}
+
+module.exports = {
+
     damePagosCliente,
     damePagos,
     guardarPagos,
     obtenerPago,
     actualizarPagos,
-    eliminarPagos
+    eliminarPagos,
+    activarPagos
 };

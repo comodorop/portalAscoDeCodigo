@@ -147,6 +147,16 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         });
 //        }
     };
+    
+    $scope.activarPago = function (id) {
+        $scope.pago.idpago = id;
+//        alert("va a entrar a activar el estado");
+        $http.put("http://localhost:3333/api/activarPago", $scope.pago).success(function (respuesta) {
+            tblPagos.listaPagos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro Dado De Alta", "success");
+            console.log(respuesta);     
+        });
+    };
 
 
 

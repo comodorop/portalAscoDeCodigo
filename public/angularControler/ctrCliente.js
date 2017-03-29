@@ -35,7 +35,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
 
     var tblClientes = this;
     $http.get("http://localhost:3333/api/clientes").success(function (data) {
-        tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: data});
+        tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: data});
     });
 
     $scope.validarEmail = function (mail)
@@ -97,7 +97,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         {
             //alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarCliente", $scope.cliente).success(function (respuesta) {
-                tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+                tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
                 $scope.CancelarCliente();
                 $scope.ocultarBoton = true;
@@ -132,7 +132,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         if ($scope.validar())
         {
             $http.put("http://localhost:3333/api/actualizarCliente", $scope.cliente).success(function (respuesta) {
-                tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+                tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
                 sweetAlert("Exito", "Registro actualizado", "success");
 //             console.log(respuesta);
 //            $scope.cliente = respuesta;
@@ -147,7 +147,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         $scope.cliente.idcliente = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarCliente", $scope.cliente).success(function (respuesta) {
-            tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Baja", "success");
             console.log(respuesta);
         
@@ -158,21 +158,13 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     };
 
     $scope.activarCliente = function (id) {
-//        var ok = $scope.validar();
-//        if (ok == true) {
         $scope.cliente.idcliente = id;
 //        alert("va a entrar a activar el estado");
         $http.put("http://localhost:3333/api/activarCliente", $scope.cliente).success(function (respuesta) {
-            tblClientes.listaClientes = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Alta", "success");
-            console.log(respuesta);
-            
-         
-            
+            console.log(respuesta);     
         });
-//        }
     };
-
-
 
 });

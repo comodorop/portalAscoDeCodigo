@@ -6,24 +6,24 @@
                     <h4>Registro de Cursos</h4>
                 </div>
                 <div class="panel-body">
-                   
-                        <div class="form-group">
-                            <div class="row gutter">
-                                <div class="col-md-9 col-sm-9">
 
-                                    <label class="control-label">Nombre del Curso:</label>
-                                    <input ng-model="curso.nombre" type="text" placeholder="Nombre del Curso" class="form-control" name="title">
+                    <div class="form-group">
+                        <div class="row gutter">
+                            <div class="col-md-9 col-sm-9">
 
-                                </div>
-                           </div>
-                            <br>
-                                <div class="col-md-10 col-sm-10">
+                                <label class="control-label">Nombre del Curso:</label>
+                                <input ng-model="curso.nombre" type="text" placeholder="Nombre del Curso" class="form-control" name="title">
 
-                                    <button ng-click="guardarCurso();" ng-show="curso.idcurso == 0" type="submit" class="btn btn-info">Guardar</button>
-                                    <button ng-click="actualizarCurso();" ng-show="curso.idcurso >0" type="submit" class="btn btn-success">Actualizar</button>
-                                    <button ng-click="CancelarCurso();" type="submit" class="btn btn-danger">Cancelar</button>
-                                </div>
+                            </div>
                         </div>
+                        <br>
+                        <div class="col-md-10 col-sm-10">
+
+                            <button ng-click="guardarCurso();" ng-show="curso.idcurso == 0" type="submit" class="btn btn-info">Guardar</button>
+                            <button ng-click="actualizarCurso();" ng-show="curso.idcurso > 0" type="submit" class="btn btn-success">Actualizar</button>
+                            <button ng-click="CancelarCurso();" type="submit" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -31,29 +31,28 @@
 
 
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-            <table ng-table="cr.listaCursos" class="table" show-filter="true">
+            <table ng-table="cr.listaCursos" class="table" show-filter="true" style="text-align:center;">
 
-                <tr ng-repeat="curso in $data" >
-                    <td>
-                        {{curso.idcurso}}
+                <tr ng-repeat="curso in $data">
+                    <td title="'#'">
+                        {{$index + 1}}
                     </td>
-                    <td title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
-                        {{curso.nombre}}</td>
-                    <td>
-                    <td title="'Estado'" >
+                    <td style="width:40%" title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
+                        {{curso.nombre}}</td>            
+                    <td style="width:35%" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                         {{curso.estado}}</td>
-            <td
-                <a  ng-click="obtenerCurso(curso.idcurso);"  type="submit" class="btn btn-success">
-                    <i class="icon-mode_edit"></i>
+                    <td>
+                        <button ng-click="obtenerCurso(curso.idcurso);"  type="submit" class="btn btn-success">
+                            <i class="icon-mode_edit"></i></button>
 
-            </td>
-        <br>
-        <td 
-            <a ng-click="eliminarCurso(curso.idcurso);" type="submit" class="btn btn-danger">
-                <i ng-if="curso.estado === 'activo'" class="icon-delete"></i>
-                <i ng-if="curso.estado === 'inactivo'" class="icon-delete_forever"></i>
-        </td>
-     
+                        <button ng-click="eliminarCurso(curso.idcurso);" type="submit" class="btn btn-warning" ng-if="curso.estado === 'activo'">
+                            <i class="icon-thumbs-up"></i></button>
+
+                        <button ng-click="activarCurso(curso.idcurso);"  type="submit" class="btn btn-danger" ng-if="curso.estado === 'inactivo'">
+                            <i class="icon-thumbs-down"></i></button> 
+
+                    </td>
+                </tr>
             </table>
 
         </div>

@@ -8,7 +8,6 @@ app.config(function ($routeProvider) {
         templateUrl: './views/curso.html',
         controller: 'ctrCurso',
         controllerAs: 'cr'
-
     }).when('/horario', {
         templateUrl: './views/horario.html',
         controller: 'ctrHorario',
@@ -17,10 +16,10 @@ app.config(function ($routeProvider) {
         templateUrl: './views/aula.html',
         controller: 'ctrAula',
         controllerAs: 'au'
-    }).when('/egreso', {
-        templateUrl: './views/egreso.html',
-        controller: 'ctrEgreso',
-        controllerAs: 'eg'
+    }).when('/alumno', {
+        templateUrl: './views/alumno.html',
+        controller: 'ctrAlumno',
+        controllerAs: 'al'
     }).when('/abono', {
         templateUrl: './views/abono.html',
         controller: 'ctrAbono',

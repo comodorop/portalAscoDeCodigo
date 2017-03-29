@@ -59,36 +59,35 @@
         </div>
     </div>
 
-    <table ng-table="hr.listaHorarios" class="table" show-filter="true">
+    <table ng-table="hr.listaHorarios" class="table" show-filter="true" style="text-align:center;">
 
         <tr ng-repeat="horario in $data" >
             <td title="'#'" >
-                {{horario.idhorario}}
-            </td>
-            <td title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
+                {{$index + 1}}</td>
+            <td style="width:15%" title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
                 {{horario.dia}}</td>
-            <td title="'Curso'" filter="{ nombre: 'text'}" sortable="'nombre'">
+            <td style="width:15%" title="'Curso'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{horario.nombre}}</td>
-            <td title="'Precio'" filter="{ precio: 'text'}" sortable="'precio'">
+            <td style="width:15%" title="'Precio'" filter="{ precio: 'text'}" sortable="'precio'">
                 {{horario.precio}}</td>
-            <td title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
+            <td style="width:14%" title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
                 {{horario.horaInicio}}</td>
-            <td title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">
+            <td style="width:14%" title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">
                 {{horario.horaFinal}}</td>
-            <td>
-            <td title="'Estado'" >
+            <td style="width:14%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{horario.estado}}</td>
 
-           <td
-                <a  ng-click="obtenerHorario(horario.idhorario);"  type="submit" class="btn btn-success">
-                    <i class="icon-mode_edit"></i>
+            <td>
+                <button ng-click="obtenerHorario(horario.idhorario);"  type="submit" class="btn btn-success">
+                <i class="icon-mode_edit"></i></button>
 
+                <button ng-click="eliminarHorario(horario.idhorario);"  type="submit" class="btn btn-warning" ng-if="horario.estado === 'activo'" >
+                <i class="icon-thumbs-up"></i></button>
+            
+                <button ng-click="activarHorario(horario.idhorario);"  type="submit" class="btn btn-danger" ng-if="horario.estado === 'inactivo'">
+                <i class="icon-thumbs-down"></i></button> 
             </td>
-        <td 
-            <a ng-click="eliminarHorario(horario.idhorario);" type="submit" class="btn btn-danger">
-                <i ng-if="horario.estado === 'activo'" class="icon-delete"></i>
-                <i ng-if="horario.estado === 'inactivo'" class="icon-delete_forever"></i>
-        </td>
+        </tr>
     </table>
 
 

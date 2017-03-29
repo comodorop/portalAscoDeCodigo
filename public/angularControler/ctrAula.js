@@ -32,7 +32,7 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
     $http.get("http://localhost:3333/api/aulas").success(function (data) {
         console.log("INFROAMCIONA   ");
         console.log(data);
-        tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: data});
+        tblAulas.listaAulas = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: data});
     });
     
      $scope.validarBaja = function ()
@@ -74,7 +74,7 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
         {
 //        console.log($scope.aula);
         $http.post("http://localhost:3333/api/guardarAula", $scope.aula).success(function (respuesta) {
-            tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: respuesta});
+            tblAulas.listaAulas = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Nuevo registro disponible", "success");
 //            console.log(respuesta);
             $scope.CancelarAula();
@@ -100,7 +100,7 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
         if ($scope.validar())
         {
         $http.put("http://localhost:3333/api/actualizarAula", $scope.aula).success(function (respuesta) {
-            tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: respuesta});
+            tblAulas.listaAulas = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro actualizado", "success");
 //            console.log(respuesta);
 //            $scope.aula = respuesta;
@@ -116,11 +116,21 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
         $scope.aula.idaula = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarAula", $scope.aula).success(function (respuesta) {
-            tblAulas.listaAulas = new NgTableParams({count: 5}, {counts: [25, 50, 100], dataset: respuesta});
+            tblAulas.listaAulas = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Baja", "success");
             console.log(respuesta);
         });
 //        }
+    };
+    
+    $scope.activarAula = function (id) {
+        $scope.aula.idaula = id;
+//        alert("va a entrar a activar el estado");
+        $http.put("http://localhost:3333/api/activarAula", $scope.aula).success(function (respuesta) {
+             tblAulas.listaAulas  = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            sweetAlert("Exito", "Registro Dado De Alta", "success");
+            console.log(respuesta);     
+        });
     };
 
 
