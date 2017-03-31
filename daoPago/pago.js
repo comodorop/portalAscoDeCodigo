@@ -76,7 +76,7 @@ function actualizarPagos(pago, callback) {
 
 function eliminarPagos(pago, callback) {
     console.log("informacion para eliminar");
-    console.log(pago);
+//    console.log(pago);
     var connection = con.conecction();
 
     var sql = "UPDATE pago  set estado = '2'  WHERE idpago='" + pago.idpago + "'";
@@ -92,7 +92,7 @@ function eliminarPagos(pago, callback) {
 
 function activarPagos(pago, callback) {
 //    console.log("informacion para activarCliente");
-    console.log(pago);
+//    console.log(pago);
     var connection = con.conecction();
     
     var sql = "UPDATE pago  set estado = '1'  WHERE idpago='" + pago.idpago + "'";

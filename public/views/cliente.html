@@ -48,25 +48,26 @@
         <tr ng-repeat="cliente in $data">
             <td title="'#'">
                 {{$index + 1}}</td>
-            <td style="width:20%" title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
+            <td style="width:15%" title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{cliente.nombre}}</td>
             <td style="width:15%" title="'Apellido'" filter="{ apellido: 'text'}" sortable="'apellido'">
                 {{cliente.apellido}}</td>
-            <td style="width:20%" title="'Correo'" filter="{ correo: 'text'}" sortable="'correo'">
+            <td style="width:15%" title="'Correo'" filter="{ correo: 'text'}" sortable="'correo'">
                 {{cliente.correo}}</td>
             <td style="width:15%" title="'Telefono'" filter="{ telefono: 'number'}" sortable="'telefono'">
                 {{cliente.telefono}}</td>
             <td style="width:15%" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{cliente.estado}}</td>
             <td>
-                <button ng-click="obtenerCliente(cliente.idcliente);"  type="submit" class="btn btn-success">
-                    <i class="icon-mode_edit"></i></button>
+                <button ng-click="obtenerCliente(cliente.idcliente);"  type="submit" class="btn btn-success text-center">
+                    <center>     <i class="icon-mode_edit"></i></center>
+                </button>
 
-                <button ng-click="eliminarCliente(cliente.idcliente);"  type="submit" class="btn btn-warning" ng-if="cliente.estado === 'activo'" >
-                    <i class="icon-thumbs-up"></i></button>
+                <button ng-click="eliminarCliente(cliente.idcliente);" type="submit" class="btn btn-danger" ng-if="cliente.estado === 'activo'">
+                    <i class="icon-thumbs-down"></i></button>
 
-                <button ng-click="activarCliente(cliente.idcliente);"  type="submit" class="btn btn-danger" ng-if="cliente.estado === 'inactivo'">
-                    <i class="icon-thumbs-down"></i></button> 
+                <button ng-click="activarCliente(cliente.idcliente);"  type="submit" class="btn btn-warning" ng-if="cliente.estado === 'inactivo'">
+                    <i class="icon-thumbs-up"></i></button>  
             </td>
         </tr>
     </table>

@@ -13,7 +13,7 @@
                                 ng-model="pago.idcliente"                          
                                 class="form-control"
                                 ng-change="devuelvePagos()"
-                                ng-options="cliente.idcliente as cliente.nombre for cliente in listaClientes">  
+                                ng-options="cliente.idcliente as cliente.nombre +' ' +  cliente.apellido for cliente in listaClientes">  
                             <option value="">Seleccione Un Cliente</option>
                         </select>
                     </div>
@@ -29,7 +29,7 @@
 
                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label for="fecha">Fecha:</label>
-                        <ng-datepicker ng-model="pago.fecha" format="DD.MM.YYYY" id="fecha" ></ng-datepicker>
+                        <ng-datepicker ng-model="pago.fecha" format="DD.MM.YYYY" locale="es" id="fecha" ></ng-datepicker>
 
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -59,30 +59,99 @@
 
     <table ng-table="pg.listaPagos" class="table" show-filter="true" style="text-align:center;">
         <tr ng-repeat="pago in $data" >
-            <td title="'#'">
+            <td style="width:4%" title="'#'">
                 {{$index + 1}}</td>       
-            <td style="width:15%" title="'Nombre'" filter="{ nombre: 'text'}" sortable="'nombre'">
-                {{pago.nombre}}</td>
-            <td style="width:15%" title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
+            <td style="width:9%" title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
                 {{pago.concepto}}</td>
-            <td style="width:15%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
-                {{pago.fecha| date: 'dd-MM-yyyy'}}</td>    
-            <td style="width:15%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
+            <td style="width:9%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
+                {{pago.fecha| date: 'dd-MM-yyyy'}}</td>  
+            <td style="width:9%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
+                {{pago.abono}}</td>
+            <td style="width:9%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total}}</td>
-            <td style="width:15%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
+            <td style="width:9%" title="'Saldo'" filter="{ saldo: 'text'}" sortable="'saldo'">
+                {{pago.saldo}}</td>
+            <td style="width:9%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
+                {{pago.descripcion}}</td>
+            <td style="width:9%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{pago.estado}}</td>
             <td> 
                 <button ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success">
                     <i class="icon-mode_edit"></i></button>
 
-                <button ng-click="eliminarPago(pago.idpago);" type="submit" class="btn btn-warning" ng-if="pago.estado === 'activo'">
-                    <i class="icon-thumbs-up"></i></button>
+                <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-info" >Abono</button>   
 
-                <button ng-click="activarPago(pago.idpago);"  type="submit" class="btn btn-danger" ng-if="pago.estado === 'inactivo'">
-                    <i class="icon-thumbs-down"></i></button> 
+                <button ng-click="abrirModal1(pago.idpago)"  type="submit" class="btn btn-warning">Saldo</button> 
+
+                <button ng-click="abrirMoadal2(pago.idpago)" type="submit" class="btn btn-danger">Cancelado</button>
             </td>
         </tr>
     </table>
-
 </div>
 
+
+<!-- Modal Abono -->
+<div class="modal fade" id="mdlAbonos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Para Abonar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               $: 
+               <input type="text" placeholder="Abono"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Saldo -->
+<div class="modal fade" id="mdlSaldos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Para Saldo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        $: 
+        <input type="text" placeholder="Saldo"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Cancelado -->
+<div class="modal fade" id="mdlcancelado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Porque:
+        <input type="text" placeholder="Cancelado"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

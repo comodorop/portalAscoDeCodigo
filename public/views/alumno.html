@@ -1,16 +1,86 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h4>Registro de Alumnos</h4>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-group">
+                <div class="row gutter">                
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Curso:</label>
+                        <select chosen 
+                                ng-model="alumno.idcliente" 
+                                class="form-control"
+                                ng-options="cliente.idcliente as  cliente.nombre for cliente in listaClientes"> 
+                            <option value="">Seleccione Un Cliente</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Aula:</label>
+                        <select chosen 
+                                ng-model="alumno.idaula" 
+                                class="form-control"
+                                ng-options="aula.idaula as  aula.nombre for aula in listaAulas"> 
+                            <option value="">Seleccione Un Aula</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label">Escuela:</label>
+                        <input ng-model="alumno.escuela" type="text" placeholder="Escuela" class="form-control" name="title">
+                    </div> 
+                    
+               </div>
+             <br>
+                         
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                    <button ng-click="guardarAlumno();" ng-show="alumno.idalumno == 0" type="submit" class="btn btn-info">Guardar</button>
+                    <button ng-click="actualizarAlumno();" ng-show="alumno.idalumno >0" type="submit" class="btn btn-success">Actualizar</button>
+                    <button ng-click="CancelarAlumno();" type="submit" class="btn btn-danger">Cancelar</button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <table ng-table="al.listaAlumnos" class="table" show-filter="true" style="text-align:center;">
+
+        <tr ng-repeat="alumno in $data" >
+            <td title="'#'" >
+                {{$index + 1}}</td>
+            <td style="width:15%" title="'Cliente'" filter="{ nombre: 'text'}" sortable="'nombre'">
+                {{alumno.nombre}}</td>
+            <td style="width:15%" title="'Aula'" filter="{ precio: 'text'}" sortable="'precio'">
+                {{horario.nombre | currency}}
+            </td>
+             <td style="width:15%" title="'escuela'" filter="{ dia: 'text'}" sortable="'dia'">
+                {{alumno.escuela}}</td>
+            
+            <td style="width:14%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
+                {{horario.estado}}</td>
+
+            <td>
+                <button ng-click="obtenerAlumno(alumno.idhorario);"  type="submit" class="btn btn-success">
+                <i class="icon-mode_edit"></i></button>
+
+                <button ng-click="eliminarAlumno(alumno.idhorario);"  type="submit" class="btn btn-warning" ng-if="alumno.estado === 'activo'" >
+                <i class="icon-thumbs-up"></i></button>
+            
+                <button ng-click="activarAlumno(alumno.idhorario);"  type="submit" class="btn btn-danger" ng-if="alumno.estado === 'inactivo'">
+                <i class="icon-thumbs-down"></i></button> 
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+
+
+
+
+
+

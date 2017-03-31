@@ -143,28 +143,30 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         }
     };
 
-    $scope.eliminarCliente = function (id) {
+     $scope.eliminarCliente = function (id) {
         $scope.cliente.idcliente = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarCliente", $scope.cliente).success(function (respuesta) {
-            tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
-            sweetAlert("Exito", "Registro Dado De Baja", "success");
-            console.log(respuesta);
-        
-            
-            
+            tblClientes.listaClientes = new NgTableParams({count:6}, {counts: [25, 50, 100], dataset: respuesta});
+           console.log(respuesta);
+         sweetAlert("Exito", "Registro Dado De Baja", "success");
         });
 
     };
 
     $scope.activarCliente = function (id) {
+        console.log(id);
+//        var ok = $scope.validar();
+//        if (ok == true) {
         $scope.cliente.idcliente = id;
-//        alert("va a entrar a activar el estado");
+        //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/activarCliente", $scope.cliente).success(function (respuesta) {
             tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            console.log(respuesta);
             sweetAlert("Exito", "Registro Dado De Alta", "success");
-            console.log(respuesta);     
+            
         });
+//        }
     };
 
 });

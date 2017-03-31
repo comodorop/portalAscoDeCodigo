@@ -69,7 +69,8 @@
             <td style="width:15%" title="'Curso'" filter="{ nombre: 'text'}" sortable="'nombre'">
                 {{horario.nombre}}</td>
             <td style="width:15%" title="'Precio'" filter="{ precio: 'text'}" sortable="'precio'">
-                {{horario.precio}}</td>
+                {{horario.precio | currency}}
+            </td>
             <td style="width:14%" title="'Hora de Inicio'" filter="{ horaInicio: 'text'}" sortable="'horaInicio'">
                 {{horario.horaInicio}}</td>
             <td style="width:14%" title="'Hora Final'" filter="{ horaFinal: 'text'}" sortable="'horaFinal'">

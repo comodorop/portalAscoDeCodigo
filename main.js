@@ -11,6 +11,7 @@ var di = require('./daoDias/dias');
 var eg = require('./daoEgreso/egreso');
 var pg = require('./daoPago/pago');
 var cn = require('./daoConceptos/conceptos');
+var al = require('./daoAlumno/alumno');
 app.use(express.static('public'));
 var router = express.Router();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -90,9 +91,10 @@ router.put('/eliminarCliente', function (req, res) {
 
     });
 });
+
 router.put('/activarCliente', function (req, res) {
     var params = req.body;
-    //console.log(params)
+    console.log(params)
     cl.activarClientes(params, function (error, data) {
         if (data == 1) {
             cl.dameClientes(function (error, data) {
@@ -367,6 +369,80 @@ router.put('/activarPago', function (req, res) {
     pg.activarPagos(params, function (error, data) {
         if (data == 1) {
             pg.damePagos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+
+    });
+});
+
+/////*** ALUMNOS***/////
+router.get('/alumnos', function (req, res) {
+    al.dameAlumnos(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+//////////////pruevas en postman
+router.post('/guardarAlumno', function (req, res) {
+    var params = req.body;
+    al.guardarAlumnos(params, function (error, data) {
+        setTimeout(function () {
+            if (data == 1) {
+                al.dameAlumnos(function (error, data) {
+                    console.log("el dato de los usuarios es ");
+                    console.log(data);
+                    res.status(200).send(data);
+                    socket.emit('messages');
+                });
+              
+            }
+         });
+    });
+});
+router.post('/obtenerAlumno', function (req, res) {
+    //console.log("entrooooo al api");
+    var params = req.body;
+    //console.log("*********************");
+    //console.log(params);
+    //console.log("**********************");
+    al.obtenerAlumno(params, function (error, data) {
+        // console.log(data);
+        res.status(200).send(data[0]);
+//        cl.dameClientes(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
+    });
+});
+router.put('/actualizarAlumno', function (req, res) {
+    var params = req.body;
+    al.actualizarAlumnos(params, function (error, data) {
+        if (data == 1) {
+            al.dameAlumnos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+router.put('/eliminarAlumno', function (req, res) {
+    var params = req.body;
+    //console.log(params)
+    al.eliminarAlumnos(params, function (error, data) {
+        if (data == 1) {
+            al.dameAlumnos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+
+    });
+});
+
+router.put('/activarAlumno', function (req, res) {
+    var params = req.body;
+    console.log(params)
+    al.activarAlumnos(params, function (error, data) {
+        if (data == 1) {
+            al.dameAlumnos(function (error, data) {
                 res.status(200).send(data);
             });
         }

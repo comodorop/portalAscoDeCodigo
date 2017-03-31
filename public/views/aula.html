@@ -18,6 +18,12 @@
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+                        <label class="control-label">Nombre:</label>
+                        <input ng-model="aula.nombreaula" type="text" placeholder="Nombre" class="form-control" name="title">
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label for="fechaInicio">Fecha de Inicio:</label>
                         <ng-datepicker ng-model="aula.fechaInicio" format="DD.MM.YYYY"></ng-datepicker>
 
@@ -50,6 +56,8 @@
                 {{$index + 1}}</td>
             <td style="width:21%" title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
                 {{aula.nombre}} / {{aula.dia}}</td>
+            <td style="width:15%" title="'Aulas'" filter="{ nombreaula: 'text'}" sortable="'nombreaula'">
+                {{aula.nombreaula}}</td>
             <td style="width:21%" title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
                 {{aula.fechaInicio| date: 'dd-MM-yyyy'}}</td>
             <td style="width:21%" title="'Fecha Final'" filter="{ fechaFinal: 'text'}" sortable="'fechaFinal'">

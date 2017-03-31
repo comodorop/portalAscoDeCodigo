@@ -3,6 +3,7 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
     $scope.aula = {};
     $scope.aula.idaula = "";
     $scope.aula.idhorario = "";
+    $scope.aula.nombreaula = "";
     $scope.aula.fechaInicio = "";
     $scope.aula.fechaFinal = "";
     
@@ -15,6 +16,7 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
 
         $scope.aula.idaula = "";
         $scope.aula.idhorario = "";
+        $scope.aula.nombreaula = "";
         $scope.aula.fechaInicio = "";
         $scope.aula.fechaFinal = "";
 
@@ -50,6 +52,11 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
         if ($scope.aula.idhorario === "")
         {
             sweetAlert("Error...", "¡Ingrese El Día y Curso!", "error");
+
+        } else
+        if ($scope.aula.nombreaula === "")
+        {
+            sweetAlert("Error...", "¡Ingrese NombreAula!", "error");
 
         } else
         if ($scope.aula.fechaInicio === "")

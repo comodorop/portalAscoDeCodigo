@@ -8,11 +8,11 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.pago.fecha = "";
     $scope.pago.descripcion = "";
     var tblPagos = this;
-    
-   $scope.mostrarBoton = false;
-   $scope.ocultarBoton = false;
-   $scope.activarBtnGuardar = false;
-   
+
+    $scope.mostrarBoton = false;
+    $scope.ocultarBoton = false;
+    $scope.activarBtnGuardar = false;
+
 
 
     $scope.CancelarPago = function () {
@@ -20,12 +20,12 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         $scope.pago.idpago = "";
         $scope.pago.concepto = "";
         $scope.pago.fecha = "";
-        $scope.pago.total = ""; 
+        $scope.pago.total = "";
         $scope.pago.descripcion = "";
-    
+
 
     };
-    
+
 //    $scope.validarBaja = function ()
 //    {
 //        if ($scope.pago.idpago === "")
@@ -64,8 +64,8 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 //        return ok;
 //
 //    };
-    
-     /// aqui llamo al de pago.js damePagosCliente  y main.js damePagosCliente
+
+    /// aqui llamo al de pago.js damePagosCliente  y main.js damePagosCliente
     $scope.devuelvePagos = function () {
         var cliente = {};
         cliente.idCliente = $scope.pago.idcliente;
@@ -127,8 +127,8 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
             tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
 //            console.log(respuesta);
 //            $scope.pago = respuesta;
-              $scope.mostrarBoton = true;
-              $scope.CancelarPago();
+            $scope.mostrarBoton = true;
+            $scope.CancelarPago();
 
         });
 //     }
@@ -142,19 +142,19 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         $http.put("http://localhost:3333/api/eliminarPago", $scope.pago).success(function (respuesta) {
             tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
 //            sweetAlert("Exito", "Registro Dado De Baja", "success");
-            console.log(respuesta);
+            console.log(pago);
 //            $scope.activarPagos = true;
         });
 //        }
     };
-    
+
     $scope.activarPago = function (id) {
         $scope.pago.idpago = id;
 //        alert("va a entrar a activar el estado");
         $http.put("http://localhost:3333/api/activarPago", $scope.pago).success(function (respuesta) {
             tblPagos.listaPagos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Alta", "success");
-            console.log(respuesta);     
+            console.log(pago);
         });
     };
 
@@ -163,6 +163,20 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.devuelvePagos();
     $scope.dameClientes();
     $scope.dameConceptos();
+
+
+    $scope.abrirModal = function (idpago) {
+        $("#mdlAbonos").modal('show');
+    };
+
+    $scope.abrirModal1 = function (idpago) {
+        $("#mdlSaldos").modal('show');
+    };
+
+    $scope.abrirMoadal2 = function (idpago) {
+        $("#mdlcancelado").modal('show');
+    };
+
 
 
 });
