@@ -51,22 +51,22 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
         var ok = false;
         if ($scope.aula.idhorario === "")
         {
-            sweetAlert("Error...", "¡Ingrese El Día y Curso!", "error");
+            sweetAlert("Upss", "¡Ingrese El Día y Curso!", "warning");
 
         } else
         if ($scope.aula.nombreaula === "")
         {
-            sweetAlert("Error...", "¡Ingrese NombreAula!", "error");
+            sweetAlert("Upss", "¡Ingrese NombreAula!", "warning");
 
         } else
         if ($scope.aula.fechaInicio === "")
         {
-            sweetAlert("Error...", "¡Ingrese Fecha De Inicio!", "error");
+            sweetAlert("Upss", "¡Ingrese Fecha De Inicio!", "warning");
 
         } else
         if ($scope.aula.fechaFinal === "")
         {
-            sweetAlert("Error...", "¡Ingrese Fecha Final!", "error");
+            sweetAlert("Upss", "¡Ingrese Fecha Final!", "warning");
 
         } else
         {

@@ -61,29 +61,32 @@
         <tr ng-repeat="pago in $data" >
             <td style="width:4%" title="'#'">
                 {{$index + 1}}</td>       
-            <td style="width:9%" title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
+            <td style="width:15%" title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
                 {{pago.concepto}}</td>
-            <td style="width:9%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
+            <td style="width:10%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
                 {{pago.fecha| date: 'dd-MM-yyyy'}}</td>  
-            <td style="width:9%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
-                {{pago.abono}}</td>
-            <td style="width:9%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
-                {{pago.total}}</td>
-            <td style="width:9%" title="'Saldo'" filter="{ saldo: 'text'}" sortable="'saldo'">
-                {{pago.saldo}}</td>
-            <td style="width:9%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
+            <td style="width:10%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
+                {{pago.abono  | currency}}</td>
+            <td style="width:10%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
+                {{pago.total  | currency}}</td>
+            <td style="width:10%" title="'Saldo'" filter="{ saldo: 'text'}" sortable="'saldo'">
+                {{pago.saldo  | currency}}</td>
+            <td style="width:10%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
                 {{pago.descripcion}}</td>
-            <td style="width:9%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
+            <td style="width:10%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{pago.estado}}</td>
             <td> 
                 <button ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success">
-                    <i class="icon-mode_edit"></i></button>
+                <i class="icon-mode_edit"></i></button>
 
-                <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-info" >Abono</button>   
+                <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-info" >
+                <i class="icon-credit"></i></button>   
 
-                <button ng-click="abrirModal1(pago.idpago)"  type="submit" class="btn btn-warning">Saldo</button> 
+                <button ng-click="abrirModal1(pago.idpago)"  type="submit" class="btn btn-warning">
+                <i class="icon-local_atm"></i></button> 
 
-                <button ng-click="abrirMoadal2(pago.idpago)" type="submit" class="btn btn-danger">Cancelado</button>
+                <button ng-click="abrirMoadal2(pago.idpago)" type="submit" class="btn btn-danger">
+                <i class="icon-square-cross"></i></button>
             </td>
         </tr>
     </table>
@@ -95,18 +98,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Para Abonar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Para Abonar:</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-               $: 
-               <input type="text" placeholder="Abono"/>
+               Cantidad: 
+               <input type="text" placeholder="$"/>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-info">Guardar</button>
             </div>
         </div>
     </div>
@@ -117,18 +120,18 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Para Saldo</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Para Saldo:</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        $: 
-        <input type="text" placeholder="Saldo"/>
+        Cantidad: 
+        <input type="text" placeholder="$"/>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-info">Guardar</button>
       </div>
     </div>
   </div>
@@ -139,18 +142,18 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Cancelado:</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Porque:
-        <input type="text" placeholder="Cancelado"/>
+        Para Cancelar:
+        <textarea ng-model="" type="text" placeholder="Descripción" class="form-control" name="Descripción" rows="5"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-info">Guardar</button>
       </div>
     </div>
   </div>

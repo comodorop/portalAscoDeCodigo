@@ -18,11 +18,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
     $scope.mostrarBoton = false;
     $scope.ocultarBoton = false;
     $scope.activarBtnGuardar = false;
-    
 
-    
-    
-    
     $scope.CancelarCliente = function () {
 
         $scope.cliente.idcliente = 0;
@@ -53,37 +49,21 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         }
     };
 
-    $scope.validar = function ()
-    {
-        var ok = false;
-        if ($scope.cliente.nombre === "")
-        {
-            sweetAlert("Error...", "¡Ingrese Nombre!", "error");
-
-        } else
-        if ($scope.cliente.apellido === "")
-        {
-            sweetAlert("Error...", "¡Ingrese Apellido!", "error");
-
-        } else
-        if ($scope.cliente.correo === "")
-        {
-            if ($scope.validarEmail($scope.cliente.correo) === false) {
-                sweetAlert("Error", "Correo electronico no valido", "warning");
-
-            }
-        } else
-        if ($scope.cliente.telefono === "")
-        {
-            sweetAlert("Error...", "¡Ingrese Telefono!", "error");
-
-        } else
-        {
-            ok = true;
+    $scope.validar = function () {
+        $scope.ok = false;
+        if ($scope.cliente.nombre == "") {
+            sweetAlert("Upss", "Se requiere un nombre", "warning");
+        } else if ($scope.cliente.apellido == "") {
+            sweetAlert("Upss", "Se requiere un apellido", "warning");
+        } else if ($scope.validarEmail($scope.cliente.correo) == false) {
+            sweetAlert("Upss", "Correo electronico no valido", "warning");
+        } else {
+            $scope.ok = true;
         }
-        return ok;
-
+        return $scope.ok;
     };
+    
+//   
     $scope.dameClientes = function () {
         $http.get("http://localhost:3333/api/clientes").success(function (data) {
             console.log(data);
@@ -101,12 +81,12 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
                 $scope.CancelarCliente();
                 $scope.ocultarBoton = true;
-                
+
                 setTimeout(function () {   ///socket.io
-                console.log(respuesta);
-                $scope.listaClientes = respuesta;
-                socket.emit('new-message');
-            });
+                    console.log(respuesta);
+                    $scope.listaClientes = respuesta;
+                    socket.emit('new-message');
+                });
 
 
             });
@@ -143,13 +123,13 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
         }
     };
 
-     $scope.eliminarCliente = function (id) {
+    $scope.eliminarCliente = function (id) {
         $scope.cliente.idcliente = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarCliente", $scope.cliente).success(function (respuesta) {
-            tblClientes.listaClientes = new NgTableParams({count:6}, {counts: [25, 50, 100], dataset: respuesta});
-           console.log(respuesta);
-         sweetAlert("Exito", "Registro Dado De Baja", "success");
+            tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            console.log(respuesta);
+            sweetAlert("Exito", "Registro Dado De Baja", "success");
         });
 
     };
@@ -164,7 +144,7 @@ app.controller('ctrCliente', function ($scope, $http, NgTableParams) {
             tblClientes.listaClientes = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
             sweetAlert("Exito", "Registro Dado De Alta", "success");
-            
+
         });
 //        }
     };

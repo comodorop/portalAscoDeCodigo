@@ -386,18 +386,12 @@ router.get('/alumnos', function (req, res) {
 //////////////pruevas en postman
 router.post('/guardarAlumno', function (req, res) {
     var params = req.body;
+    console.log(params);
+    console.log("**********************");
     al.guardarAlumnos(params, function (error, data) {
-        setTimeout(function () {
-            if (data == 1) {
-                al.dameAlumnos(function (error, data) {
-                    console.log("el dato de los usuarios es ");
-                    console.log(data);
-                    res.status(200).send(data);
-                    socket.emit('messages');
-                });
-              
-            }
-         });
+        al.dameAlumnos(function (error, data) {
+            res.status(200).send(data);
+        });
     });
 });
 router.post('/obtenerAlumno', function (req, res) {

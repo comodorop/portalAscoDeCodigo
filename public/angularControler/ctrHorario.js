@@ -57,27 +57,27 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
         var ok = false;
         if ($scope.horario.valorCmb === "")
         {
-            sweetAlert("Error...", "¡Ingrese Día!", "error");
+            sweetAlert("Upss", "¡Ingrese Día!", "warning");
 
         } else
         if ($scope.horario.idcurso === "")
         {
-            sweetAlert("Error...", "¡Ingrese Curso!", "error");
+            sweetAlert("Upss", "¡Ingrese Curso!", "warning");
 
         } else
         if ($scope.horario.horaInicio === "")
         {
-            sweetAlert("Error...", "¡Ingrese Hora de Inicio!", "error");
+            sweetAlert("Upss", "¡Ingrese Hora de Inicio!", "warning");
 
         } else
         if ($scope.horario.horaFinal === "")
         {
-            sweetAlert("Error...", "¡Ingrese Hora Final!", "error");
+            sweetAlert("Upss", "¡Ingrese Hora Final!", "warning");
 
         } else
         if ($scope.horario.precio === "")
         {
-            sweetAlert("Error...", "¡Ingrese Precio!", "error");
+            sweetAlert("Upss", "¡Ingrese Precio!", "warning");
 
         } else
         {

@@ -58,22 +58,22 @@
                 {{aula.nombre}} / {{aula.dia}}</td>
             <td style="width:15%" title="'Aulas'" filter="{ nombreaula: 'text'}" sortable="'nombreaula'">
                 {{aula.nombreaula}}</td>
-            <td style="width:21%" title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
+            <td style="width:15%" title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
                 {{aula.fechaInicio| date: 'dd-MM-yyyy'}}</td>
-            <td style="width:21%" title="'Fecha Final'" filter="{ fechaFinal: 'text'}" sortable="'fechaFinal'">
+            <td style="width:15%" title="'Fecha Final'" filter="{ fechaFinal: 'text'}" sortable="'fechaFinal'">
                 {{aula.fechaFinal| date: 'dd-MM-yyyy'}}</td>
-            <td style="width:21%" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
+            <td style="width:15%" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{aula.estado}}</td>
 
             <td> 
                 <button ng-click="obtenerAula(aula.idaula);" type="submit" class="btn btn-success">
                     <i class="icon-mode_edit"></i></button>
 
-                <button ng-click="eliminarAula(aula.idaula);"  type="submit" class="btn btn-warning" ng-if="aula.estado === 'activo'" >
-                <i class="icon-thumbs-up"></i></button>
+                <button ng-click="eliminarAula(aula.idaula);"  type="submit" class="btn btn-danger" ng-if="aula.estado === 'activo'" >
+                <i class="icon-thumbs-down"></i></button>
             
-                <button ng-click="activarAula(aula.idaula);"  type="submit" class="btn btn-danger" ng-if="aula.estado === 'inactivo'">
-                <i class="icon-thumbs-down"></i></button>             
+                <button ng-click="activarAula(aula.idaula);"  type="submit" class="btn btn-warning" ng-if="aula.estado === 'inactivo'">
+                <i class="icon-thumbs-up"></i></button>             
             </td>
         </tr>
     </table>

@@ -35,7 +35,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
         var ok = false;
         if ($scope.curso.nombre === "")
         {
-            sweetAlert("Error...", "¡Ingrese El Nombre del Curso!", "error");
+            sweetAlert("Upss", "¡Ingrese El Nombre del Curso!", "warning");
 
           } else
         {

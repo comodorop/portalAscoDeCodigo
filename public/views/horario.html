@@ -82,11 +82,11 @@
                 <button ng-click="obtenerHorario(horario.idhorario);"  type="submit" class="btn btn-success">
                 <i class="icon-mode_edit"></i></button>
 
-                <button ng-click="eliminarHorario(horario.idhorario);"  type="submit" class="btn btn-warning" ng-if="horario.estado === 'activo'" >
-                <i class="icon-thumbs-up"></i></button>
+                <button ng-click="eliminarHorario(horario.idhorario);"  type="submit" class="btn btn-danger" ng-if="horario.estado === 'activo'" >
+                <i class="icon-thumbs-down"></i></button>
             
-                <button ng-click="activarHorario(horario.idhorario);"  type="submit" class="btn btn-danger" ng-if="horario.estado === 'inactivo'">
-                <i class="icon-thumbs-down"></i></button> 
+                <button ng-click="activarHorario(horario.idhorario);"  type="submit" class="btn btn-warning" ng-if="horario.estado === 'inactivo'">
+                <i class="icon-thumbs-up"></i></button> 
             </td>
         </tr>
     </table>
