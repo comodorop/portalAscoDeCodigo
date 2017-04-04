@@ -9,9 +9,10 @@
                 <div class="row gutter">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="control-label">Horario:</label>
-                        <select chosen
+                        <select chosen="directiveOptions"
                                 ng-model="aula.idhorario" 
                                 class="form-control"
+                                style="width:280px;"
                                 ng-options="horario.idhorario as horario.nombre  +' /  ' +  horario.dia for horario in listaHorarios"> 
                             <option value="">Seleccione una opcion</option>
                         </select>
@@ -25,12 +26,12 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label for="fechaInicio">Fecha de Inicio:</label>
-                        <ng-datepicker ng-model="aula.fechaInicio" format="DD.MM.YYYY"></ng-datepicker>
+                        <ng-datepicker ng-model="aula.fechaInicio" format="DD.MM.YYYY" locale="es" id="fechaInicio"></ng-datepicker>
 
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         <label for="fechaFinal">Fecha Final:</label>
-                        <ng-datepicker ng-model="aula.fechaFinal" format="DD.MM.YYYY"></ng-datepicker>
+                        <ng-datepicker ng-model="aula.fechaFinal" format="DD.MM.YYYY" locale="es" id="fechaFinal"></ng-datepicker>
 
                     </div>
 
@@ -54,15 +55,15 @@
         <tr ng-repeat="aula in $data" >
             <td>
                 {{$index + 1}}</td>
-            <td style="width:21%" title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
+            <td style="width:18%" title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
                 {{aula.nombre}} / {{aula.dia}}</td>
-            <td style="width:15%" title="'Aulas'" filter="{ nombreaula: 'text'}" sortable="'nombreaula'">
+            <td style="width:18%" title="'Aulas'" filter="{ nombreaula: 'text'}" sortable="'nombreaula'">
                 {{aula.nombreaula}}</td>
-            <td style="width:15%" title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
+            <td style="width:17%" title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
                 {{aula.fechaInicio| date: 'dd-MM-yyyy'}}</td>
-            <td style="width:15%" title="'Fecha Final'" filter="{ fechaFinal: 'text'}" sortable="'fechaFinal'">
+            <td style="width:17%" title="'Fecha Final'" filter="{ fechaFinal: 'text'}" sortable="'fechaFinal'">
                 {{aula.fechaFinal| date: 'dd-MM-yyyy'}}</td>
-            <td style="width:15%" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
+            <td style="width:17%" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{aula.estado}}</td>
 
             <td> 

@@ -420,7 +420,7 @@ router.put('/actualizarAlumno', function (req, res) {
 });
 router.put('/eliminarAlumno', function (req, res) {
     var params = req.body;
-    //console.log(params)
+    console.log(params)
     al.eliminarAlumnos(params, function (error, data) {
         if (data == 1) {
             al.dameAlumnos(function (error, data) {
@@ -430,10 +430,9 @@ router.put('/eliminarAlumno', function (req, res) {
 
     });
 });
-
 router.put('/activarAlumno', function (req, res) {
     var params = req.body;
-    console.log(params)
+    //console.log(params)
     al.activarAlumnos(params, function (error, data) {
         if (data == 1) {
             al.dameAlumnos(function (error, data) {

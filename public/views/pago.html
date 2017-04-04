@@ -9,9 +9,10 @@
                 <div class="row gutter">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="control-label">Cliente:</label>
-                        <select chosen
+                        <select chosen="directiveOptions"
                                 ng-model="pago.idcliente"                          
                                 class="form-control"
+                                style="width:280px;"
                                 ng-change="devuelvePagos()"
                                 ng-options="cliente.idcliente as cliente.nombre +' ' +  cliente.apellido for cliente in listaClientes">  
                             <option value="">Seleccione Un Cliente</option>
@@ -19,9 +20,10 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="control-label">Concepto:</label>
-                        <select chosen
+                        <select chosen="directiveOptions"
                                 ng-model="pago.valorCmboCncept" 
                                 class="form-control"
+                                style="width:280px;"
                                 ng-options="concepto.nombre as concepto.nombre for concepto in lstConceptos">                                       
                             <option value="">Seleccione Un Concepto</option>
                         </select>
