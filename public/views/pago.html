@@ -68,7 +68,7 @@
             <td style="width:10%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
                 {{pago.fecha| date: 'dd-MM-yyyy'}}</td>  
             <td style="width:10%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
-                {{pago.abono  | currency}}</td>
+                {{historial.abono  | currency}}</td>
             <td style="width:10%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total  | currency}}</td>
             <td style="width:10%" title="'Saldo'" filter="{ saldo: 'text'}" sortable="'saldo'">
@@ -107,11 +107,12 @@
             </div>
             <div class="modal-body">
                Cantidad: 
-               <input type="text" placeholder="$"/>
+               <input ng-model="historial.abono" type="text" placeholder="$"/>
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-info">Guardar</button>
+               <button ng-click="guardarHistorial();"  type="submit" class="btn btn-info">Guardar</button>
             </div>
         </div>
     </div>

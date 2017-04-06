@@ -68,7 +68,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     /// aqui llamo al de pago.js damePagosCliente  y main.js damePagosCliente
     $scope.devuelvePagos = function () {
         var cliente = {};
-        cliente.idCliente = $scope.pago.idcliente;
+        cliente.idcliente = $scope.pago.idcliente;
         console.log(cliente);
         $http.post("http://localhost:3333/api/damePagosCliente", cliente).success(function (respuesta) {
             tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});

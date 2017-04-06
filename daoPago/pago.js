@@ -3,7 +3,7 @@ var con = require('../daoConeccion/Connection');
 
 function damePagosCliente(cliente, callback) {
     var connection = con.conecction();
-    var sql = "SELECT * FROM pago Where idcliente='" + cliente.idCliente + "'";
+    var sql = "SELECT * FROM pago Where idcliente='" + cliente.idcliente + "'";
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
