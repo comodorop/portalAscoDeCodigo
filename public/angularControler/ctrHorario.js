@@ -30,8 +30,8 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
         });
     };
 
-    $scope.dameCursos = function () {
-        $http.get("http://localhost:3333/api/cursos").success(function (respuesta) {
+    $scope.dameCursosHorario = function () {
+        $http.get("http://localhost:3333/api/dameCursosHorario").success(function (respuesta) {
             console.log(respuesta);
             $scope.listaCursos = respuesta;
         });
@@ -165,7 +165,7 @@ app.controller('ctrHorario', function ($scope, $http, NgTableParams) {
 
 
     $scope.dameDias();
-    $scope.dameCursos();
+    $scope.dameCursosHorario();
 
 
 });

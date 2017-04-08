@@ -12,7 +12,7 @@ var eg = require('./daoEgreso/egreso');
 var pg = require('./daoPago/pago');
 var cn = require('./daoConceptos/conceptos');
 var al = require('./daoAlumno/alumno');
-var hi = require('./daoHistorial/historial');
+
 app.use(express.static('public'));
 var router = express.Router();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -110,6 +110,12 @@ router.put('/activarCliente', function (req, res) {
 
 router.get('/cursos', function (req, res) {
     cr.dameCursos(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+router.post('/dameCursosHorario', function (req, res) {
+    var objCurso = req.body;
+    cr.dameCursos(objCurso, function (error, data) {
         res.status(200).send(data);
     });
 });
@@ -444,21 +450,7 @@ router.put('/activarAlumno', function (req, res) {
     });
 });
 
-/////////////////HISTORIAL 
-router.get('/historiales', function (req, res) {
-    hi.dameHistoriales(function (error, data) {
-        res.status(200).send(data);
-    });
-});
 
-router.post('/guardarHistoria', function (req, res) {
-    var params = req.body;
-    hi.guardarHistoriales(params, function (error, data) {
-        hi.dameHistoriales(function (error, data) {
-            res.status(200).send(data);
-        });
-    });
-});
 
 
 app.use((req, res, next) => {

@@ -1,9 +1,21 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
+function dameCursosHorarios(callback) {
+    var connection = con.conecction();
+    var sql = "SELECT c.idcurso,c.nombre,e.estado as estado from curso c inner join estado e on c.estado=e.idestado WHERE c.estado = 1";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, result);
+        }
+    });
+}
+
 function dameCursos(callback) {
     var connection = con.conecction();
-    var sql = "SELECT c.idcurso,c.nombre,e.estado as estado from curso c inner join estado e on c.estado=e.idestado where e.idestado=1";
+    var sql = "SELECT c.idcurso,c.nombre,e.estado as estado from curso c inner join estado e on c.estado=e.idestado";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -95,6 +107,7 @@ function activarCursos(curso, callback) {
 }
 
 module.exports = {
+    dameCursosHorarios,
     dameCursos,
     obtenerCurso,
     guardarCursos,
