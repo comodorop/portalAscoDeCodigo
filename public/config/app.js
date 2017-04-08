@@ -20,10 +20,6 @@ app.config(function ($routeProvider) {
         templateUrl: './views/alumno.html',
         controller: 'ctrAlumno',
         controllerAs: 'al'
-    }).when('/historial', {
-//        templateUrl: './views/abono.html',
-        controller: 'ctrHistorial',
-        controllerAs: 'hi'
     }).when('/pago', {
         templateUrl: './views/pago.html',
         controller: 'ctrPago',

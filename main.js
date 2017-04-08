@@ -113,9 +113,8 @@ router.get('/cursos', function (req, res) {
         res.status(200).send(data);
     });
 });
-router.post('/dameCursosHorario', function (req, res) {
-    var objCurso = req.body;
-    cr.dameCursos(objCurso, function (error, data) {
+router.get('/dameCursosHorario', function (req, res) {
+    cr.dameCursosHorarios(function (error, data) {
         res.status(200).send(data);
     });
 });

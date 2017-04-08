@@ -17,6 +17,7 @@ app.controller('ctrCurso', function ($scope, $http, NgTableParams) {
     var tblCursos = this;
     $http.get("http://localhost:3333/api/cursos").success(function (data) {
         tblCursos.listaCursos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: data});
+        console.log(data);
     });
 
 
