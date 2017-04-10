@@ -22,8 +22,8 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
 
     };
 
-    $scope.dameHorarios = function () {
-        $http.get("http://localhost:3333/api/horarios").success(function (respuesta) {
+    $scope.dameHorariosAula = function () {
+        $http.get("http://localhost:3333/api/dameHorariosAula").success(function (respuesta) {
             console.log(respuesta);
             $scope.listaHorarios = respuesta;
         });
@@ -141,7 +141,7 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
     };
 
 
-$scope.dameHorarios();
+$scope.dameHorariosAula();
 
 
 

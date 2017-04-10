@@ -13,6 +13,18 @@ function dameHorarios(callback) {
     });
 }
 
+function dameHorariosAulas(callback) {
+    var connection = con.conecction();
+    var sql = "SELECT c.idhorario,c.idcurso,c.dia,c.horaInicio,c.horaFinal,c.precio,e.estado as estado, h.nombre from horario c inner join estado e on c.estado=e.idestado inner join curso h on c.idcurso=h.idcurso WHERE c.estado = 1";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, result);
+        }
+    });
+}
+
 function guardarHorarios(horario, callback) {
     console.log("informacion para guardar");
     console.log(horario);
@@ -96,6 +108,7 @@ function activarHorarios(horario, callback) {
 
 module.exports = {
     dameHorarios,
+    dameHorariosAulas,
     obtenerHorario,
     guardarHorarios,
     actualizarHorarios,

@@ -39,6 +39,11 @@ router.get('/clientes', function (req, res) {
     });
 });
 
+router.get('/dameClientesActivo', function (req, res) {
+    cl.dameClientesActivos(function (error, data) {
+        res.status(200).send(data);
+    });
+});
 //////////////pruevas en postman
 router.post('/guardarCliente', function (req, res) {
     var params = req.body;
@@ -185,6 +190,11 @@ router.get('/horarios', function (req, res) {
         res.status(200).send(data);
     });
 });
+router.get('/dameHorariosAula', function (req, res) {
+    hr.dameHorariosAulas(function (error, data) {
+        res.status(200).send(data);
+    });
+});
 //////////////pruevas en postman
 router.post('/guardarHorario', function (req, res) {
     console.log("entrooooo al api");
@@ -250,6 +260,12 @@ router.put('/activarHorario', function (req, res) {
 ///////*** AULA***/////                                         
 router.get('/aulas', function (req, res) {
     au.dameAulas(function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+router.get('/dameAulasAlumno', function (req, res) {
+    au.dameAulasAlumnos(function (error, data) {
         res.status(200).send(data);
     });
 });
@@ -426,7 +442,7 @@ router.put('/actualizarAlumno', function (req, res) {
 });
 router.put('/eliminarAlumno', function (req, res) {
     var params = req.body;
-    console.log(params)
+//    console.log(params)
     al.eliminarAlumnos(params, function (error, data) {
         if (data == 1) {
             al.dameAlumnos(function (error, data) {

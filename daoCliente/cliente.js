@@ -13,6 +13,18 @@ function dameClientes(callback) {
     });
 }
 
+function dameClientesActivos(callback) {
+    var connection = con.conecction();
+    var sql = "SELECT c.idcliente,c.nombre,c.apellido,c.correo,c.telefono,e.estado as estado from cliente c inner join estado e on c.estado=e.idestado WHERE c.estado = 1";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, result);
+        }
+    });
+}
+
 function guardarClientes(cliente, callback) {
    // console.log("informacion para guardar");
     //console.log(cliente);
@@ -96,6 +108,7 @@ function activarClientes(cliente, callback) {
 
 module.exports = {
     dameClientes,
+    dameClientesActivos,
     obtenerCliente,
     guardarClientes,
     actualizarClientes,

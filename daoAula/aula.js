@@ -13,6 +13,18 @@ function dameAulas(callback) {
     });
 }
 
+function dameAulasAlumnos(callback) {
+    var connection = con.conecction();
+    var sql = "SELECT c.idaula,c.idhorario,c.nombreaula,c.fechaInicio,c.fechaFinal, e.estado as estado, h.dia, u.nombre from aula c inner join estado e on c.estado=e.idestado inner join horario h on c.idhorario=h.idhorario inner join curso u on c.idhorario=u.idcurso WHERE c.estado = 1";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, result);
+        }
+    });
+}
+
 function guardarAulas(aula, callback) {
     console.log("informacion para guardar");
     console.log(aula);
@@ -95,6 +107,7 @@ function activarAulas(aula, callback) {
 
 module.exports = {
     dameAulas,
+    dameAulasAlumnos,
     obtenerAula,
     guardarAulas,
     actualizarAulas,

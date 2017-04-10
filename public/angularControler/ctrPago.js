@@ -78,8 +78,8 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         });
     };
 
-    $scope.dameClientes = function () {
-        $http.get("http://localhost:3333/api/clientes").success(function (respuesta) {
+    $scope.dameClientesActivo = function () {
+        $http.get("http://localhost:3333/api/dameClientesActivo").success(function (respuesta) {
             console.log(respuesta);
             $scope.listaClientes = respuesta;
         });
@@ -161,7 +161,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
 
     $scope.devuelvePagos();
-    $scope.dameClientes();
+    $scope.dameClientesActivo();
     $scope.dameConceptos();
 
 

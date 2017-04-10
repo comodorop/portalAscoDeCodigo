@@ -1,10 +1,10 @@
 app.controller('ctrAlumno', function ($scope, $http, NgTableParams) {
 
     $scope.alumno  = {};
-    $scope.alumno .idalumno  = "";
-    $scope.alumno .idcliente  = ""; 
-    $scope.alumno .idaula = "";
-    $scope.alumno .escuela = "";
+    $scope.alumno.idalumno  = "";
+    $scope.alumno.idcliente  = ""; 
+    $scope.alumno.idaula = "";
+    $scope.alumno.escuela = "";
 
 
     $scope.mostrarBoton = false;
@@ -19,16 +19,16 @@ app.controller('ctrAlumno', function ($scope, $http, NgTableParams) {
         $scope.alumno.escuela = "";
     };
 
-    $scope.dameClientes = function () {
-        $http.get("http://localhost:3333/api/clientes").success(function (respuesta) {
+    $scope.dameClientesActivo = function () {
+        $http.get("http://localhost:3333/api/dameClientesActivo").success(function (respuesta) {
             console.log(respuesta);
             $scope.listaClientes = respuesta;
         });
     };
     
-      //dameAula
-    $scope.dameAulas = function (){
-        $http.get("http://localhost:3333/api/aulas").success(function (respuesta) {
+      
+    $scope.dameAulasAlumno = function (){
+        $http.get("http://localhost:3333/api/dameAulasAlumno").success(function (respuesta) {
         console.log(respuesta);
         $scope.listaAulas = respuesta;   
         });
@@ -130,8 +130,8 @@ app.controller('ctrAlumno', function ($scope, $http, NgTableParams) {
 
     };
     
-    $scope.dameClientes();
-    $scope.dameAulas();
+    $scope.dameClientesActivo();
+    $scope.dameAulasAlumno();
 
 });
 

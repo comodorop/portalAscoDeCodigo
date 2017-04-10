@@ -63,11 +63,11 @@ function actualizarAlumnos(alumno, callback) {
 
 function eliminarAlumnos(alumno, callback) {
     //console.log("informacion para eliminar");
-    //console.log(cliente);
+    console.log(alumno);
     var connection = con.conecction();
 
-    var sql = "UPDATE alumno  set estado = '2'  WHERE idalumno='" + alumno.idalumno + "'";
-    //console.log(sql)
+    var sql = "UPDATE alumno set estado = '2'  WHERE idalumno='" + alumno.idalumno + "'";
+    console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
