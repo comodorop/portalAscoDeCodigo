@@ -47,8 +47,7 @@ app.controller('ctrAlumno', function ($scope, $http, NgTableParams) {
 
         }
     };
-//
-//
+
     $scope.validar = function () {
         $scope.ok = false;
         if ($scope.cliente.idcliente == "") {
@@ -105,10 +104,7 @@ app.controller('ctrAlumno', function ($scope, $http, NgTableParams) {
     };
 
     $scope.eliminarAlumno = function (id) {
-//        var ok = $scope.validar();
-//        if (ok == true) {
         $scope.alumno.idalumno = id;
-        //alert("va a entrar a actualizar");
         $http.put("http://localhost:3333/api/eliminarAlumno", $scope.alumno).success(function (respuesta) {
             tblAlumnos.listaAlumnos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Baja", "success");
@@ -120,9 +116,8 @@ app.controller('ctrAlumno', function ($scope, $http, NgTableParams) {
 
       $scope.activarAlumno = function (id) {
         $scope.alumno.idalumno = id;
-//        alert("va a entrar a activar el estado");
         $http.put("http://localhost:3333/api/activarAlumno", $scope.alumno).success(function (respuesta) {
-            tblAlumnos.listaAlumnos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            tblAlumnos.listaAlumnos  = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Alta", "success");
             console.log(respuesta);
           

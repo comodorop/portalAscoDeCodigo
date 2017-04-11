@@ -1,9 +1,9 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameClientes(callback) {
+function dameAbonos(callback) {
     var connection = con.conecction();
-    var sql = "SELECT * from cliente";
+    var sql = "SELECT * from abono";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -13,12 +13,12 @@ function dameClientes(callback) {
     });
 }
 
-function guardarClientes(cliente, callback) {
+function guardarAbonos(abono, callback) {
     console.log("informacion para guardar");
-    console.log(cliente);
+    console.log(abono);
     var connection = con.conecction();
-    var sql = "INSERT INTO cliente (nombre, apellido, correo, telefono, estado) \n\
-               VALUES ('" + cliente.nombre + "', '" + cliente.apellido + "', '" + cliente.correo + "', '" + cliente.telefono + "' ,'1' )";
+    var sql = "INSERT INTO abono (idpago, abono, saldo) \n\
+               VALUES ('" + abono.idpago + "', '" + abono.abono + "', '" + abono.saldo + "' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -28,11 +28,11 @@ function guardarClientes(cliente, callback) {
     });
 }
 
-function obtenerCliente(cliente, callback){
+function obtenerAbono(abono, callback){
     console.log("informacion para guardar");
-    console.log(cliente);
+    console.log(abono);
     var connection = con.conecction();
-    var sql = "SELECT * FROM  cliente WHERE idcliente = '"+cliente.idcliente+"'";
+    var sql = "SELECT * FROM  abono WHERE idabono = '"+abono.idabono+"'";
     console.log("la consulta es ");
     console.log(sql);
     connection.query(sql, function (err, result) {
@@ -46,11 +46,11 @@ function obtenerCliente(cliente, callback){
 
 
 
-function actualizarClientes(cliente, callback) {
+function actualizarAbonos(abono, callback) {
     console.log("informacion para actualizar");
-    console.log(cliente);
+    console.log(abono);
     var connection = con.conecction();
-    var sql = "UPDATE cliente SET  nombre='" + cliente.nombre + "', apellido='" + cliente.apellido + "', correo='" + cliente.correo + "', telefono='" + cliente.telefono + "' WHERE idcliente='" + cliente.idcliente + "'";
+    var sql = "UPDATE abono SET  idpago='" + abono.idpago + "', abono='" + abono.abono + "', saldo='" + abono.saldo + "' WHERE idabono='" + abono.idabono + "'";
     console.log("**************");
     console.log(sql);
     connection.query(sql, function (err, result) {
@@ -62,12 +62,12 @@ function actualizarClientes(cliente, callback) {
     });
 }
 
-function eliminarClientes(cliente, callback) {
+function eliminarAbonos(abono, callback) {
     console.log("informacion para eliminar");
-    console.log(cliente);
+    console.log(abono);
     var connection = con.conecction();
     
-    var sql = "UPDATE cliente  set estado = '2'  WHERE idcliente='" + cliente.idcliente + "'";
+    var sql = "UPDATE abono  set estado = '2'  WHERE idabono='" + abono.idabono + "'";
     console.log(sql)
     connection.query(sql, function (err, result) {
         if (err) {
@@ -79,11 +79,11 @@ function eliminarClientes(cliente, callback) {
 }
 
 module.exports = {
-    dameClientes,
-    obtenerCliente,
-    guardarClientes,
-    actualizarClientes,
-    eliminarClientes
+    dameAbonos,
+    obtenerAbono,
+    guardarAbonos,
+    actualizarAbonos,
+    eliminarAbonos
 };
 
 

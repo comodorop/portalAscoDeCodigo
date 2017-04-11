@@ -234,7 +234,7 @@
 
 
             </div>
-        </div>
+     
         <footer>© BlueMoon <span>2017</span></footer>
         <!--<script src="js/jquery.js"></script>-->
         <script src="/socket.io/socket.io.js"></script>
@@ -276,8 +276,17 @@
 
         <script src="angularJs/angular-chosen.js" type="text/javascript"></script>
         <script src="js/moment-with-locales.min.js" type="text/javascript"></script>
-
-       
+        
+        <script type="text/javascript">
+        function menuCliente(){
+        $('#idcliente').addClass('active');
+        $('#home').removeClass('active');
+        }
+        function menuHome(){
+         $('#idcliente').removeClass('active');
+         $('#home').addClass('active');
+        }
+       </script>
     </body>
     <!-- Mirrored from iamsrinu.com/bluemoon2.1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Jan 2017 22:49:49 GMT -->
 </html>
