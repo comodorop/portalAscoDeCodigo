@@ -405,11 +405,14 @@ router.get('/alumnos', function (req, res) {
     });
 });
 
+
 //////////////pruevas en postman
 router.post('/guardarAlumno', function (req, res) {
+    //   console.log("entrooooo al api");
     var params = req.body;
-    console.log(params);
-    console.log("**********************");
+    // console.log("*********************");
+    //console.log(params);
+    //console.log("**********************");
     al.guardarAlumnos(params, function (error, data) {
         al.dameAlumnos(function (error, data) {
             res.status(200).send(data);
@@ -442,7 +445,7 @@ router.put('/actualizarAlumno', function (req, res) {
 });
 router.put('/eliminarAlumno', function (req, res) {
     var params = req.body;
-//    console.log(params)
+    //console.log(params)
     al.eliminarAlumnos(params, function (error, data) {
         if (data == 1) {
             al.dameAlumnos(function (error, data) {
@@ -452,9 +455,10 @@ router.put('/eliminarAlumno', function (req, res) {
 
     });
 });
+
 router.put('/activarAlumno', function (req, res) {
     var params = req.body;
-    //console.log(params)
+    console.log(params)
     al.activarAlumnos(params, function (error, data) {
         if (data == 1) {
             al.dameAlumnos(function (error, data) {
