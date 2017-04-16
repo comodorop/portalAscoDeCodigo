@@ -42,13 +42,13 @@
                     <td style="width:35%" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                         {{curso.estado}}</td>
                     <td>
-                        <button ng-click="obtenerCurso(curso.idcurso);"  type="submit" class="btn btn-success">
+                        <button ng-click="obtenerCurso(curso.idcurso);"  type="submit" class="btn btn-success" title="Actualizar">
                             <i class="icon-mode_edit"></i></button>
 
-                        <button ng-click="eliminarCurso(curso.idcurso);" type="submit" class="btn btn-danger" ng-if="curso.estado === 'activo'">
+                        <button ng-click="eliminarCurso(curso.idcurso);" type="submit" class="btn btn-danger" title="Desactivar" ng-if="curso.estado === 'activo'">
                             <i class="icon-thumbs-down"></i></button>
 
-                        <button ng-click="activarCurso(curso.idcurso);"  type="submit" class="btn btn-warning" ng-if="curso.estado === 'inactivo'">
+                        <button ng-click="activarCurso(curso.idcurso);"  type="submit" class="btn btn-warning" title="Activar" ng-if="curso.estado === 'inactivo'">
                             <i class="icon-thumbs-up"></i></button> 
 
                     </td>

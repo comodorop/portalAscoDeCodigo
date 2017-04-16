@@ -12,7 +12,7 @@ var eg = require('./daoEgreso/egreso');
 var pg = require('./daoPago/pago');
 var cn = require('./daoConceptos/conceptos');
 var al = require('./daoAlumno/alumno');
-
+var ab = require('./daoAbono/abono');
 app.use(express.static('public'));
 var router = express.Router();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -341,6 +341,15 @@ router.get('/pagos', function (req, res) {
 router.post('/damePagosCliente', function (req, res) {
     var objCliente = req.body;
     pg.damePagosCliente(objCliente, function (error, data) {
+        //for   investigar como recorrer un arrar 
+        for (var i=0; i<data.idpago; i++) { 
+            abono = dataAbonos + abono[i] + ' - '; 
+        }
+        console.log(data);
+        ab.dameSumaAbonos(data.idpago, function (error,dataAbonos){
+            data.abono =dataAbonos.abono;
+        });
+  
         res.status(200).send(data);
     });
 });
@@ -360,6 +369,10 @@ router.post('/obtenerPago', function (req, res) {
     console.log(params);
     console.log("**********************");
     pg.obtenerPago(params, function (error, data) {
+        
+        
+        
+        
         res.status(200).send(data[0]);
     });
 });
@@ -468,6 +481,93 @@ router.put('/activarAlumno', function (req, res) {
 
     });
 });
+
+
+/////////ABONOS//////////
+
+router.get('/abonos', function (req, res) {
+    ab.dameAbonos(function (error, data) {
+        res.status(200).send(data);
+    });
+//    pg.activarPagos(); ejemplo
+//    pg.guardarPagos();
+});
+
+router.post('/dameSumaAbono', function (req, res) {
+     var params = req.body;
+    ab.dameSumaAbonos(params,function (error, data) {
+        res.status(200).send(data);
+    });
+});
+
+//////////////pruevas en postman
+router.post('/guardarAbono', function (req, res) {
+//    console.log("entrooooo al api");
+    var params = req.body;
+//    console.log("*********************");
+//    console.log(params);
+//    console.log("**********************");
+    ab.guardarAbonos(params, function (error, data) {
+        ab.dameAbonos(function (error, data) {
+            res.status(200).send(data);
+        });
+    });
+});
+router.post('/obtenerAbono', function (req, res) {
+//    console.log("entrooooo al api");
+    var params = req.body;
+//    console.log("*********************");
+//    console.log(params);
+//    console.log("**********************");
+    ab.obtenerAbono(params, function (error, data) {
+        //     console.log(data);
+        res.status(200).send(data[0]);
+//        cl.dameClientes(function (error, data) {
+//            res.status(200).sendStatus (data);
+//        });
+    });
+});
+router.put('/actualizarAbono', function (req, res) {
+    var params = req.body;
+    ab.actualizarAbonos(params, function (error, data) {
+        if (data == 1) {
+            ab.dameAbonos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+router.put('/eliminarAbono', function (req, res) {
+    var params = req.body;
+    console.log(params)
+    ab.eliminarAbonos(params, function (error, data) {
+        if (data == 1) {
+            ab.dameAbonos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+
+    });
+});
+router.put('/activarAbono', function (req, res) {
+    var params = req.body;
+    //console.log(params)
+    ab.activarAbonos(params, function (error, data) {
+        if (data == 1) {
+            ab.dameAbonos(function (error, data) {
+                res.status(200).send(data);
+            });
+        }
+
+    });
+});
+
+
+
+
+
+
+
 
 
 

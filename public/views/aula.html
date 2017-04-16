@@ -13,7 +13,7 @@
                                 ng-model="aula.idhorario" 
                                 class="form-control"
                                 style="width:280px;"
-                                ng-options="horario.idhorario as horario.nombre  +' /  ' +  horario.dia for horario in listaHorarios"> 
+                                ng-options="horario.idhorario as horario.nombre  +' /  ' +  horario.dia + ' / ' + horario.precio for horario in listaHorarios"> 
                             <option value="">Seleccione una opcion</option>
                         </select>
                     </div>
@@ -56,7 +56,7 @@
             <td>
                 {{$index + 1}}</td>
             <td style="width:18%" title="'Dia'" filter="{ dia: 'text'}" sortable="'dia'">
-                {{aula.nombre}} / {{aula.dia}}</td>
+                {{aula.nombre}} / {{aula.dia}} / {{aula.precio | currency}} </td>
             <td style="width:18%" title="'Aulas'" filter="{ nombreaula: 'text'}" sortable="'nombreaula'">
                 {{aula.nombreaula}}</td>
             <td style="width:17%" title="'Fecha de Inicio'" filter="{ fechaInicio: 'text'}" sortable="'fechaInicio'">
@@ -67,13 +67,13 @@
                 {{aula.estado}}</td>
 
             <td> 
-                <button ng-click="obtenerAula(aula.idaula);" type="submit" class="btn btn-success">
+                <button ng-click="obtenerAula(aula.idaula);" type="submit" class="btn btn-success" title="Actualizar">
                     <i class="icon-mode_edit"></i></button>
 
-                <button ng-click="eliminarAula(aula.idaula);"  type="submit" class="btn btn-danger" ng-if="aula.estado === 'activo'" >
+                <button ng-click="eliminarAula(aula.idaula);"  type="submit" class="btn btn-danger" title="Desactivar" ng-if="aula.estado === 'activo'" >
                 <i class="icon-thumbs-down"></i></button>
             
-                <button ng-click="activarAula(aula.idaula);"  type="submit" class="btn btn-warning" ng-if="aula.estado === 'inactivo'">
+                <button ng-click="activarAula(aula.idaula);"  type="submit" class="btn btn-warning" title="Activar"  ng-if="aula.estado === 'inactivo'">
                 <i class="icon-thumbs-up"></i></button>             
             </td>
         </tr>

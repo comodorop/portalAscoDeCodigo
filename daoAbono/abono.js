@@ -3,7 +3,19 @@ var con = require('../daoConeccion/Connection');
 
 function dameAbonos(callback) {
     var connection = con.conecction();
-    var sql = "SELECT idabono, idpago, abono, saldo FROM abono";
+    var sql = "select * from pago where idpago=''";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            throw  err;
+        } else {
+            callback(null, result);
+        }
+    });
+}
+
+function dameSumaAbonos(pagos,callback) {
+    var connection = con.conecction();
+    var sql = "select sum(abono) AS abono from abono WHERE idpago='"+pagos.idpago+"'";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -80,6 +92,7 @@ function eliminarAbonos(abono, callback) {
 
 module.exports = {
     dameAbonos,
+    dameSumaAbonos,
     obtenerAbono,
     guardarAbonos,
     actualizarAbonos,

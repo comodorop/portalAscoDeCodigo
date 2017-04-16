@@ -68,7 +68,7 @@
             <td style="width:10%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
                 {{pago.fecha| date: 'dd-MM-yyyy'}}</td>  
             <td style="width:10%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
-                {{pago.abono  | currency}}</td>
+                {{pago.abono  | currency}}</td> 
             <td style="width:10%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total  | currency}}</td>
             <td style="width:10%" title="'Saldo'" filter="{ saldo: 'text'}" sortable="'saldo'">
@@ -78,16 +78,16 @@
             <td style="width:10%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{pago.estado}}</td>
             <td> 
-                <button ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success">
+                <button ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success" title="Actualizar">
                 <i class="icon-mode_edit"></i></button>
 
-                <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-info" >
+                <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-info" title="Abonar">
                 <i class="icon-credit"></i></button>   
 
-                <button ng-click="abrirModal1(pago.idpago)"  type="submit" class="btn btn-warning">
+                <button ng-click="abrirModal1(pago.idpago)"  type="submit" class="btn btn-warning" title="Saldar">
                 <i class="icon-local_atm"></i></button> 
 
-                <button ng-click="abrirMoadal2(pago.idpago)" type="submit" class="btn btn-danger">
+                <button ng-click="abrirMoadal2(pago.idpago)" type="submit" class="btn btn-danger" title="Cancelar">
                 <i class="icon-square-cross"></i></button>
             </td>
         </tr>
@@ -107,7 +107,7 @@
             </div>
             <div class="modal-body">
                Cantidad: 
-               <input ng-model="idabono.abono" type="text" placeholder="$"/>
+               <input ng-model="pago.idabono" type="text" placeholder="$"/>
             </div>
             
             <div class="modal-footer">
