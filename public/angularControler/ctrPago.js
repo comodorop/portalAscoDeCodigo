@@ -2,7 +2,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
     $scope.pago = {};
     $scope.pago.idpago = "";
-//    $scope.pago.estado = "";
+    $scope.pago.idcliente = "";
     $scope.pago.concepto = "";
     $scope.pago.total = "";
     $scope.pago.fecha = "";
@@ -18,6 +18,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.CancelarPago = function () {
 
         $scope.pago.idpago = "";
+        $scope.pago.idcliente = "";
         $scope.pago.concepto = "";
         $scope.pago.fecha = "";
         $scope.pago.total = "";
@@ -26,44 +27,6 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
     };
 
-//    $scope.validarBaja = function ()
-//    {
-//        if ($scope.pago.idpago === "")
-//        {
-//            sweetAlert("Exito!", "El registro de baja.", "success");
-//
-//        }
-//    };
-//    
-//    $scope.validar = function ()
-//    {
-//        var ok = false;
-//       if ($scope.pago.valorCmboCncept === "")
-//        {
-//            sweetAlert("Error...", "¡Ingrese Concepto!", "error");
-//
-//        } else
-//        if ($scope.pago.fecha === "")
-//        {
-//            sweetAlert("Error...", "¡Ingrese Fecha!", "error");
-//
-//        } else
-//        if ($scope.pago.total === "")
-//        {
-//            sweetAlert("Error...", "¡Ingrese Total!", "error");
-//
-//        } else
-//        if ($scope.pago.descripcion === "")
-//        {
-//            sweetAlert("Error...", "¡Ingrese Descripcion!", "error");
-//
-//        } else
-//        {
-//            ok = true;
-//        }
-//        return ok;
-//
-//    };
 
     /// aqui llamo al de pago.js damePagosCliente  y main.js damePagosCliente
     $scope.devuelvePagos = function () {
@@ -71,7 +34,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         cliente.idcliente = $scope.pago.idcliente;
         console.log(cliente);
         $http.post("http://localhost:3333/api/damePagosCliente", cliente).success(function (respuesta) {
-            tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblPagos.listaPagos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
 
 
@@ -94,11 +57,9 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     };
 
     $scope.guardarPago = function () {
-//        if ($scope.validar())
-//        {
-        //alert("va a entrar a guardar");
+
         $http.post("http://localhost:3333/api/guardarPago", $scope.pago).success(function (respuesta) {
-            tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblPagos.listaPagos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
             //sweetAlert("Exito", "Nuevo registro disponible", "success");
             $scope.CancelarPago();
             $scope.ocultarBoton = true;
@@ -124,7 +85,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 //        if ($scope.validar())
 //        {
         $http.put("http://localhost:3333/api/actualizarPago", $scope.pago).success(function (respuesta) {
-            tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblPagos.listaPagos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
 //            console.log(respuesta);
 //            $scope.pago = respuesta;
             $scope.mostrarBoton = true;
@@ -140,7 +101,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         $scope.pago.idpago = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarPago", $scope.pago).success(function (respuesta) {
-            tblPagos.listaPagos = new NgTableParams({count: 10}, {counts: [25, 50, 100], dataset: respuesta});
+            tblPagos.listaPagos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
 //            sweetAlert("Exito", "Registro Dado De Baja", "success");
             console.log(pago);
 //            $scope.activarPagos = true;
@@ -152,7 +113,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         $scope.pago.idpago = id;
 //        alert("va a entrar a activar el estado");
         $http.put("http://localhost:3333/api/activarPago", $scope.pago).success(function (respuesta) {
-            tblPagos.listaPagos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            tblPagos.listaPagos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro Dado De Alta", "success");
             console.log(pago);
         });
@@ -182,29 +143,29 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.abono.idabono = "";
     $scope.abono.idpago = "";
     $scope.abono.abono = "";
-    $scope.abono.saldo = "";
 
 
     var tblAbonos = this;
     $http.get("http://localhost:3333/api/abonos").success(function (data) {
-        tblAbonos.listaAbonos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: data});
+        tblAbonos.listaAbonos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: data});
     });
 
     $scope.dameSumaAbono = function () {
-        $http.post("http://localhost:3333/api/dameSumaAbono").success(function (respuesta) {
+        $http.post("http://localhost:3333/api/dameSumaAbono", $scope.abono).success(function (respuesta) {
             console.log(respuesta);
             $scope.listaAbonos = respuesta;
+
         });
     };
-    
-    
+
+
 
     $scope.guardarAbono = function () {
         if ($scope.validar())
         {
             //alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarAbono", $scope.abono).success(function (respuesta) {
-                tblAbonos.listaAbonos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+                tblAbonos.listaAbonos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
                 sweetAlert("Exito", "Nuevo registro disponible", "success");
 //                $scope.CancelarCliente();
 //                $scope.ocultarBoton = true;
@@ -233,7 +194,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         if ($scope.validar())
         {
             $http.put("http://localhost:3333/api/actualizarAbono", $scope.abono).success(function (respuesta) {
-                tblAbonos.listaAbonos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+                tblAbonos.listaAbonos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
                 sweetAlert("Exito", "Registro actualizado", "success");
 ////             console.log(respuesta);
 ////            $scope.cliente = respuesta;
@@ -248,7 +209,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         $scope.abono.idabono = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/eliminarAbono", $scope.abono).success(function (respuesta) {
-            tblAbonos.listaAbonos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            tblAbonos.listaAbonos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
             sweetAlert("Exito", "Registro Dado De Baja", "success");
         });
@@ -262,7 +223,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         $scope.abono.idabono = id;
         //alert("va a entrar a eliminar");
         $http.put("http://localhost:3333/api/activarAbono", $scope.abono).success(function (respuesta) {
-            tblAbonos.listaAbonos = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
+            tblAbonos.listaAbonos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
             console.log(respuesta);
             sweetAlert("Exito", "Registro Dado De Alta", "success");
 

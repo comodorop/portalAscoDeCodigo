@@ -342,14 +342,14 @@ router.post('/damePagosCliente', function (req, res) {
     var objCliente = req.body;
     pg.damePagosCliente(objCliente, function (error, data) {
         //for   investigar como recorrer un arrar 
-        for (var i=0; i<data.idpago; i++) { 
-            abono = dataAbonos + abono[i] + ' - '; 
-        }
-        console.log(data);
-        ab.dameSumaAbonos(data.idpago, function (error,dataAbonos){
-            data.abono =dataAbonos.abono;
-        });
-  
+//        for (var i=0; i<data.length; i++) { 
+//            console.log(data[i]);
+//        }
+//        console.log(data);
+//        ab.dameSumaAbonos(data.idpago, function (error,dataAbonos){
+//            data.abono =dataAbonos.abono;
+//        });
+//  
         res.status(200).send(data);
     });
 });
