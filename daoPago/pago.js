@@ -32,8 +32,8 @@ function damePagos(callback) {
 function guardarPagos(pago, callback) {
     console.log(pago);
     var connection = con.conecction();
-    var sql = "INSERT INTO pago (concepto, total, fecha, descripcion, estado) \n\
-               VALUES ('" + pago.valorCmboCncept + "', '" + pago.total + "' , '" + pago.fecha + "', '" + pago.descripcion + "','1' )";
+    var sql = "INSERT INTO pago (idcliente,concepto, total, fecha, descripcion, estado) \n\
+               VALUES ('" + pago.idcliente + "','" + pago.valorCmboCncept + "', '" + pago.total + "' , '" + pago.fecha + "', '" + pago.descripcion + "','1' )";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
@@ -62,7 +62,7 @@ function obtenerPago(pago, callback) {
 function actualizarPagos(pago, callback) {
     console.log(pago);
     var connection = con.conecction();
-    var sql = "UPDATE pago SET  concepto='" + pago.valorCmboCncept + "', total='" + pago.total + "' , fecha='" + pago.fecha + "', descripcion='" + pago.descripcion + "' WHERE idpago='" + pago.idpago + "'";
+    var sql = "UPDATE pago SET  idcliente='" + pago.idcliente + "', concepto='" + pago.valorCmboCncept + "', total='" + pago.total + "' , fecha='" + pago.fecha + "', descripcion='" + pago.descripcion + "' WHERE idpago='" + pago.idpago + "'";
     console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {

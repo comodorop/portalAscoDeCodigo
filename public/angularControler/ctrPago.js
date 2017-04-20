@@ -130,9 +130,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
         $("#mdlAbonos").modal('show');
     };
 
-    $scope.abrirModal1 = function (idpago) {
-        $("#mdlSaldos").modal('show');
-    };
+
 
     $scope.abrirMoadal2 = function (idpago) {
         $("#mdlcancelado").modal('show');
@@ -143,7 +141,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.abono.idabono = "";
     $scope.abono.idpago = "";
     $scope.abono.abono = "";
-
+    $scope.abono.saldo = "";
 
     var tblAbonos = this;
     $http.get("http://localhost:3333/api/abonos").success(function (data) {

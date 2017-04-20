@@ -14,15 +14,21 @@ function dameAbonos(callback) {
 }
 
 function dameSumaAbonos(pagos,callback) {
+    try {
+     
     var connection = con.conecction();
-    var sql = "select sum(abono) AS abono from abono WHERE idpago='"+pagos.idpago+"'";
+    var sql = "select idabono,saldo,sum(abono) AS abono from abono WHERE idpago='"+pagos.idpago+"'";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
         } else {
             callback(null, result);
         }
-    });
+    });   
+    } catch (e) {
+        
+    }
+
 }
 
 function guardarAbonos(abono, callback) {

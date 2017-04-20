@@ -14,7 +14,7 @@
                                 class="form-control"
                                 style="width:280px;"
                                 ng-change="devuelvePagos()"
-                                ng-options="cliente.idcliente as cliente.nombre +' ' +  cliente.apellido for cliente in listaClientes">  
+                                ng-options="cliente.idcliente as cliente.nombre + ' ' +   cliente.apellido for cliente in listaClientes">  
                             <option value="">Seleccione Un Cliente</option>
                         </select>
                     </div>
@@ -68,26 +68,25 @@
             <td style="width:10%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
                 {{pago.fecha| date: 'dd-MM-yyyy'}}</td>  
             <td style="width:10%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
-                {{pago.abono  | currency}}</td> 
+                {{pago.abono| currency}}</td> 
             <td style="width:10%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
-                {{pago.total  | currency}}</td>
-          
-            <td style="width:10%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
+                {{pago.total| currency}}</td>
+
+            <td style="width:27%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
                 {{pago.descripcion}}</td>
             <td style="width:10%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{pago.estado}}</td>
             <td> 
                 <button ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success" title="Actualizar">
-                <i class="icon-mode_edit"></i></button>
+                    <i class="icon-mode_edit"></i></button>
 
                 <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-info" title="Abonar">
-                <i class="icon-credit"></i></button>   
+                    <i class="icon-credit"></i></button>   
 
-                <button ng-click="abrirModal1(pago.idpago)"  type="submit" class="btn btn-warning" title="Saldar">
-                <i class="icon-local_atm"></i></button> 
+
 
                 <button ng-click="abrirMoadal2(pago.idpago)" type="submit" class="btn btn-danger" title="Cancelar">
-                <i class="icon-square-cross"></i></button>
+                    <i class="icon-square-cross"></i></button>
             </td>
         </tr>
     </table>
@@ -104,14 +103,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+       
             <div class="modal-body">
-               Cantidad: 
-               <input ng-model="pago.idabono" type="text" placeholder="$"/>
+                Cantidad: 
+                <input ng-model="abono.abono" ng-repeat="abono in listaAbonos" type="text" placeholder="$"/>
+                
             </div>
-            
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-               <button ng-click="guardarAbono();"  type="submit" class="btn btn-info">Guardar</button>
+                <button ng-click="guardarAbono();"  type="submit" class="btn btn-info">Guardar</button>
             </div>
         </div>
     </div>
@@ -119,44 +120,45 @@
 
 <!-- Modal Saldo -->
 <div class="modal fade" id="mdlSaldos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Para Saldo:</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Cantidad: 
-        <input type="text" placeholder="$"/>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button  type="button" class="btn btn-info">Guardar</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Para Saldo:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Cantidad: 
+                <input type="text" placeholder="$"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button  type="button" class="btn btn-info">Guardar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Modal Cancelado -->
 <div class="modal fade" id="mdlcancelado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cancelado:</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Para Cancelar:
-        <textarea ng-model="" type="text" placeholder="Descripción" class="form-control" name="Descripción" rows="5"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-info">Guardar</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancelado:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Para Cancelar:
+                <textarea ng-model="" type="text" placeholder="Descripción" class="form-control" name="Descripción" rows="5"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-info">Guardar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
