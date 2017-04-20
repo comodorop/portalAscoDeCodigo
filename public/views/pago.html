@@ -14,7 +14,7 @@
                                 class="form-control"
                                 style="width:280px;"
                                 ng-change="devuelvePagos()"
-                                ng-options="cliente.idcliente as cliente.nombre + ' ' +   cliente.apellido for cliente in listaClientes">  
+                                ng-options="cliente.idcliente as cliente.nombre +  ' ' +    cliente.apellido for cliente in listaClientes">  
                             <option value="">Seleccione Un Cliente</option>
                         </select>
                     </div>
@@ -103,11 +103,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-       
+
             <div class="modal-body">
-                Cantidad: 
-                <input ng-model="abono.abono" ng-repeat="abono in listaAbonos" type="text" placeholder="$"/>
-                
+                Cantidadff: 
+                <input ng-model="abono.abono"  type="text" placeholder="$"/>
+
             </div>
 
             <div class="modal-footer">

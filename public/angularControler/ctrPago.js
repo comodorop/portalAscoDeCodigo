@@ -127,6 +127,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
 
     $scope.abrirModal = function (idpago) {
+        $scope.abono.idpago = idpago;
         $("#mdlAbonos").modal('show');
     };
 
@@ -142,6 +143,9 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.abono.idpago = "";
     $scope.abono.abono = "";
     $scope.abono.saldo = "";
+
+
+
 
     var tblAbonos = this;
     $http.get("http://localhost:3333/api/abonos").success(function (data) {
@@ -159,8 +163,9 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
 
     $scope.guardarAbono = function () {
-        if ($scope.validar())
-        {
+        console.log($scope.abono);
+//        if ($scope.validar())
+//        {
             //alert("va a entrar a guardar");
             $http.post("http://localhost:3333/api/guardarAbono", $scope.abono).success(function (respuesta) {
                 tblAbonos.listaAbonos = new NgTableParams({count: 3}, {counts: [25, 50, 100], dataset: respuesta});
@@ -171,7 +176,7 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
 
             });
 
-        }
+//        }
     };
 
     $scope.obtenerAbono = function (id) {
