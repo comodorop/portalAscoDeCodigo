@@ -339,18 +339,25 @@ router.get('/pagos', function (req, res) {
     });
 });
 router.post('/damePagosCliente', function (req, res) {
-    var objCliente = req.body;
-    pg.damePagosCliente(objCliente, function (error, data) {
-//        //for   investigar como recorrer un arrar 
-        data.forEach(function(entry) {
-                console.log(entry);
-            });
-        ab.dameSumaAbonos(data.idpago, function (error,dataAbonos){
-            data.abono =dataAbonos.abono;
-        });
-//  
-        res.status(200).send(data);
+    var data = req.body;
+    pg.damePagos(data, function (error, pagos) {
+        for (var i=0; i<pagos.count; i++) { 
+    console.log(data[i]);
+    var idpago = pagos[i].idpago;
+       
+    }
+    ab.dameAbonos(idpago,function (error,abonos) {
+        for (var i=0; i<abonos.count; i++) { 
+    console.log(data[i]);
+    var idabono= abonos[i].idabono;
+   
+    var suma = suma +  abonos[i].abono;
+
+    }
+      pagos[i].saldo= suma;
+//      res.status(200).send(data);
     });
+  });
 });
 //////////////pruevas en postman
 router.post('/guardarPago', function (req, res) {

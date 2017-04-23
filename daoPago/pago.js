@@ -15,19 +15,35 @@ function damePagosCliente(cliente, callback) {
 
 
 
-function damePagos(callback) {
+function damePagos(pago, callback) {
+    console.log(pago);
     var connection = con.conecction();
     var sql = "SELECT c.idpago,c.idcliente,c.concepto,c.total,c.fecha,c.descripcion, e.estado as estado, h.nombre from pago c inner join estado e on c.estado=e.idestado inner join cliente h on c.idcliente=h.idcliente";
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
-        } else {
+        } 
+        else {
             callback(null, result);
         }
 
     });
 }
 
+//function damePagos(callback) {     //original
+//    console.log(pago);
+//    var connection = con.conecction();
+//    var sql = "SELECT c.idpago,c.idcliente,c.concepto,c.total,c.fecha,c.descripcion, e.estado as estado, h.nombre from pago c inner join estado e on c.estado=e.idestado inner join cliente h on c.idcliente=h.idcliente";
+//    connection.query(sql, function (err, result) {
+//        if (err) {
+//            throw err;
+//        } 
+//        else {
+//            callback(null, result);
+//        }
+//
+//    });
+//}
 
 function guardarPagos(pago, callback) {
     console.log(pago);
