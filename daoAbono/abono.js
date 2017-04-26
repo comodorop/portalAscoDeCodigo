@@ -1,8 +1,7 @@
 'use strict'
 var con = require('../daoConeccion/Connection');
 
-function dameAbonos(abono,callback) {
-    console.log(abono);
+function dameAbonos(callback) {   //original
     var connection = con.conecction();
     var sql = "select * from pago where idpago=''";
     connection.query(sql, function (err, result) {
@@ -14,22 +13,8 @@ function dameAbonos(abono,callback) {
     });
 }
 
-//function dameAbonos(callback) {   //original
-//    console.log(abono);
-//    var connection = con.conecction();
-//    var sql = "select * from pago where idpago=''";
-//    connection.query(sql, function (err, result) {
-//        if (err) {
-//            throw  err;
-//        } else {
-//            callback(null, result);
-//        }
-//    });
-//}
-
 function dameSumaAbonos(pagos,callback) {
-    try {
-     
+    try {    
     var connection = con.conecction();
     var sql = "select idabono,saldo,sum(abono) AS abono from abono WHERE idpago='"+pagos.idpago+"'";
     connection.query(sql, function (err, result) {

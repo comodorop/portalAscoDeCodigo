@@ -332,33 +332,19 @@ router.put('/activarAula', function (req, res) {
 });
 
 
-/////*** PAGOS***/////
+/////*** PAGOS***/////  este es el api de cada modulos este modulo corresponde a de Pagos!!
 router.get('/pagos', function (req, res) {
     pg.damePagos(function (error, data) {
         res.status(200).send(data);
     });
 });
 router.post('/damePagosCliente', function (req, res) {
-    var data = req.body;
-    pg.damePagos(data, function (error, pagos) {
-        for (var i=0; i<pagos.count; i++) { 
-    console.log(data[i]);
-    var idpago = pagos[i].idpago;
-       
-    }
-    ab.dameAbonos(idpago,function (error,abonos) {
-        for (var i=0; i<abonos.count; i++) { 
-    console.log(data[i]);
-    var idabono= abonos[i].idabono;
-   
-    var suma = suma +  abonos[i].abono;
-
-    }
-      pagos[i].saldo= suma;
-//      res.status(200).send(data);
+    var objCliente = req.body;
+    pg.damePagosCliente(objCliente, function (error, data) {
+        res.status(200).send(data);
     });
-  });
 });
+
 //////////////pruevas en postman
 router.post('/guardarPago', function (req, res) {
     var params = req.body;
