@@ -345,19 +345,19 @@ router.post('/damePagosCliente', function (req, res) {
     var data = req.body;
 
     pg.damePagosCliente(data, function (err, dataPagosClientes) {
-        for (var i = 0; i < dataPagosClientes.length; i++) {
-            dataPagosClientes[i].abonos = abono;
-//            dataPagosClientes[i].abonos = 90;
-//            console.log(dataPagosClientes[i]);
-            var abono = {};
-//            abono.abono = 0;
-            ab.dameSumaAbonos(dataPagosClientes[i], function (err, datosAbonos) {
-                console.log(datosAbonos);
-                abono.abono = datosAbonos;
-            });
-            console.log(abono);
-            dataPagosClientes[i].abonos = abono;
-        }
+//        for (var i = 0; i < dataPagosClientes.length; i++) {
+//            dataPagosClientes[i].abonos = abono;
+////            dataPagosClientes[i].abonos = 90;
+////            console.log(dataPagosClientes[i]);
+//            var abono = {};
+////            abono.abono = 0;
+//            ab.dameSumaAbonos(dataPagosClientes[i], function (err, datosAbonos) {
+//                console.log(datosAbonos);
+//                abono.abono = datosAbonos;
+//            });
+//            console.log(abono);
+//            dataPagosClientes[i].abonos = abono;
+//        }
 
         res.status(200).send(dataPagosClientes);
     });
