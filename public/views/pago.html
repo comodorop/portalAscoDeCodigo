@@ -63,24 +63,23 @@
         <tr ng-repeat="pago in $data" >
             <td style="width:4%" title="'#'">
                 {{$index + 1}}</td>       
-            <td style="width:15%" title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
+            <td style="width:13%" title="'Concepto'" filter="{ concepto: 'text'}" sortable="'concepto'">
                 {{pago.concepto}}</td>
-            <td style="width:10%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
+            <td style="width:13%" title="'Fecha'" filter="{ fecha: 'text'}" sortable="'fecha'">
                 {{pago.fecha| date: 'dd-MM-yyyy'}}</td>  
-            <td style="width:10%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
+            <td style="width:13%" title="'Abono'" filter="{ abono: 'text'}" sortable="'abono'">
                 {{pago.abono| currency}}</td> 
-            <td style="width:10%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
+            <td style="width:13%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total| currency}}</td>
-
-            <td style="width:27%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
+            <td style="width:29%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
                 {{pago.descripcion}}</td>
-            <td style="width:10%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
-                {{pago.estado}}</td>
+            <!--<td style="width:10%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
+                {{pago.estado}}</td> -->
             <td> 
                 <button ng-click="obtenerPago(pago.idpago);" type="submit" class="btn btn-success" title="Actualizar">
                     <i class="icon-mode_edit"></i></button>
 
-                <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-info" title="Abonar">
+                <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-warning" title="Abonar">
                     <i class="icon-credit"></i></button>   
 
 
@@ -105,7 +104,7 @@
             </div>
 
             <div class="modal-body">
-                Cantidadff: 
+                Cantidad: 
                 <input ng-model="abono.abono"  type="text" placeholder="$"/>
 
             </div>

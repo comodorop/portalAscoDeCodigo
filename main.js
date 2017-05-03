@@ -338,10 +338,28 @@ router.get('/pagos', function (req, res) {
         res.status(200).send(data);
     });
 });
+
+
+
 router.post('/damePagosCliente', function (req, res) {
-    var objCliente = req.body;
-    pg.damePagosCliente(objCliente, function (error, data) {
-        res.status(200).send(data);
+    var data = req.body;
+
+    pg.damePagosCliente(data, function (err, dataPagosClientes) {
+        for (var i = 0; i < dataPagosClientes.length; i++) {
+            dataPagosClientes[i].abonos = abono;
+//            dataPagosClientes[i].abonos = 90;
+//            console.log(dataPagosClientes[i]);
+            var abono = {};
+//            abono.abono = 0;
+            ab.dameSumaAbonos(dataPagosClientes[i], function (err, datosAbonos) {
+                console.log(datosAbonos);
+                abono.abono = datosAbonos;
+            });
+            console.log(abono);
+            dataPagosClientes[i].abonos = abono;
+        }
+
+        res.status(200).send(dataPagosClientes);
     });
 });
 
@@ -351,7 +369,7 @@ router.post('/guardarPago', function (req, res) {
     console.log(params);
     console.log("**********************");
     pg.guardarPagos(params, function (error, data) {
-        pg.damePagos(function (error, data) {
+        pg.damePagosCliente(function (error, data) {
             res.status(200).send(data);
         });
     });
@@ -361,10 +379,10 @@ router.post('/obtenerPago', function (req, res) {
     console.log(params);
     console.log("**********************");
     pg.obtenerPago(params, function (error, data) {
-        
-        
-        
-        
+
+
+
+
         res.status(200).send(data[0]);
     });
 });
@@ -486,8 +504,8 @@ router.get('/abonos', function (req, res) {
 });
 
 router.post('/dameSumaAbono', function (req, res) {
-     var params = req.body;
-    ab.dameSumaAbonos(params,function (error, data) {
+    var params = req.body;
+    ab.dameSumaAbonos(params, function (error, data) {
         res.status(200).send(data);
     });
 });

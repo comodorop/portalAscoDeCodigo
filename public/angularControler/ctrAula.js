@@ -106,10 +106,12 @@ app.controller('ctrAula', function ($scope, $http, NgTableParams) {
     $scope.actualizarAula = function () {
         if ($scope.validar())
         {
+//        $scope.aula.fechaInicio = moment($scope.aula.fechaInicio).format("YYYY-MM-DD");
+//        $scope.aula.fechaFinal = moment($scope.aula.fechaFinal).format("YYYY-MM-DD");
         $http.put("http://localhost:3333/api/actualizarAula", $scope.aula).success(function (respuesta) {
              tblAulas.listaAulas = new NgTableParams({count: 6}, {counts: [25, 50, 100], dataset: respuesta});
             sweetAlert("Exito", "Registro actualizado", "success");
-//            console.log(respuesta);
+            console.log(respuesta);
 //            $scope.aula = respuesta;
               $scope.mostrarBoton = true;
               $scope.CancelarAula();

@@ -3,7 +3,8 @@ var con = require('../daoConeccion/Connection');
 
 function damePagosCliente(cliente, callback) {
     var connection = con.conecction();
-    var sql = "SELECT * FROM pago Where idcliente='" + cliente.idcliente + "'";
+//    var sql = "SELECT * FROM pago Where idcliente='" + cliente.idcliente + "'";
+    var sql = "SELECT * FROM pago p inner join abono a on a.idpago=p.idpago where p.idcliente='" + cliente.idcliente + "'";
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -94,7 +95,7 @@ function activarPagos(pago, callback) {
     var connection = con.conecction();
     
     var sql = "UPDATE pago  set estado = '1'  WHERE idpago='" + pago.idpago + "'";
-    console.log(sql)
+    console.log(sql);
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;

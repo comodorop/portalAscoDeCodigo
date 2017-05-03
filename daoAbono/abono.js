@@ -16,7 +16,7 @@ function dameAbonos(callback) {   //original
 function dameSumaAbonos(pagos,callback) {
     try {    
     var connection = con.conecction();
-    var sql = "select idabono,saldo,sum(abono) AS abono from abono WHERE idpago='"+pagos.idpago+"'";
+    var sql = "select sum(abono) AS abono from abono WHERE idpago='"+pagos.idpago+"'";
     connection.query(sql, function (err, result) {
         if (err) {
             throw  err;
