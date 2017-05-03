@@ -136,6 +136,10 @@ app.controller('ctrPago', function ($scope, $http, NgTableParams) {
     $scope.abrirMoadal2 = function (idpago) {
         $("#mdlcancelado").modal('show');
     };
+    
+    $scope.abrirMoadal3 = function (idpago) {
+        $("#mdlEmain").modal('show');
+    };
 
     //AQUI EMPIEZA CTRABONO.JS
     $scope.abono = {};

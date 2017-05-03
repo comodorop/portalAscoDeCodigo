@@ -14,7 +14,7 @@
                                 class="form-control"
                                 style="width:280px;"
                                 ng-change="devuelvePagos()"
-                                ng-options="cliente.idcliente as cliente.nombre +  ' ' +    cliente.apellido for cliente in listaClientes">  
+                                ng-options="cliente.idcliente as cliente.nombre +    ' ' +      cliente.apellido for cliente in listaClientes">  
                             <option value="">Seleccione Un Cliente</option>
                         </select>
                     </div>
@@ -71,7 +71,7 @@
                 {{pago.abono| currency}}</td> 
             <td style="width:13%" title="'Total'" filter="{ total: 'text'}" sortable="'total'">
                 {{pago.total| currency}}</td>
-            <td style="width:29%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
+            <td style="width:22%" title="'Descripcion'" filter="{ descripcion: 'text'}" sortable="'descripcion'">
                 {{pago.descripcion}}</td>
             <!--<td style="width:10%" title="'Estado'" title="'Estado'" filter="{ estado: 'text'}" sortable="'estado'">
                 {{pago.estado}}</td> -->
@@ -82,12 +82,19 @@
                 <button ng-click="abrirModal(pago.idpago);"  type="submit" class="btn btn-warning" title="Abonar">
                     <i class="icon-credit"></i></button>   
 
-
-
                 <button ng-click="abrirMoadal2(pago.idpago)" type="submit" class="btn btn-danger" title="Cancelar">
                     <i class="icon-square-cross"></i></button>
+                
+               <button ng-click="abrirMoadal3(pago.idpago)" type="submit" class="btn btn-info" title="Email">
+                   <i class="icon-email"></i></button>
+              
             </td>
         </tr>
+        
+                
+              
+                
+       
     </table>
 </div>
 
@@ -160,4 +167,27 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Emain -->
+<div class="modal fade" id="mdlEmain" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Correo Electronico:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Para Enviar al Correo Electronico:
+                <textarea ng-model="" type="text" placeholder="ejemplo@email.com" class="form-control" name="Descripción" rows="5"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-info">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
